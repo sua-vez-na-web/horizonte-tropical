@@ -1,9 +1,16 @@
 <?php
 
-Route::group(['prefix'=>'admin'],function(){
+
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+
+    Route::get('/painel', 'PainelController@index')->name('painel.index');
+
     Route::resources([
-        'pessoas'      => 'Admin\PessoaController',
-        'blocos'       => 'Admin\BlocoController',
-        'apartamentos' => 'Admin\ApartamentoController'
+        'pessoas'      => 'PessoaController',
+        'blocos'       => 'BlocoController',
+        'apartamentos' => 'ApartamentoController',
+        'dependentes' =>  'DependentesController',
+        'correspondencias' => 'CorrespondenciasController'
     ]);
 });

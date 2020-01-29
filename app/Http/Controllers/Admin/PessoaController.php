@@ -10,28 +10,21 @@ use Yajra\DataTables\DataTables;
 
 class PessoaController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
-        if($request->ajax()){
-            $data = Pessoa::latest();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $btn = '<a href="'.route('pessoas.edit',$row->id).'" class="btn btn-primary btn-sm mx-1">Detalhes</a>';
-                    $btn = $btn. '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem"><i class="fa fa-trash"></i></a>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-        return view('admin.pessoas.index');
+        $data = Pessoa::latest()->get();
+        // dd($data);
+        return view('admin.pessoas.index', ['data' => $data]);
     }
 
-    public function create(){
-        return view('admin.pessoas.create');
+    public function create()
+    {
+        return view('admin.pessoas.create-edit');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->all();
 
         $pessoa = Pessoa::create($data);
@@ -39,19 +32,21 @@ class PessoaController extends Controller
         return redirect()->route('pessoas.index');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         $pessoa = Pessoa::find($id);
 
-        return view('admin.pessoas.edit',[ 'pessoa'=>$pessoa]);
+        return view('admin.pessoas.create-edit', ['pessoa' => $pessoa]);
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         $data = $request->all();
 
         $pessoa = Pessoa::find($id);
 
-        if($pessoa){
+        if ($pessoa) {
             $pessoa->update($data);
             return redirect()->route('pessoas.index');
         }

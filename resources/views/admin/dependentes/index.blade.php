@@ -7,12 +7,12 @@
 
 @section('content_header')
 <h1>
-    Pessoas
+    Dependentes de: <strong>{{$pessoa->nome}}</strong>
 
 </h1>
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li><a href="#">Pessoas</a></li>
+    <li><a href="#">Dependentes</a></li>
     <li class="active">Lista</li>
 </ol>
 
@@ -22,7 +22,7 @@
 
 <div class="box">
     <div class="box-header">
-        <a href="{{route('pessoas.create')}}" class="btn btn-primary">
+        <a href="{{route('dependentes.create',['pessoa_id'=>$pessoa->id] )}}" class="btn btn-primary">
             <span><i class="fa fa-plus"></i></span>
             Adicionar Registro</a>
     </div>
@@ -32,8 +32,10 @@
                 <tr>
                     <th>Codigo</th>
                     <th>Nome</th>
-                    <th>Email</th>
-                    <th>Tipo de Cadastro</th>
+                    <th>E-mail</th>
+                    <th>CPF</th>
+                    <th>RG</th>
+                    <th>Tipo Cadastro</th>
                     <th>Acoes</th>
                 </tr>
             </thead>
@@ -43,10 +45,12 @@
                     <td>{{ str_pad($d->id,5,'00000',STR_PAD_LEFT) }}</td>
                     <td>{{ $d->nome }}</td>
                     <td>{{ $d->email }}</td>
+                    <td>{{ $d->rg }}</td>
+                    <td>{{ $d->cpf }}</td>
                     <td>{{ $d->tipo_cadastro }}</td>
                     <td>
-                        <a href="{{ route('pessoas.edit',$d->id) }}" class="btn btn-primary btn-sm mx-1">Detalhes</a>
-                        <a href="{{ route('dependentes.index',['pessoa_id'=> $d->id]) }}" class="btn btn-primary btn-sm mx-1">Dependentes</a>
+                        <a href="{{ route('dependentes.edit',$d->id) }}" class="btn btn-primary btn-sm mx-1">Editar</a>
+
                     </td>
                 </tr>
                 @endforeach

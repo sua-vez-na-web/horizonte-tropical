@@ -16,12 +16,13 @@ class CreateApartamentosTable extends Migration
         Schema::create('apartamentos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('bloco_id');
-            $table->unsignedBigInteger('proprietario_id');
-            $table->string('codigo')->unique();
+            $table->unsignedBigInteger('bloco_id')->nullable();
+            $table->unsignedBigInteger('proprietario_id')->nullable();
+            $table->unsignedBigInteger('inquilino_id')->nullable();
+            $table->string('codigo');
             $table->integer('garagens')->default(1)->nullable();
             $table->boolean('prop_residente')->default(1);
-            $table->enum('status',['ALUGADO','DESOCUPADO'])->default('ALUGADO');
+            $table->enum('status', ['ALUGADO', 'DESOCUPADO', 'OCUPADO'])->default('OCUPADO');
         });
     }
 

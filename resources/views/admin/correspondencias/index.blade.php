@@ -9,12 +9,12 @@
 
 @section('content_header')
 <h1>
-    Apartamentos
+    Registro de Correspondências
 
 </h1>
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="{{route('apartamentos.index')}}">Apartamentos</a></li>
+    <li><a href="{{route('correspondencias.index')}}">Registro de Correspondências</a></li>
     <li class="active">Lista</li>
 </ol>
 
@@ -23,7 +23,7 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <a href="{{route('apartamentos.create')}}" class="btn btn-primary">
+        <a href="{{route('correspondencias.create')}}" class="btn btn-primary">
             <span><i class="fa fa-plus"></i></span>
             Adicionar Registro</a>
     </div>
@@ -32,12 +32,10 @@
             <thead>
                 <tr>
                     <th>#ID</th>
-                    <th>Bloco</th>
+                    <th>Data Recebimento</th>
                     <th>Apto</th>
                     <th>Poprietário</th>
-                    <th>Inquilino</th>
-                    <th>Status</th>
-                    <th>Prop. Residente</th>
+                    <th>Data Entrega</th>
                     <th>Ultima Atualização</th>
                     <th>Action</th>
                 </tr>
@@ -46,15 +44,13 @@
                 @foreach($data as $d)
                 <tr>
                     <td>{{$d->id}}</td>
-                    <td>{{str_pad($d->bloco->codigo,'3','000',STR_PAD_LEFT)}}</td>
-                    <td>{{$d->codigo}}</td>
-                    <td>{{$d->proprietario->nome ?? 'Nao Informado'}}</td>
-                    <td>{{$d->inquilino->nome ?? 'Nao Informado'}}</td>
-                    <td>{{$d->status}}</td>
-                    <td>{{$d->prop_residente}}</td>
+                    <td>{{$d->data_recebimento}}</td>
+                    <td>{{$d->apartamento->codigo}}</td>
+                    <td>{{$d->apartamento->proprietario->nome ?? 'NAO LOCALIZADO!' }}</td>
+                    <td>{{$d->data_entrega}}</td>
                     <td>{{$d->updated_at}}</td>
                     <td>
-                        <a href="{{ route('apartamentos.edit', $d->id)}}" class="btn btn-primary btn-sm mx-1">Detalhes</a>
+                        <a href="{{ route('correspondencias.edit', $d->id)}}" class="btn btn-primary btn-sm mx-1">Detalhes</a>
                     </td>
                 </tr>
                 @endforeach

@@ -6,26 +6,40 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apartamento extends Model
 {
-    protected $fillable = [ 'bloco_id','proprietario_id','codigo','garagens','prop_residente','status'];
+    protected $fillable = ['bloco_id', 'proprietario_id', 'inquilino_id', 'codigo', 'garagens', 'prop_residente', 'status'];
 
-    public function proprietario(){
-        return $this->belongsTo(Pessoa::class,'proprietario_id');
+    public function proprietario()
+    {
+        return $this->belongsTo(Pessoa::class, 'proprietario_id');
     }
 
-    public function bloco(){
+    public function inquilino()
+    {
+        return $this->belongsTo(Pessoa::class, 'inquilino_id');
+    }
+
+    public function bloco()
+    {
         return $this->belongsTo(Bloco::class);
     }
 
-    public function garagens(){
+    public function garagens()
+    {
         return $this->hasMany(Garagem::class);
     }
 
-    public function correspondencias(){
+    public function correspondencias()
+    {
         return $this->hasMany(Correspondencia::class);
     }
 
-    public function infracoes(){
+    public function infracoes()
+    {
         return $this->hasMany(Ocorrencia::class);
     }
 
+    public function getPropResidenteAttribute($value)
+    {
+        return $value == 1 ?  'SIM' : 'NÃO';
+    }
 }

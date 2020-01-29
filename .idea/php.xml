@@ -3,6 +3,7 @@
   <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server" />
@@ -69,6 +70,7 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
       <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
@@ -84,8 +86,6 @@
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
-      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
-      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
