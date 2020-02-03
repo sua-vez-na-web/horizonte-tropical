@@ -1,8 +1,9 @@
 <?php
 
 
+Auth::routes(['login','logout']);
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware'=>'auth'], function () {
 
     Route::get('/painel', 'PainelController@index')->name('painel.index');
 
@@ -11,6 +12,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         'blocos'       => 'BlocoController',
         'apartamentos' => 'ApartamentoController',
         'dependentes' =>  'DependentesController',
-        'correspondencias' => 'CorrespondenciasController'
+        'correspondencias' => 'CorrespondenciasController',
+        'ocorrencias' => 'OcorrenciasController',
     ]);
 });

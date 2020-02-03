@@ -221,10 +221,11 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">DASHBOARD</li>
-                    <li><a href="{{route('apartamentos.index')}}"><i class="fa fa-book"></i> <span>Apartamentos</span></a></li>
-                    <li><a href="{{route('pessoas.index')}}"><i class="fa fa-book"></i> <span>Pessoas</span></a></li>
                     <li><a href="{{route('painel.index')}}"><i class="fa fa-book"></i> <span>Painel</span></a></li>
+                    <li><a href="{{route('pessoas.index')}}"><i class="fa fa-book"></i> <span>Pessoas</span></a></li>
+                    <li><a href="{{route('apartamentos.index')}}"><i class="fa fa-book"></i> <span>Apartamentos</span></a></li>
                     <li><a href="{{route('correspondencias.index')}}"><i class="fa fa-book"></i> <span>Correspondências</span></a></li>
+                    <li><a href="{{route('ocorrencias.index')}}"><i class="fa fa-book"></i> <span>Ocorrências</span></a></li>
                 </ul>
             </section>
             <!-- /.sidebar -->

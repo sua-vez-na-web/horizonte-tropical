@@ -9,12 +9,12 @@
 
 @section('content_header')
 <h1>
-    Registro de Correspondências
+    Registro de Ocorrências
 
 </h1>
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="{{route('correspondencias.index')}}">Registro de Correspondências</a></li>
+    <li><a href="{{route('ocorrencias.index')}}">Registro de Correspondências</a></li>
     <li class="active">Lista</li>
 </ol>
 
@@ -23,7 +23,7 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <a href="{{route('correspondencias.create')}}" class="btn btn-primary">
+        <a href="{{route('ocorrencias.create')}}" class="btn btn-primary">
             <span><i class="fa fa-plus"></i></span>
             Adicionar Registro</a>
     </div>
@@ -32,27 +32,25 @@
             <thead>
                 <tr>
                     <th>#ID</th>
-                    <th>Data Recebimento</th>
-                    <th>Apto</th>
+                    <th>BLOCO - APTO</th>
                     <th>Poprietário</th>
-                    <th>Status</th>
-                    <th>Data Entrega</th>
-                    <th>Ultima Atualização</th>
-                    <th>Action</th>
+                    <th>Infração</th>
+                    <th>Tipo</th>
+                    <th>Penalidade</th>
+                    <th>Administrar</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($data as $d)
                 <tr>
                     <td>{{$d->id}}</td>
-                    <td>{{$d->data_recebimento}}</td>
-                    <td>{{$d->apartamento->codigo}}</td>
+                    <td>BLOCO: {{$d->apartamento->bloco->codigo}} |  APTO: {{$d->apartamento->codigo}}</td>
                     <td>{{$d->apartamento->proprietario->nome ?? 'NAO LOCALIZADO!' }}</td>
-                    <td>{{$d->status }}</td>
-                    <td>{{$d->data_entrega}}</td>
-                    <td>{{$d->updated_at}}</td>
+                    <td>ART: {{$d->infracao->codigo}} |{{$d->infracao->descricao }}</td>
+                    <td>{{$d->tipo}}</td>
+                    <td>{{$d->penalidade}}</td>
                     <td>
-                        <a href="{{ route('correspondencias.edit', $d->id)}}" class="btn btn-primary btn-sm mx-1">Atualizar</a>
+                        <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-sm mx-1">Atualizar</a>
                     </td>
                 </tr>
                 @endforeach

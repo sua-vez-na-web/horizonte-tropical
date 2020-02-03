@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Correspondencia extends Model
 {
-    protected $fillable = ['data_recebimento','data_entrega','apartamento_id','detalhes'];
+    protected $fillable = ['data_recebimento','data_entrega','apartamento_id','detalhes','status'];
 
     protected $dates = ['data_recebimento','data_entrega'];
 

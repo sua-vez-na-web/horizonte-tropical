@@ -18,8 +18,8 @@ class CreateOcorrenciasTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('apartamento_id');
             $table->unsignedBigInteger('infracao_id');
-            $table->enum('penalidade',['LEVE','MEDIA','GRAVE']);
-            $table->enum('tipo',['NOTIFICACAO','OCORRENCIA','MULTA']);
+            $table->enum('penalidade',['LEVE','MEDIA','GRAVE'])->nullable();
+            $table->enum('tipo',['NOTIFICACAO','OCORRENCIA','MULTA'])->nullable();
             $table->decimal('multa',10,2)->default(0);
             $table->unsignedBigInteger('autor_id')->nullable();
             $table->text('detalhes')->nullable();

@@ -33,7 +33,7 @@ class Apartamento extends Model
         return $this->hasMany(Correspondencia::class);
     }
 
-    public function infracoes()
+    public function ocorrencias()
     {
         return $this->hasMany(Ocorrencia::class);
     }

@@ -2,30 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f718572-c719-42a9-bc62-d7af8293804e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/condominio.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/condominio.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fc9080f5-81c8-4a3b-b78f-fd77ef735050.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fc9080f5-81c8-4a3b-b78f-fd77ef735050/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Apartamento.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Apartamento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Bloco.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Bloco.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ApartamentoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ApartamentoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PessoaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PessoaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Pessoa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Pessoa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_201019_create_apartamentos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_201019_create_apartamentos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_203612_create_pessoas_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_203612_create_pessoas_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Correspondencia.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Correspondencia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/InfracaoController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PontoController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CorrespondenciaController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OcorrenciaController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VisitaController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_204457_create_ocorrencias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_204457_create_ocorrencias_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_204520_create_correspondencias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_204520_create_correspondencias_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/apartamentos/create.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/apartamentos/edit.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/apartamentos/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/apartamentos/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/apartamentos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/apartamentos/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/pessoas/create.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/pessoas/edit.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/pessoas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pessoas/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/correspondencias/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/correspondencias/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/correspondencias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/correspondencias/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -34,7 +24,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
@@ -132,7 +122,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1X4T6RchpYvCB5pNcES20XxwnqZ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -141,7 +133,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -171,11 +169,27 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580304191466</updated>
-      <workItem from="1580304193935" duration="666000" />
+      <workItem from="1580304193935" duration="1389000" />
+      <workItem from="1580348075603" duration="11759000" />
+      <workItem from="1580600673162" duration="18000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580395772003">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1580395772003" />
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1580600684077">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1580600684077" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1580391104754">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580391104754" />
   </component>
 </project>
