@@ -54,7 +54,7 @@
                     <td>{{$d->prop_residente}}</td>
                     <td>{{$d->updated_at}}</td>
                     <td>
-                        <a href="{{ route('apartamentos.edit', $d->id)}}" class="btn btn-primary btn-sm mx-1">Detalhes</a>
+                        <a href="{{ route('apartamentos.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
                     </td>
                 </tr>
                 @endforeach

@@ -27,7 +27,6 @@ class CorrespondenciasController extends Controller
 
     public function store(Request $request)
     {
-
         $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
             ->where('codigo', $request->apartamento_id)
             ->first();
@@ -60,6 +59,14 @@ class CorrespondenciasController extends Controller
         $dados = $request->only(['status','detalhes']);
         $dados['data_entrega']  = $request->status == "ENTREGUE" ? now() : null;
         $correspondencia->update($dados);
+
+        return redirect()->route("correspondencias.index");
+    }
+
+    public function show($id){
+
+        $correspondencia = Correspondencia::find($id);
+        $correspondencia->delete();
 
         return redirect()->route("correspondencias.index");
     }

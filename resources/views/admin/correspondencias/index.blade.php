@@ -52,7 +52,12 @@
                     <td>{{$d->data_entrega}}</td>
                     <td>{{$d->updated_at}}</td>
                     <td>
-                        <a href="{{ route('correspondencias.edit', $d->id)}}" class="btn btn-primary btn-sm mx-1">Atualizar</a>
+                        @if($d->status == "PENDENTE DE ENTREGA")
+                            <a href="{{ route('correspondencias.edit', $d->id) }}" class="btn btn-primary btn-xs mx-1">Baixar Recebimento</a>
+                        @endif
+                        <a href="{{ route('correspondencias.show',$d->id) }}" class="btn btn-danger btn-xs mx-1">
+                            <i class="fa fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach

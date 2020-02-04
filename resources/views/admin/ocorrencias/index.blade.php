@@ -50,7 +50,7 @@
                     <td>{{$d->tipo}}</td>
                     <td>{{$d->penalidade}}</td>
                     <td>
-                        <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-sm mx-1">Atualizar</a>
+                        <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
                     </td>
                 </tr>
                 @endforeach

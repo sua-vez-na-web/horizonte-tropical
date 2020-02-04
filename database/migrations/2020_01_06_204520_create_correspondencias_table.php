@@ -16,8 +16,9 @@ class CreateCorrespondenciasTable extends Migration
         Schema::create('correspondencias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->dateTime('data_recebimento')->nullable();
-            $table->dateTime('data_entrega')->nullable();
+            $table->date('data_recebimento')->nullable();
+            $table->date('data_entrega')->nullable();
+            $table->enum("tipo",["AGUA","LUZ","OUTROS"])->default("OUTROS")->nullable();
             $table->enum("status",["ENTREGUE","PENDENTE DE ENTREGA"])->default("PENDENTE DE ENTREGA");
             $table->unsignedBigInteger('apartamento_id');
             $table->text('detalhes')->nullable();

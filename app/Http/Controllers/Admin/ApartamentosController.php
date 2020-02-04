@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
-class ApartamentoController extends Controller
+class ApartamentosController extends Controller
 {
     public function index(Request $request)
     {

@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="bloco_id" class="col-sm-2 control-label">Data do Recebimento</label>
     <div class="col-sm-8">
-        {!! Form::date('data_recebimento',null,['class'=>'form-control','placeholder'=>'']) !!}
+        {!! Form::text('data_recebimento',date("d/m/Y h:m:s",strtotime(now())),['class'=>'form-control','placeholder'=>'','readonly'=>'true']) !!}
     </div>
 </div>
 

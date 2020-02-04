@@ -5,51 +5,75 @@
 
 
 @section('content')
-<div class="row">
-  @foreach($blocos as $bloco)
-  <div class="col-md-3">
-    <!-- Widget: user widget style 1 -->
-    <div class="box box-widget widget-user">
-      <!-- Add the bg color to the header using any of the bg-* classes -->
-      <div class="widget-user-header bg-aqua-active">
-        <h3 class="widget-user-username">{{$bloco->codigo}}</h3>
-        <h5 class="widget-user-desc">{{$bloco->nome ?? 'Nome Bloco'}}</h5>
-      </div>
-      <div class="widget-user-image">
-        <img class="img-circle" src="{{ asset('icons/condo.png') }}" alt="User Avatar">
-      </div>
-      <div class="box-footer">
-        <div class="row">
-          <div class="col-sm-4 border-right">
-            <div class="description-block">
-              <h5 class="description-header">3,200</h5>
-              <span class="description-text">SALES</span>
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>{{$aptos_alugados}}</h3>
+
+                    <p>Alugados</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
-            <!-- /.description-block -->
-          </div>
-          <!-- /.col -->
-          <div class="col-sm-4 border-right">
-            <div class="description-block">
-              <h5 class="description-header">13,000</h5>
-              <span class="description-text">FOLLOWERS</span>
-            </div>
-            <!-- /.description-block -->
-          </div>
-          <!-- /.col -->
-          <div class="col-sm-4">
-            <div class="description-block">
-              <h5 class="description-header">35</h5>
-              <span class="description-text">PRODUCTS</span>
-            </div>
-            <!-- /.description-block -->
-          </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
-      </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>{{$aptos_disponiveis}}</h3>
+
+                    <p>Disponíveis</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>{{$visitantes ?? 0}}</h3>
+
+                    <p>Visitantes Presentes</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                     <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>{{$correspondencias ?? 0}}</h3>
+
+                    <p>Correspondências a entregar</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- ./col -->
     </div>
-    <!-- /.widget-user -->
-  </div>
-  @endforeach
 </div>
 @stop

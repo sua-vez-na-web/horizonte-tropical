@@ -23,9 +23,9 @@
             @method("PUT")
             <div class="box-body">
                 <div class="form-group">
-                    <label for="bloco_id" class="col-sm-2 control-label">Data do Recebimento</label>
+                    <label for="bloco_id" class="col-sm-2 control-label">Data da Baixa</label>
                     <div class="col-sm-8">
-                        <input type="text" value=" {{$correspondencia->data_recebimento}}" class="form-control" readonly>
+                    <input type="text" value="{{date("d/m/Y h:m:s",strtotime(now()))}}" name="data_entrega" class="form-control" readonly>
                     </div>
                 </div>
                 <div class="form-group">

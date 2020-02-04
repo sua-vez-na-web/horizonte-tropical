@@ -49,7 +49,7 @@
                     <td>{{ $d->cpf }}</td>
                     <td>{{ $d->tipo_cadastro }}</td>
                     <td>
-                        <a href="{{ route('dependentes.edit',$d->id) }}" class="btn btn-primary btn-sm mx-1">Editar</a>
+                        <a href="{{ route('dependentes.edit',$d->id) }}" class="btn btn-primary btn-xs mx-1">Administrar</a>
 
                     </td>
                 </tr>

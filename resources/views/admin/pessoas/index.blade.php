@@ -45,8 +45,10 @@
                     <td>{{ $d->email }}</td>
                     <td>{{ $d->tipo_cadastro }}</td>
                     <td>
-                        <a href="{{ route('pessoas.edit',$d->id) }}" class="btn btn-primary btn-sm mx-1">Detalhes</a>
-                        <a href="{{ route('dependentes.index',['pessoa_id'=> $d->id]) }}" class="btn btn-primary btn-sm mx-1">Dependentes</a>
+                        <a href="{{ route('pessoas.edit',$d->id) }}" class="btn btn-primary btn-xs mx-1">Administrar</a>
+                        <a href="{{ route('dependentes.index',['pessoa_id'=> $d->id]) }}" class="btn btn-primary btn-xs mx-1">
+                            <i class="fa fa-group"></i>
+                            Dependentes</a>
                     </td>
                 </tr>
                 @endforeach

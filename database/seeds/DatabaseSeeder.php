@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BlocosTableSeeder::class);
         $this->call(ApartamentosTableSeeder::class);
         $this->call(InfracoesTableSeeder::class);
+        $this->call(UsuariosTableSeeder::class);
 
     }
 }
