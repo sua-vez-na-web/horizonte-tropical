@@ -95,6 +95,11 @@
     </div>
 @endsection
 
+@section('css')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+@stop
+
 @section('js')
     <!-- Page level plugins -->
     <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>

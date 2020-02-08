@@ -11,13 +11,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/painel', 'PainelController@index')->name('painel.index');
 
     Route::resources([
-        'pessoas'      => 'PessoasController',
-        'blocos'       => 'BlocosController',
-        'apartamentos' => 'ApartamentosController',
-        'dependentes' =>  'DependentesController',
-        'correspondencias' => 'CorrespondenciasController',
-        'ocorrencias' => 'OcorrenciasController',
-        'visitas' => 'VisitasController',
+        'pessoas'           => 'PessoasController',
+        'blocos'            => 'BlocosController',
+        'apartamentos'      => 'ApartamentosController',
+        'dependentes'       => 'DependentesController',
+        'correspondencias'  => 'CorrespondenciasController',
+        'ocorrencias'       => 'OcorrenciasController',
+        'visitas'           => 'VisitasController',
+        'pontos'            => 'PontoController',
+        'usuarios'          => 'UsuariosController',
     ]);
 
     Route::post('/upload/{id}','UploadController@store')->name('post.upload');
