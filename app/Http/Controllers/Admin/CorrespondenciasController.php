@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Apartamento;
 use App\Bloco;
+use App\Mail\EntradaCorrespondencia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Correspondencia;
@@ -34,12 +35,20 @@ class CorrespondenciasController extends Controller
 
 
         if ($apartamento) {
-            $apartamento->correspondencias()->create([
+
+            $correspondencia = $apartamento->correspondencias()->create([
                 'data_recebimento' => now(),
                 'detalhes'         => $request->detalhes,
                 'status'           => $request->status,
                 'tipo'             => $request->tipo
             ]);
+
+            if($apartamento->inquilino){
+                Mail::to($apartamento->inquilino->email)
+                    ->cc(null)
+                    ->send(new EntradaCorrespondencia($correspondencia));
+            }
+
 
             return redirect()->route('correspondencias.index');
         }
@@ -66,6 +75,11 @@ class CorrespondenciasController extends Controller
         $dados['uuid']          = Uuid::uuid4();
         $correspondencia->update($dados);
 
+        if($correspondencia->apartamento->inquilino){
+            Mail::to($correspondencia->apartamento->inquilino->email)
+                ->cc(null)
+                ->send(new EntradaCorrespondencia($correspondencia));
+        }
         return redirect()->route("correspondencias.index");
     }
 

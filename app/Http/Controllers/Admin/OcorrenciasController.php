@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Infracao;
+use App\Mail\OcorrenciaRegistrada;
 use Illuminate\Http\Request;
 use App\Ocorrencia;
 use App\Apartamento;
 use App\Bloco;
 use App\Http\Controllers\Controller;
+use Mail;
 
 class OcorrenciasController extends Controller
 {
@@ -39,7 +41,7 @@ class OcorrenciasController extends Controller
 
 
         if ($apartamento) {
-            $apartamento->ocorrencias()->create([
+            $ocorrencia = $apartamento->ocorrencias()->create([
                 'data'          => $request->data,
                 'infracao_id'   => $request->infracao_id,
                 'penalidade'    => $request->penalidade,
@@ -48,6 +50,11 @@ class OcorrenciasController extends Controller
                 'detalhes'      => $request->detalhes
             ]);
 
+            if($apartamento->inquilino){
+                Mail::to($apartamento->inquilino->email)
+                    ->cc(null)
+                    ->send(new OcorrenciaRegistrada($ocorrencia));
+            }
             return redirect()->route('ocorrencias.index');
         }
 

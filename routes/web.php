@@ -1,5 +1,21 @@
 <?php
 
+Route::get('/ocorrencia',function(){
+    $ocorrencia = App\Ocorrencia::find(2);
+    return new App\Mail\OcorrenciaRegistrada($ocorrencia);
+});
+
+Route::get('/entrada/correspondencia',function(){
+    $correspondencia = App\Correspondencia::find(1);
+    return new App\Mail\EntradaCorrespondencia($correspondencia);
+});
+
+Route::get('/saida/correspondencia',function(){
+    $correspondencia = App\Correspondencia::find(1);
+    return new App\Mail\SaidaCorrespondencia($correspondencia);
+});
+
+
 Route::get("/",function(){
     return redirect()->route("login");
 });
