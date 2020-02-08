@@ -13,23 +13,7 @@ class ApartamentosController extends Controller
 {
     public function index(Request $request)
     {
-        // dd(Apartamento::with('proprietario', 'bloco')
-        //     ->latest()
-        //     ->get());
-        // if ($request->ajax()) {
-        //     $data = Apartamento::with('proprietario', 'bloco')
-        //         ->latest()
-        //         ->get();
-        //     return DataTables::of($data)
-        //         ->addIndexColumn()
-        //         ->addColumn('action', function ($row) {
-        //             $btn = '<a href="' . route('apartamentos.edit', $row->id) . '" class="btn btn-primary btn-sm mx-1">Detalhes</a>';
-        //             $btn = $btn . '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem"><i class="fa fa-trash"></i></a>';
-        //             return $btn;
-        //         })
-        //         ->rawColumns(['action'])
-        //         ->make(true);
-        // }
+
         $data = Apartamento::with('proprietario', 'bloco')->get();
         return view('admin.apartamentos.index', ['data' => $data]);
     }
@@ -47,6 +31,19 @@ class ApartamentosController extends Controller
             'apartamentos' => $apartamentos
         ]);
     }
+
+    public function show($id)
+    {
+        $apartamento = Apartamento::find($id);
+
+        return view('admin.apartamentos.detalhes',[
+            'apartamento'       => $apartamento,
+            'visitas'           => $apartamento->visitas()->get(),
+            'correspondencias'  => $apartamento->correspondencias()->get(),
+            'ocorrencias'       => $apartamento->ocorrencias()->get()
+        ]);
+    }
+
 
     public function store(Request $request)
     {

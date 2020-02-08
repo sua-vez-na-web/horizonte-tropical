@@ -1,11 +1,4 @@
 <div class="form-group">
-    <label for="bloco_id" class="col-sm-2 control-label">Data do Recebimento</label>
-    <div class="col-sm-8">
-        {!! Form::text('data_recebimento',date("d/m/Y h:m:s",strtotime(now())),['class'=>'form-control','placeholder'=>'','readonly'=>'true']) !!}
-    </div>
-</div>
-
-<div class="form-group">
     <label for="proprietario_id" class="col-sm-2 control-label">Bloco</label>
     <div class="col-sm-8">
         {!! Form::select('bloco_id',$blocos,null,['class'=>'form-control select2','placeholder'=>'Selecione...']) !!}
@@ -25,7 +18,19 @@
         {!! Form::select("status",[
             "ENTREGUE" => "Entregue",
             "PENDENTE DE ENTREGA" => "Pendende de entrega"
-        ],null,['class'=>"form-control"]) !!}
+        ],null,['class'=>"form-control","placeholder"=>"Selecione..."]) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="status" class="col-sm-2 control-label">Tipo</label>
+    <div class="col-sm-8">
+        {!! Form::select("tipo",[
+            "AGUA" => "Conta de Água",
+            "ENERGIA" => "Conta de Energia",
+            "INTERNET" => "Conta de Internet",
+            "OUTROS" => "Outras correspondências"
+        ],null,['class'=>"form-control","placeholder"=>"Selecione..."]) !!}
     </div>
 </div>
 
@@ -36,16 +41,3 @@
     </div>
 </div>
 
-<!-- <div class="form-group">
-    <label for="bloco_id" class="col-sm-2 control-label">Data da Entrega</label>
-    <div class="col-sm-8">
-        {!! Form::date('data_entrega',null,['class'=>'form-control','placeholder'=>'']) !!}
-    </div>
-</div> -->
-
-<!-- <div class="form-group">
-    <label for="codigo" class="col-sm-2 control-label">Status</label>
-    <div class="col-sm-6">
-        {!! Form::select('status',['ALUGADO'=>'Alugado','DESOCUPADO'=>'Desocupado'],null,['class'=>'form-control select2']) !!}
-    </div>
-</div> -->

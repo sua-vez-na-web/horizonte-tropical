@@ -7,6 +7,7 @@ use App\Bloco;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Correspondencia;
+use Ramsey\Uuid\Uuid;
 
 
 class CorrespondenciasController extends Controller
@@ -34,9 +35,10 @@ class CorrespondenciasController extends Controller
 
         if ($apartamento) {
             $apartamento->correspondencias()->create([
-                'data_recebimento' => $request->data_recebimento,
+                'data_recebimento' => now(),
                 'detalhes'         => $request->detalhes,
-                'status'           => $request->status
+                'status'           => $request->status,
+                'tipo'             => $request->tipo
             ]);
 
             return redirect()->route('correspondencias.index');
@@ -45,19 +47,23 @@ class CorrespondenciasController extends Controller
         return redirect()->back()->withInput();
     }
 
-    public function edit($id){
-
+    public function edit($id)
+    {
         $correspondencia = Correspondencia::find($id);
-        return view('admin.correspondencias.atualizar', ['correspondencia'=>$correspondencia]);
+        return view('admin.correspondencias.atualizar',
+            ['correspondencia'=>$correspondencia]
+        );
 
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request,$id)
+    {
 
         $correspondencia = Correspondencia::find($id);
 
-        $dados = $request->only(['status','detalhes']);
+        $dados                  = $request->only(['status','detalhes']);
         $dados['data_entrega']  = $request->status == "ENTREGUE" ? now() : null;
+        $dados['uuid']          = Uuid::uuid4();
         $correspondencia->update($dados);
 
         return redirect()->route("correspondencias.index");

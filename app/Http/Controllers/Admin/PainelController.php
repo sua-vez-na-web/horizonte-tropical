@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Correspondencia;
+use App\Visita;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Apartamento;
@@ -10,9 +12,12 @@ class PainelController extends Controller
 {
     public function index()
     {
+
         return view('admin.painel.index', [
             'aptos_alugados'    => Apartamento::where('status',"OCUPADO")->count(),
-            'aptos_disponiveis' => Apartamento::where('status',"DESOCUPADO")->count()
+            'aptos_disponiveis' => Apartamento::where('status',"DESOCUPADO")->count(),
+            'visitas'           => Visita::where('dh_saida',null)->count(),
+            'correspondencias'  => Correspondencia::where('data_entrega',null)->count()
         ]);
     }
 }

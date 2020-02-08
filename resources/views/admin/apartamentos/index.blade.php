@@ -52,9 +52,15 @@
                     <td>{{$d->inquilino->nome ?? 'Nao Informado'}}</td>
                     <td>{{$d->status}}</td>
                     <td>{{$d->prop_residente}}</td>
-                    <td>{{$d->updated_at}}</td>
+                    <td>{{date('d/m/Y H:i:s',strtotime($d->updated_at))}}</td>
                     <td>
-                        <a href="{{ route('apartamentos.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
+                        <a href="{{ route('apartamentos.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">
+                            <i class="fa fa-pencil"></i>
+                            Alterar
+                        </a>
+                        <a href="{{ route('apartamentos.show', $d->id)}}" class="btn btn-success btn-xs mx-1">
+                            <i class="fa fa-eye"></i>
+                            Detalhes</a>
                     </td>
                 </tr>
                 @endforeach

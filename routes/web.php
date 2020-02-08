@@ -17,5 +17,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         'dependentes' =>  'DependentesController',
         'correspondencias' => 'CorrespondenciasController',
         'ocorrencias' => 'OcorrenciasController',
+        'visitas' => 'VisitasController',
     ]);
+
+    Route::post('/upload/{id}','UploadController@store')->name('post.upload');
+    Route::get('/upload/{id}','UploadController@index')->name('get.upload');
+    Route::get('/upload/{id}/delete','UploadController@delete')->name('delete.upload');
 });

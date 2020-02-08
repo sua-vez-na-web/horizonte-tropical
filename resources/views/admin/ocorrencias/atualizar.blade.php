@@ -25,13 +25,13 @@
                 <div class="form-group">
                     <label for="bloco_id" class="col-sm-2 control-label">Data da Ocorrência</label>
                     <div class="col-sm-8">
-                        <input type="text" value=" {{$ocorrencia->data}}" class="form-control" readonly>
+                        <input type="text" value=" {{date('d/m/Y',strtotime($ocorrencia->data))}}" class="form-control" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="bloco_id" class="col-sm-2 control-label">Apartamento</label>
                     <div class="col-sm-8">
-                        <input type="text" value="{{$ocorrencia->apartamento->inquilino->nome ?? "indefinido"}}" class="form-control" readonly>
+                        <input type="text" value="{{$ocorrencia->apartamento->inquilino->nome ?? "NAO INFORMADO"}}" class="form-control" readonly>
                     </div>
                 </div>
 

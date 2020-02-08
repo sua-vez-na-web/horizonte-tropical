@@ -44,7 +44,8 @@ class OcorrenciasController extends Controller
                 'infracao_id'   => $request->infracao_id,
                 'penalidade'    => $request->penalidade,
                 'tipo'          => $request->tipo,
-                'status'        => $request->status
+                'status'        => $request->status,
+                'detalhes'      => $request->detalhes
             ]);
 
             return redirect()->route('ocorrencias.index');
@@ -72,5 +73,13 @@ class OcorrenciasController extends Controller
         $ocorrencia->update($dados);
 
         return redirect()->route("ocorrencias.index");
+    }
+
+    public function show($id){
+        $ocorrencia = Ocorrencia::find($id);
+
+        $ocorrencia->delete();
+
+        return redirect()->route('ocorrencias.index');
     }
 }

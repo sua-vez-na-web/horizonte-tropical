@@ -9,12 +9,12 @@
 
 @section('content_header')
 <h1>
-    Registro de Correspondências
+    Registro de Visitas
 
 </h1>
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="{{route('correspondencias.index')}}">Registro de Correspondências</a></li>
+    <li><a href="{{route('ocorrencias.index')}}">Registro de Visitas</a></li>
     <li class="active">Lista</li>
 </ol>
 
@@ -23,7 +23,7 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <a href="{{route('correspondencias.create')}}" class="btn btn-primary">
+        <a href="{{route('visitas.create')}}" class="btn btn-primary">
             <span><i class="fa fa-plus"></i></span>
             Adicionar Registro</a>
     </div>
@@ -32,12 +32,12 @@
             <thead>
                 <tr>
                     <th>#ID</th>
-                    <th>Data Recebimento</th>
-                    <th>Tipo</th>
-                    <th>Apto</th>
+                    <th>BLOCO - APTO</th>
                     <th>Poprietário</th>
-                    <th>Status</th>
-                    <th>Data Entrega</th>
+                    <th>Visitante</th>
+                    <th>Entrada</th>
+                    <th>Saída</th>
+                    <th>Duração</th>
                     <th>Administrar</th>
                 </tr>
             </thead>
@@ -45,16 +45,16 @@
                 @foreach($data as $d)
                 <tr>
                     <td>{{$d->id}}</td>
-                    <td>{{date("d/m/Y",strtotime($d->data_recebimento))}}</td>
-                    <td>{{$d->tipo}}</td>
-                    <td>{{$d->apartamento->codigo}}</td>
-                    <td>{{$d->apartamento->proprietario->nome ?? 'NAO INFORMADO!' }}</td>
-                    <td>{{$d->status }}</td>
-                    <td>{{$d->data_entrega ? date("d/m/Y",strtotime($d->data_entrega)) : "Pendende de Entrega"}}</td>
+                    <td>BLOCO: {{$d->apartamento->bloco->codigo}} |  APTO: {{$d->apartamento->codigo}}</td>
+                    <td>{{$d->apartamento->proprietario->nome ?? 'NAO LOCALIZADO!' }}</td>
+                    <td>{{$d->visitante ?? 'nome visitante' }} | RG: {{$d->r}}</td>
+                    <td>{{ date('d/m/Y H:i:s',strtotime($d->dh_entrada))}}</td>
+                    <td>{{ $d->dh_saida ? date('d/m/Y H:i:s', strtotime($d->dh_saida)) : 'Em Andamento...' }}</td>
+                    <td>{{$d->duracao()}}</td>
                     <td>
-                        @if(!$d->data_entrega)
-                            <a href="{{ route('correspondencias.edit', $d->id) }}" class="btn btn-primary btn-xs mx-1">Baixar Recebimento</a>
-                            <a href="{{ route('correspondencias.show',$d->id) }}" class="btn btn-danger btn-xs mx-1">
+                        @if(!$d->dh_saida)
+                            <a href="{{ route('visitas.edit', $d->id)}}" class="btn btn-success btn-xs mx-1">Confirmar Saída</a>
+                            <a href="{{ route('visitas.show', $d->id)}}" class="btn btn-danger btn-xs mx-1">
                                 <i class="fa fa-trash"></i>
                             </a>
                         @endif

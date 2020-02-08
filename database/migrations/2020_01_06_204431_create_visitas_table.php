@@ -16,13 +16,15 @@ class CreateVisitasTable extends Migration
         Schema::create('visitas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->softDeletes();
             $table->unsignedBigInteger('apartamento_id');
             $table->boolean('agendado')->default(0);
-            $table->dateTime('dataHora_agendamento')->nullable();
-            $table->dateTime('dataHora_entrada')->nullable(true);
-            $table->dateTime('dataHora_saida')->nullable(true);
-            $table->string('tipo_autorizacao')->nullable();
             $table->boolean('morador_presente')->default(0);
+            $table->dateTime('dh_entrada')->nullable(true);
+            $table->dateTime('dh_saida')->nullable(true);
+            $table->string('tipo_autorizacao')->nullable();
+            $table->string('nome_visitante')->nullable();
+            $table->string('rg_visitante')->nullable();
             $table->text('detalhes')->nullable();
             $table->unsignedBigInteger('autorizado_por');
         });

@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Correspondencia extends Model
 {
-    protected $fillable = ['data_recebimento','data_entrega','apartamento_id','detalhes','status'];
+    use SoftDeletes;
+
+    protected $fillable = ['uuid','data_recebimento','data_entrega','apartamento_id','detalhes','status'];
 
     protected $dates = ['data_recebimento','data_entrega'];
 
@@ -14,11 +18,4 @@ class Correspondencia extends Model
         return $this->belongsTo(Apartamento::class);
     }
 
-    public function setDataRecebimentoAttribute($value){
-        $this->attributes['data_recebimento'] = Carbon::parse($value);
-    }
-
-    public function setDataEntregaAttribute($value){
-        $this->attributes['data_entrega'] = Carbon::parse($value);
-    }
 }

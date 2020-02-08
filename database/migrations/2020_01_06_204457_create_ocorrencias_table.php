@@ -16,6 +16,7 @@ class CreateOcorrenciasTable extends Migration
         Schema::create('ocorrencias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->softDeletes();
             $table->unsignedBigInteger('apartamento_id');
             $table->unsignedBigInteger('infracao_id');
             $table->enum('penalidade',['LEVE','MEDIA','GRAVE'])->nullable();

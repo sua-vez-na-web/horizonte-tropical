@@ -16,6 +16,7 @@ class CreatePessoasTable extends Migration
         Schema::create('pessoas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('nome');
             $table->string('email')->unique();
             $table->string('telefone')->unique();

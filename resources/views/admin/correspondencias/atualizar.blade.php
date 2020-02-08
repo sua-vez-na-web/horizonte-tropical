@@ -8,7 +8,6 @@
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li><a href="{{route('correspondencias.index')}}">Registro de Correspondências</a></li>
-        <li><a href="{{route('correspondencias.index')}}">Registro de Correspondências</a></li>
         <li class="active">Adicionar Registro</li>
     </ol>
 @stop
@@ -25,13 +24,13 @@
                 <div class="form-group">
                     <label for="bloco_id" class="col-sm-2 control-label">Data da Baixa</label>
                     <div class="col-sm-8">
-                    <input type="text" value="{{date("d/m/Y h:m:s",strtotime(now()))}}" name="data_entrega" class="form-control" readonly>
+                    <input type="text" value="{{date("d/m/Y H:i:s",strtotime(now()))}}" name="data_entrega" class="form-control" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="bloco_id" class="col-sm-2 control-label">Apartamento</label>
                     <div class="col-sm-8">
-                        <input type="text" value="{{$correspondencia->apartamento->inquilino->nome ?? "indefinido"}}" class="form-control" readonly>
+                        <input type="text" value="{{$correspondencia->apartamento->inquilino->nome ?? "NAO INFORMADO"}}" class="form-control" readonly>
                     </div>
                 </div>
 
@@ -48,7 +47,7 @@
                         {!! Form::select("status",[
                             "ENTREGUE"            => "Entregue",
                             "PENDENTE DE ENTREGA" => "Pendende de entrega"
-                        ],null,['class'=>"form-control"]) !!}
+                        ],null,['class'=>"form-control","placeholder"=>"Selecione..."]) !!}
                     </div>
                 </div>
             </div>

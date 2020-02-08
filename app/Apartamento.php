@@ -42,4 +42,9 @@ class Apartamento extends Model
     {
         return $value == 1 ?  'SIM' : 'NÃO';
     }
+
+    public function visitas()
+    {
+        return $this->hasMany(Visita::class);
+    }
 }
