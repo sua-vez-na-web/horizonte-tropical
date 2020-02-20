@@ -19,6 +19,7 @@ class CreateOcorrenciasTable extends Migration
             $table->softDeletes();
             $table->unsignedBigInteger('apartamento_id');
             $table->unsignedBigInteger('infracao_id');
+            $table->unsignedInteger('reclamante_id');
             $table->enum('penalidade',['LEVE','MEDIA','GRAVE'])->nullable();
             $table->enum('tipo',['NOTIFICACAO','OCORRENCIA','MULTA'])->nullable();
             $table->decimal('multa',10,2)->default(0);

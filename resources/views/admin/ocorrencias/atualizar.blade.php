@@ -36,6 +36,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="bloco_id" class="col-sm-2 control-label">Reclamante</label>
+                    <div class="col-sm-8">
+                        <input type="text" value="{{$ocorrencia->reclamante->nome ?? "NAO INFORMADO"}}" class="form-control" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="codigo" class="col-sm-2 control-label">Detalhes</label>
                     <div class="col-sm-8">
                         {!! Form::textarea('detalhes',null,['class'=>'form-control']) !!}

@@ -32,14 +32,13 @@ class CorrespondenciasController extends Controller
         $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
             ->where('codigo', $request->apartamento_id)
             ->first();
-
-
+        
         if ($apartamento) {
 
             $correspondencia = $apartamento->correspondencias()->create([
                 'data_recebimento' => now(),
                 'detalhes'         => $request->detalhes,
-                'status'           => $request->status,
+                'status'           => 'PENDENTE DE ENTREGA',
                 'tipo'             => $request->tipo
             ]);
 
@@ -48,7 +47,6 @@ class CorrespondenciasController extends Controller
                     ->cc(null)
                     ->send(new EntradaCorrespondencia($correspondencia));
             }
-
 
             return redirect()->route('correspondencias.index');
         }
@@ -70,8 +68,8 @@ class CorrespondenciasController extends Controller
 
         $correspondencia = Correspondencia::find($id);
 
-        $dados                  = $request->only(['status','detalhes']);
-        $dados['data_entrega']  = $request->status == "ENTREGUE" ? now() : null;
+        $dados['status']        = 'ENTREGUE';
+        $dados['data_entrega']  = now();
         $dados['uuid']          = Uuid::uuid4();
         $correspondencia->update($dados);
 

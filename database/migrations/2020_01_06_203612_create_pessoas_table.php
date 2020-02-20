@@ -23,7 +23,7 @@ class CreatePessoasTable extends Migration
             $table->boolean('notificar')->default(1);
             $table->string('razao_social')->nullable();
             $table->enum('tipo', ['FISICA', 'JURIDICA'])->default('FISICA');
-            $table->enum('tipo_cadastro', ['PROPRIETARIO', 'INQUILINO', 'FAMILIAR'])->default('PROPRIETARIO');
+            $table->enum('tipo_cadastro', ['PROPRIETARIO', 'INQUILINO', 'FAMILIAR','FUNCIONARIO'])->default('PROPRIETARIO');
             $table->string('rg')->nullable(true)->unique();
             $table->string('cpf')->nullable(true)->unique();
             $table->string('cnpj')->nullable(true)->unique();

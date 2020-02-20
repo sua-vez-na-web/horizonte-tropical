@@ -16,7 +16,9 @@ class CreatePontosTable extends Migration
         Schema::create('pontos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->date('data');
+            $table->string('mes');
+            $table->string('ano');
+            $table->unsignedInteger('usuario_id');
             $table->string('url');
 
         });

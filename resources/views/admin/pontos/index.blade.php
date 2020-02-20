@@ -33,10 +33,10 @@
             <thead>
             <tr>
                 <th>#ID</th>
-                <th>Data</th>
+                <th>Mês/Ano</th>
                 <th>Arquivo</th>
                 @cannot('funcionario')
-                    s<th>Administrar</th>
+                    <th>Administrar</th>
                 @endcannot
             </tr>
             </thead>
@@ -44,7 +44,7 @@
             @foreach($pontos as $d)
                 <tr>
                     <td>{{ str_pad($d->id,5,'00000',STR_PAD_LEFT) }}</td>
-                    <td>{{ date('d/m/Y',strtotime($d->data)) }}</td>
+                    <td>{{$d->mes}} / {{ $d->ano }} </td>
                     <td><a href="{{ Storage::url($d->url) }}" target="_blank"> Download Arquivo</a></td>
                     @cannot('funcionario')
                     <td>
@@ -73,9 +73,46 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="data_arquivo">Data Competência</label>
-                        {!! Form::date('data',null,['class'=>'form-control']) !!}
+                        <label for="Funcionario">Funcionário</label>
+                        {!! Form::select('usuario_id',$funcionarios,null,['class'=>'form-control select2']) !!}
                     </div>
+
+                    <div class="form-group">
+                        <label for="ano">Ano</label>
+                        {!! Form::select('ano',[
+                            '2020' => '2020',
+                            '2021' => '2021',
+                            '2022' => '2022',
+                            '2023' => '2023',
+                            '2024' => '2024',
+                            '2025' => '2025',
+                            '2026' => '2026',
+                        ],null,['class'=>'form-control select2']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="ano">Ano</label>
+                        {!! Form::select('mes',[
+                            'Jan' => 'Janeiro',
+                            'Fev' => 'Fevereiro',
+                            'Mar' => 'Março',
+                            'Abr' => 'Abril',
+                            'Mai' => 'Maio',
+                            'Jun' => 'Junho',
+                            'Jul' => 'Julho',
+                            'Ago' => 'Agosto',
+                            'Set' => 'Setembro',
+                            'Out' => 'Outubro',
+                            'Nov' => 'Novembro',
+                            'Dez' => 'Dezembro',
+
+                        ],null,['class'=>'form-control select2']) !!}
+                    </div>
+
+{{--                    <div class="form-group">--}}
+{{--                        <label for="data_arquivo">Data Competência</label>--}}
+{{--                        {!! Form::date('data',null,['class'=>'form-control']) !!}--}}
+{{--                    </div>--}}
+
                     <div class="form-group">
                         <label for="arquivo">Arquivo</label>
                         {!! Form::file('arquivo',null,['class'=>'form-control']) !!}

@@ -9,7 +9,15 @@ class Ocorrencia extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['apartamento_id','infracao_id','penalidade','tipo','multa','detalhes','data'];
+    protected $fillable = [
+        'apartamento_id',
+        'infracao_id',
+        'penalidade',
+        'tipo',
+        'multa',
+        'detalhes',
+        'data',
+        'reclamante_id'];
 
     protected $dates = [ 'data'];
 
@@ -26,5 +34,10 @@ class Ocorrencia extends Model
     public function fotos()
     {
         return $this->hasMany(Foto::class);
+    }
+
+    public function reclamante()
+    {
+        return $this->belongsTo(Pessoa::class,'reclamante_id');
     }
 }

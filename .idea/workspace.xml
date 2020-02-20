@@ -3,8 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="5f718572-c719-42a9-bc62-d7af8293804e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Correspondencia.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Correspondencia.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/OcorrenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/OcorrenciasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PontoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PontoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Ocorrencia.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ocorrencia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Ponto.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ponto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_203612_create_pessoas_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_203612_create_pessoas_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_204457_create_ocorrencias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_204457_create_ocorrencias_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_204520_create_correspondencias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_204520_create_correspondencias_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_204529_create_pontos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_204529_create_pontos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/correspondencias/atualizar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/correspondencias/atualizar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/correspondencias/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/correspondencias/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/ocorrencias/atualizar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ocorrencias/atualizar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/ocorrencias/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ocorrencias/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/ocorrencias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ocorrencias/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pontos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pontos/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +65,7 @@
         <item name="ht" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="horizontetropical: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="correspondencias: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="usuarios: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -205,6 +220,8 @@
       <workItem from="1580930568448" duration="37000" />
       <workItem from="1581007313324" duration="5200000" />
       <workItem from="1581080054466" duration="36405000" />
+      <workItem from="1581163003573" duration="1415000" />
+      <workItem from="1582161985105" duration="4190000" />
     </task>
     <servers />
   </component>
@@ -234,16 +251,16 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="344" y="31" width="1022" height="737" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1581080234497" />
-    <state x="392" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1581080056571">
+    <state x="392" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1581163003531">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1580600684077" />
-    <state x="392" y="259" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1581080056571" />
-    <state x="1943" y="482" width="1617" height="557" key="search.everywhere.popup" timestamp="1581142214460">
-      <screen x="0" y="339" width="3286" height="741" />
+    <state x="392" y="259" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1581163003531" />
+    <state x="365" y="188" width="672" height="557" key="search.everywhere.popup" timestamp="1582164289644">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580391104754" />
-    <state x="365" y="188" width="672" height="557" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1581105256853" />
+    <state x="365" y="188" width="672" height="557" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1582164289644" />
     <state x="1943" y="482" width="1617" height="557" key="search.everywhere.popup/0.339.3286.741@0.339.3286.741" timestamp="1581142214460" />
   </component>
 </project>

@@ -34,6 +34,7 @@
                     <th>#ID</th>
                     <th>BLOCO - APTO</th>
                     <th>Poprietário</th>
+                    <th>Reclamante</th>
                     <th>Infração</th>
                     <th>Tipo</th>
                     <th>Penalidade</th>
@@ -46,6 +47,7 @@
                     <td>{{$d->id}}</td>
                     <td>BLOCO: {{$d->apartamento->bloco->codigo}} |  APTO: {{$d->apartamento->codigo}}</td>
                     <td>{{$d->apartamento->proprietario->nome ?? 'NAO LOCALIZADO!' }}</td>
+                    <td>{{$d->reclamante->nome ?? 'NAO LOCALIZADO!' }}</td>
                     <td>ART: {{$d->infracao->codigo}} |{{$d->infracao->descricao }}</td>
                     <td>{{$d->tipo}}</td>
                     <td>{{$d->penalidade}}</td>

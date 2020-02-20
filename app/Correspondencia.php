@@ -10,7 +10,15 @@ class Correspondencia extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['uuid','data_recebimento','data_entrega','apartamento_id','detalhes','status'];
+    protected $fillable = [
+        'uuid',
+        'data_recebimento',
+        'data_entrega',
+        'apartamento_id',
+        'detalhes',
+        'tipo',
+        'status'
+    ];
 
     protected $dates = ['data_recebimento','data_entrega'];
 

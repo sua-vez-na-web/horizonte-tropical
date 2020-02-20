@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/ocorrencia',function(){
-    $ocorrencia = App\Ocorrencia::find(2);
+    $ocorrencia = App\Ocorrencia::find(1);
     return new App\Mail\OcorrenciaRegistrada($ocorrencia);
 });
 

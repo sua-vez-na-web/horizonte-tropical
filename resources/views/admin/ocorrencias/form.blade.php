@@ -27,6 +27,15 @@
 </div>
 
 <div class="form-group">
+    <label for="reclamante_id" class="col-sm-2 control-label">Reclamante</label>
+    <div class="col-sm-8">
+        {!! Form::select('reclamante_id',$pessoas,null,['class'=>'form-control select2','placeholder'=>'Selecione...']) !!}
+    </div>
+</div>
+
+@can('sindico')
+
+<div class="form-group">
     <label for="penalidade" class="col-sm-2 control-label">Penalidade</label>
     <div class="col-sm-8">
         {!! Form::select("penalidade",[
@@ -36,6 +45,7 @@
         ],null,['class'=>"form-control"]) !!}
     </div>
 </div>
+
 
 <div class="form-group">
     <label for="tipo" class="col-sm-2 control-label">Tipo de Penalidade</label>
@@ -54,6 +64,7 @@
         {!! Form::text("multa",null,["class"=>"form-control"]) !!}
     </div>
 </div>
+@endcan
 
 <div class="form-group">
     <label for="detalhes" class="col-sm-2 control-label">Detalhes</label>

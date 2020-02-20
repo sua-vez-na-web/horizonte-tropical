@@ -20,7 +20,7 @@ class CreateCorrespondenciasTable extends Migration
             $table->uuid("uuid")->nullable();
             $table->dateTime('data_recebimento')->nullable();
             $table->dateTime('data_entrega')->nullable();
-            $table->enum("tipo",["AGUA","LUZ","INTERNET","OUTROS"])->default("OUTROS")->nullable();
+            $table->string("tipo")->nullable();
             $table->enum("status",["ENTREGUE","PENDENTE DE ENTREGA"])->default("PENDENTE DE ENTREGA");
             $table->unsignedBigInteger('apartamento_id');
             $table->text('detalhes')->nullable();

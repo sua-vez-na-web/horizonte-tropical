@@ -41,15 +41,15 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="status" class="col-sm-2 control-label">Status</label>
-                    <div class="col-sm-8">
-                        {!! Form::select("status",[
-                            "ENTREGUE"            => "Entregue",
-                            "PENDENTE DE ENTREGA" => "Pendende de entrega"
-                        ],null,['class'=>"form-control","placeholder"=>"Selecione..."]) !!}
-                    </div>
-                </div>
+{{--                <div class="form-group">--}}
+{{--                    <label for="status" class="col-sm-2 control-label">Status</label>--}}
+{{--                    <div class="col-sm-8">--}}
+{{--                        {!! Form::select("status",[--}}
+{{--                            "ENTREGUE"            => "Entregue",--}}
+{{--                            "PENDENTE DE ENTREGA" => "Pendende de entrega"--}}
+{{--                        ],null,['class'=>"form-control","placeholder"=>"Selecione..."]) !!}--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         <div class="box-footer">
             {!! Form::submit('Salvar',['class'=>'btn btn-primary']) !!}

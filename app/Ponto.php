@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ponto extends Model
 {
-    protected $fillable = ['data','url'];
+    protected $fillable = ['mes','ano','url','usuario_id'];
 }

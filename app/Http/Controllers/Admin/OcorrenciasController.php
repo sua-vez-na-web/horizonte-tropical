@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Infracao;
 use App\Mail\OcorrenciaRegistrada;
+use App\Pessoa;
 use Illuminate\Http\Request;
 use App\Ocorrencia;
 use App\Apartamento;
@@ -22,13 +23,15 @@ class OcorrenciasController extends Controller
     public function create()
     {
         $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('codigo', 'codigo');
-        $blocos = Bloco::orderBy('id')->pluck('codigo', 'id');
-        $infracoes = Infracao::pluck("descricao","id");
+        $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
+        $infracoes    = Infracao::pluck("descricao","id");
+        $pessoas      = Pessoa::pluck('nome','id');
 
         return view('admin.ocorrencias.create-edit', [
             'apartamentos' => $apartamentos,
             'blocos' => $blocos,
-            'infracoes' => $infracoes
+            'infracoes' => $infracoes,
+            'pessoas' => $pessoas
         ]);
     }
 
@@ -47,6 +50,7 @@ class OcorrenciasController extends Controller
                 'penalidade'    => $request->penalidade,
                 'tipo'          => $request->tipo,
                 'status'        => $request->status,
+                'reclamante_id' => $request->reclamante_id,
                 'detalhes'      => $request->detalhes
             ]);
 
