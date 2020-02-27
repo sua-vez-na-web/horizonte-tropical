@@ -9,7 +9,22 @@ class Pessoa extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['nome', 'email', 'telefone', 'notificar', 'razao_social', 'tipo', 'tipo_cadastro', 'cpf', 'cnpj'];
+    protected $fillable = [
+        'nome',
+        'email',
+        'telefone',
+        'notificar',
+        'razao_social',
+        'tipo',
+        'tipo_cadastro',
+        'cpf', 'cnpj',
+        'cep',
+        'rua',
+        'bairro',
+        'cidade',
+        'uf',
+        'complemento'
+    ];
 
     public function apartamentos()
     {

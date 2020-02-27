@@ -3,24 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5f718572-c719-42a9-bc62-d7af8293804e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Correspondencia.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Correspondencia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/OcorrenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/OcorrenciasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PontoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PontoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Ocorrencia.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ocorrencia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Ponto.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ponto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_203612_create_pessoas_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_203612_create_pessoas_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_204457_create_ocorrencias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_204457_create_ocorrencias_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_204520_create_correspondencias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_204520_create_correspondencias_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_06_204529_create_pontos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_204529_create_pontos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/correspondencias/atualizar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/correspondencias/atualizar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/correspondencias/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/correspondencias/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ocorrencias/atualizar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ocorrencias/atualizar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ocorrencias/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ocorrencias/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ocorrencias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ocorrencias/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/pontos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pontos/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Pessoa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Pessoa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pessoas/create-edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pessoas/create-edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pessoas/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pessoas/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +160,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet" />
   </component>
@@ -221,7 +207,8 @@
       <workItem from="1581007313324" duration="5200000" />
       <workItem from="1581080054466" duration="36405000" />
       <workItem from="1581163003573" duration="1415000" />
-      <workItem from="1582161985105" duration="4190000" />
+      <workItem from="1582161985105" duration="4498000" />
+      <workItem from="1582810850828" duration="1881000" />
     </task>
     <servers />
   </component>
