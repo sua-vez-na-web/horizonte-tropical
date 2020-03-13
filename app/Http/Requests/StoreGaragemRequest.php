@@ -33,7 +33,7 @@ class StoreGaragemRequest extends FormRequest
     {
         return [
             'required' => 'O campo :attribute é obrigatório',
-            'min' => 'O valor do campo :attribut é inválido',
+            'min' => 'O valor do campo :attribute nao é valido, AAA0000 ou ABC0F123(mercosul)',
         ];
     }
 
