@@ -65,9 +65,10 @@
         var origem = event.target.value;
 
         if(origem == 2){
-            $('#aptos').show()
+            $('#aptos').show();
             return
         }
+        $('#aptos').hide();
         return
     })
 </script>
