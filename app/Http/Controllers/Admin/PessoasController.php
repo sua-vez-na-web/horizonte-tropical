@@ -7,7 +7,7 @@ use App\Pessoa;
 use App\Apartamento;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-
+use App\Http\Requests\StorePessoaRequest as PessoaRequest;
 
 class PessoasController extends Controller
 {
@@ -24,7 +24,7 @@ class PessoasController extends Controller
         return view('admin.pessoas.create-edit');
     }
 
-    public function store(Request $request)
+    public function store(PessoaRequest $request)
     {
         $data = $request->all();
 
