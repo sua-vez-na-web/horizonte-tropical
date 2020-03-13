@@ -18,6 +18,7 @@ class CreateUsuariosTable extends Migration
             $table->string("name");
             $table->string("email")->unique();
             $table->string('cpf')->unique();
+            $table->string('telefone')->nullable();
             $table->string("password");
             $table->unsignedBigInteger("cargo")->nullable();
             $table->boolean("ativo")->default(1);

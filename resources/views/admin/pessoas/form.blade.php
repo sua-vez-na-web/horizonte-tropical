@@ -14,7 +14,7 @@
         <div class="form-group">
             <label for="" class="col-sm-2 control-label">Dependende de:</label>
             <div class="col-md-5">
-                <select name="dependente_id" id="dependentes" class="form-control">
+                <select name="dependente_id" id="dependentes" class="form-control select2">
 
                 </select>
             </div>
@@ -118,11 +118,18 @@
     </div>
     </div>
 
+@section('css')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('admin/bower_components/select2/dist/css/select2.min.css')}}">
+@stop
 
 @section('js')
+    <script src="{{asset('admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
     <script src="{{asset('js/jquery.mask.min.js')}}"></script>
     <script src="{{asset('js/viaCep.js')}}"></script>
     <script>
+        $('.select2').select2();
+
         $('#telefone').mask('(00)0-0000-0000');
         $('#cpf').mask('000.000.000-00');
         $('#cnpj').mask('00.000.000/0000-00');
