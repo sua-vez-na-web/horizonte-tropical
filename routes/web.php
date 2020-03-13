@@ -41,4 +41,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('/upload/{id}','UploadController@store')->name('post.upload');
     Route::get('/upload/{id}','UploadController@index')->name('get.upload');
     Route::get('/upload/{id}/delete','UploadController@delete')->name('delete.upload');
+
+    Route::get('ajaxPessoas','PessoasController@getPessoas');
+    Route::get('ajaxMoradores','PessoasController@getMoradores');
+
 });

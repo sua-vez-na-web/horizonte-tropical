@@ -45,9 +45,9 @@
                 @foreach($data as $d)
                 <tr>
                     <td>{{$d->id}}</td>
-                    <td>BLOCO: {{$d->apartamento->bloco->codigo}} |  APTO: {{$d->apartamento->codigo}}</td>
+                    <td>BLOCO: {{$d->apartamento->bloco->codigo}} |  APTO: {{$d->apartamento->apto}}</td>
                     <td>{{$d->apartamento->proprietario->nome ?? 'NAO LOCALIZADO!' }}</td>
-                    <td>{{$d->visitante ?? 'nome visitante' }} | RG: {{$d->r}}</td>
+                    <td>{{$d->nome_visitante ?? 'nome visitante' }} | RG: {{$d->rg_visitante}}</td>
                     <td>{{ date('d/m/Y H:i:s',strtotime($d->dh_entrada))}}</td>
                     <td>{{ $d->dh_saida ? date('d/m/Y H:i:s', strtotime($d->dh_saida)) : 'Em Andamento...' }}</td>
                     <td>{{$d->duracao()}}</td>
@@ -73,6 +73,8 @@
 <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
-    $('#table').DataTable();
+    $('#table').DataTable({
+        ordering:false
+    });
 </script>
 @stop

@@ -26,11 +26,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('sindico',function($user){
-           return $user->cargo == "SINDICO";
+           return $user->cargo == \App\User::CARGO_SINDICO;
         });
 
         Gate::define('funcionario',function($user){
-            return $user->cargo == "FUNCIONARIO";
+            return $user->cargo == \App\User::CARGO_PORTEIRO;
         });
     }
 }

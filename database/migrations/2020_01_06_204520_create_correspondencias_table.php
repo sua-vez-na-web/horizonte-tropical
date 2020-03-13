@@ -21,8 +21,9 @@ class CreateCorrespondenciasTable extends Migration
             $table->dateTime('data_recebimento')->nullable();
             $table->dateTime('data_entrega')->nullable();
             $table->string("tipo")->nullable();
-            $table->enum("status",["ENTREGUE","PENDENTE DE ENTREGA"])->default("PENDENTE DE ENTREGA");
+            $table->unsignedBigInteger("status")->default(0);
             $table->unsignedBigInteger('apartamento_id');
+            $table->unsignedBigInteger('recebedor_id');
             $table->text('detalhes')->nullable();
         });
     }

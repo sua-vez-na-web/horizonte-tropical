@@ -2,7 +2,7 @@
 
 @section('content_header')
     <h1>
-        Detalhes Do Apartamento: {{"Bloco: ".$apartamento->bloco->codigo." | ".$apartamento->codigo}}
+        Detalhes Do Apartamento: {{"Bloco: ".$apartamento->bloco->codigo." | ".$apartamento->apto}}
 
     </h1>
     <ol class="breadcrumb">
@@ -15,9 +15,15 @@
 
 @section('content')
     <div class="row">
+        <div class="col-md-12">
+            <h3><span class="label label-primary">MORADOR: {{ $apartamento->inquilino->nome ?? ''}}</span></h3>
+            <h3><span class="label label-primary">PROPRIETÁRIO: {{ $apartamento->proprietario->nome ?? '' }}</span></h3>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="fa fa-group"></i></span>
 
                 <div class="info-box-content">
                     <span class="info-box-text">Total de Visitas</span>
@@ -43,7 +49,7 @@
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+                <span class="info-box-icon bg-yellow"><i class="fa fa-envelope-o"></i></span>
 
                 <div class="info-box-content">
                     <span class="info-box-text">Total de Correspondências</span>
@@ -61,9 +67,10 @@
             <h3 class="box-title">
                 Detalhes do Apartamento
             </h3>
+
         </div>
         <div class="box-body">
-            <div class="row">
+
 
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
@@ -71,6 +78,7 @@
                             <li class="active"><a href="#tab_1" data-toggle="tab">Correspondências</a></li>
                             <li><a href="#tab_2" data-toggle="tab">Ocorrências</a></li>
                             <li><a href="#tab_3" data-toggle="tab">Visitas</a></li>
+                            <li><a href="#tab_4" data-toggle="tab">Moradores/Dependentes</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
@@ -84,13 +92,16 @@
                             <div class="tab-pane" id="tab_3">
                                 @include('admin.apartamentos.tab3_visitas')
                             </div>
+                            <div class="tab-pane" id="tab_4">
+                                @include('admin.apartamentos.tab4_moradores')
+                            </div>
                             <!-- /.tab-pane -->
                         </div>
                         <!-- /.tab-content -->
                     </div>
                     <!-- nav-tabs-custom -->
 
-            </div>
+
         </div>
     </div>
 @endsection

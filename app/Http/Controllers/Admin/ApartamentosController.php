@@ -20,15 +20,20 @@ class ApartamentosController extends Controller
 
     public function create()
     {
-        $proprietarios = Pessoa::where('tipo_cadastro', '=', 'PROPRIETARIO')->pluck('nome', 'id');
-        $inquilinos = Pessoa::where('tipo_cadastro', '=', 'INQUILINO')->pluck('nome', 'id');
-        $blocos  = Bloco::pluck('bloco', 'id');
-        $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('codigo', 'codigo');
+        $proprietarios = Pessoa::whereIn('tipo_cadastro',[
+                Pessoa::PROPRIETARIO_NAO_RESIDENTE,
+                Pessoa::PROPRIETARIO_RESIDENTE
+            ])->pluck('nome', 'id');
+
+        $inquilinos     = Pessoa::where('tipo_cadastro', Pessoa::INQUILINO)->pluck('nome', 'id');
+        $blocos         = Bloco::pluck('bloco', 'id');
+        $apartamentos   = Apartamento::orderBy('id')->take(16)->pluck('aptp', 'apto');
+
         return view('admin.apartamentos.create-edit', [
             'proprietarios' => $proprietarios,
-            'inquilinos' => $inquilinos,
-            'blocos' => $blocos,
-            'apartamentos' => $apartamentos
+            'inquilinos'    => $inquilinos,
+            'blocos'        => $blocos,
+            'apartamentos'  => $apartamentos
         ]);
     }
 
@@ -40,7 +45,8 @@ class ApartamentosController extends Controller
             'apartamento'       => $apartamento,
             'visitas'           => $apartamento->visitas()->get(),
             'correspondencias'  => $apartamento->correspondencias()->get(),
-            'ocorrencias'       => $apartamento->ocorrencias()->get()
+            'ocorrencias'       => $apartamento->ocorrencias()->get(),
+            'moradores'         => \App\Pessoa::getMoradores($apartamento)
         ]);
     }
 
@@ -48,6 +54,7 @@ class ApartamentosController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
 
         $apartamento = Apartamento::create($data);
 
@@ -60,17 +67,22 @@ class ApartamentosController extends Controller
     public function edit($id)
     {
         $apartamento = Apartamento::find($id);
-        $proprietarios = Pessoa::where('tipo_cadastro', '=', 'PROPRIETARIO')->pluck('nome', 'id');
-        $inquilinos = Pessoa::where('tipo_cadastro', '=', 'INQUILINO')->pluck('nome', 'id');
-        $blocos  = Bloco::pluck('bloco', 'id');
-        $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('codigo', 'codigo');
+
+        $proprietarios = Pessoa::whereIn('tipo_cadastro',[
+                Pessoa::PROPRIETARIO_NAO_RESIDENTE,
+                Pessoa::PROPRIETARIO_RESIDENTE
+            ])->pluck('nome', 'id');
+
+        $inquilinos     = Pessoa::where('tipo_cadastro', Pessoa::INQUILINO)->pluck('nome', 'id');
+        $blocos         = Bloco::pluck('bloco', 'id');
+        $apartamentos   = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
 
         return view('admin.apartamentos.create-edit', [
-            'apartamento' => $apartamento,
-            'apartamentos' => $apartamentos,
-            'blocos' => $blocos,
+            'apartamento'   => $apartamento,
+            'apartamentos'  => $apartamentos,
+            'blocos'        => $blocos,
             'proprietarios' => $proprietarios,
-            'inquilinos' => $inquilinos,
+            'inquilinos'    => $inquilinos,
         ]);
     }
 

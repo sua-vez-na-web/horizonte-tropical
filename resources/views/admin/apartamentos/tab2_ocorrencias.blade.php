@@ -7,7 +7,7 @@
         <th>Infração</th>
         <th>Tipo</th>
         <th>Penalidade</th>
-        <th>Administrar</th>
+        <!-- <th>Administrar</th> -->
     </tr>
     </thead>
     <tbody>
@@ -19,7 +19,7 @@
             <td>ART: {{$d->infracao->codigo}} |{{$d->infracao->descricao }}</td>
             <td>{{$d->tipo}}</td>
             <td>{{$d->penalidade}}</td>
-            <td>
+            <!-- <td>
                 <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
                 <a href="{{route('get.upload',$d->id)}}" class="btn btn-success btn-xs mx-1">
                     <i class="fa fa-photo"></i>
@@ -27,7 +27,7 @@
                 <a href="{{ route('ocorrencias.show', $d->id)}}" class="btn btn-danger btn-xs mx-1">
                     <fa class="fa fa-trash"></fa>
                 </a>
-            </td>
+            </td> -->
         </tr>
     @endforeach
     </tbody>

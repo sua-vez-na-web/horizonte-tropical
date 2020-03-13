@@ -8,7 +8,7 @@
         <th>Entrada</th>
         <th>Saída</th>
         <th>Duração</th>
-        <th>Administrar</th>
+        <!-- <th>Administrar</th> -->
     </tr>
     </thead>
     <tbody>
@@ -21,14 +21,14 @@
             <td>{{ date('d/m/Y H:i:s',strtotime($d->dh_entrada))}}</td>
             <td>{{ $d->dh_saida ? date('d/m/Y H:i:s', strtotime($d->dh_saida)) : 'Em Andamento...' }}</td>
             <td>{{$d->duracao()}}</td>
-            <td>
+            <!-- <td>
                 @if(!$d->dh_saida)
                     <a href="{{ route('visitas.edit', $d->id)}}" class="btn btn-success btn-xs mx-1">Confirmar Saída</a>
                     <a href="{{ route('visitas.show', $d->id)}}" class="btn btn-danger btn-xs mx-1">
                         <i class="fa fa-trash"></i>
                     </a>
                 @endif
-            </td>
+            </td> -->
         </tr>
     @endforeach
     </tbody>

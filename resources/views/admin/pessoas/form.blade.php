@@ -1,66 +1,123 @@
-<div class="row">
-    <div class="form-group col-md-4">
-        <label for="nome">Nome Completo</label>
-        {!! Form::text('nome',null,['class'=>'form-control']) !!}
+    <div class="form-group">
+        <label for="cadastro" class="col-sm-2 control-label">Tipo Cadastro</label>
+        <div class="col-md-5">
+            {!! Form::select('tipo_cadastro',[
+                '1' =>'Proprietário Residente',
+                '2' =>'Proprietário Não Residente',
+                '3' =>'Inquilino',
+                '4' =>'Dependente'],
+            null,['class'=>'form-control select2','id'=>'selTipoCadastro']) !!}
+        </div>
     </div>
-    <div class="form-group col-md-4">
-        <label for="nome">Email</label>
-        {!! Form::text('email',null,['class'=>'form-control']) !!}
+
+    <div id="selParent" style="display:none">
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label">Dependende de:</label>
+            <div class="col-md-5">
+                <select name="dependente_id" id="dependentes" class="form-control">
+
+                </select>
+            </div>
+        </div>
     </div>
-    <div class="form-group col-md-2">
-        <label for="nome">Telefone</label>
-        {!! Form::text('telefone',null,['class'=>'form-control','id'=>'telefone']) !!}
+
+    <div class="form-group">
+        <label for="nome" class="col-sm-2 control-label">Nome Completo</label>
+        <div class="col-md-5">
+            {!! Form::text('nome',null,['class'=>'form-control']) !!}
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="form-group col-md-3">
-        <label for="nome">Tipo</label>
-        {!! Form::select('tipo',[ 'FISICA'=>'Pessoa Física','JURIDICA'=>'Pessoa Jurídica'],null,[ 'class'=>'form-control select2','id'=>'tipoPessoa']) !!}
+
+    <div class="form-group">
+        <label for="nome" class="col-sm-2 control-label">Email</label>
+        <div class="col-md-5">
+            {!! Form::text('email',null,['class'=>'form-control']) !!}
+        </div>
     </div>
-    <div class="form-group col-md-3" id="inputCpf">
-        <label for="nome">CPF</label>
-        {!! Form::text('cpf',null,['class'=>'form-control','id'=>'cpf']) !!}
+
+    <div class="form-group">
+        <label for="nome" class="col-sm-2 control-label">Telefone</label>
+        <div class="col-md-5">
+            {!! Form::text('telefone',null,['class'=>'form-control','id'=>'telefone']) !!}
+        </div>
     </div>
-    <div class="form-group col-md-3" id="inputCnpj" style="display: none" ">
-        <label for="nome">CNPJ</label>
-        {!! Form::text('cnpj',null,['class'=>'form-control','id'=>'cnpj']) !!}
-    </div>
-    <div class="form-group col-md-3">
-        <label for="cadastro">Tipo Cadastro</label>
-        {!! Form::select('tipo_cadastro',['PROPRIETARIO'=>'Proprietário/Dono','INQUILINO'=>'Inquilino/Residente','FAMILIAR'=>'Familiar/Parente'],null,['class'=>'form-control select2']) !!}
-    </div>
-</div>
 
 
-<div class="row">
-    <div class="form-group col-md-2">
-        <label for="cep">Cep</label>
-        {!! Form::text('cep',null,['class'=>'form-control','id'=>'cep']) !!}
+    <div class="form-group">
+        <label for="nome" class="col-sm-2 control-label">Tipo</label>
+        <div class="col-md-3">
+            {!! Form::select('tipo',
+                [
+                '1'=>'Pessoa Física',
+                '2'=>'Pessoa Jurídica'
+                ],null,
+                [ 'class'=>'form-control select2',
+                  'id'=>'tipoPessoa'
+                ]
+            )!!}
+        </div>
     </div>
-    <div class="form-group col-md-5">
-        <label for="cep">Rua</label>
-        {!! Form::text('rua',null,['class'=>'form-control','id'=>'rua']) !!}
-    </div>
-    <div class="form-group col-md-5">
-        <label for="cep">Bairro</label>
-        {!! Form::text('bairro',null,['class'=>'form-control','id'=>'bairro']) !!}
-    </div>
-</div>
 
-<div class="row">
-    <div class="form-group col-md-5">
-        <label for="cep">Cidade</label>
-        {!! Form::text('cidade',null,['class'=>'form-control','id'=>'cidade']) !!}
+    <div class="form-group" id="inputCpf">
+        <label for="nome" class="col-sm-2 control-label">CPF</label>
+        <div class="col-md-3">
+            {!! Form::text('cpf',null,['class'=>'form-control','id'=>'cpf']) !!}
+        </div>
     </div>
-    <div class="form-group col-md-2">
-        <label for="cep">UF</label>
-        {!! Form::text('uf',null,['class'=>'form-control','id'=>'uf']) !!}
+
+    <div class="form-group" id="inputCnpj" style="display: none">
+        <label for="nome" class="col-sm-2 control-label">CNPJ</label>
+        <div class="col-md-3">
+            {!! Form::text('cnpj',null,['class'=>'form-control','id'=>'cnpj']) !!}
+        </div>
     </div>
-    <div class="form-group col-md-5">
-        <label for="cep">Complemento</label>
-        {!! Form::text('complemento',null,['class'=>'form-control','id'=>'complemento']) !!}
+
+
+
+    <div style="display:none" id="divEndereco">
+    <div class="form-group">
+        <label for="cep" class="col-md-2 control-label">Cep</label>
+        <div class="col-md-2">
+            {!! Form::text('cep',null,['class'=>'form-control','id'=>'cep']) !!}
+        </div>
     </div>
-</div>
+
+    <div class="form-group">
+        <label for="cep" class="col-md-2 control-label">Rua</label>
+        <div class="col-md-4">
+            {!! Form::text('rua',null,['class'=>'form-control','id'=>'rua']) !!}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cep" class="col-md-2 control-label">Bairro</label>
+        <div class="col-md-3">
+            {!! Form::text('bairro',null,['class'=>'form-control','id'=>'bairro']) !!}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cep" class="col-md-2 control-label">Cidade</label>
+        <div class="col-md-3">
+            {!! Form::text('cidade',null,['class'=>'form-control','id'=>'cidade']) !!}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cep" class="col-md-2 control-label">UF</label>
+        <div class="col-md-2">
+            {!! Form::text('uf',null,['class'=>'form-control','id'=>'uf']) !!}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cep" class="col-md-2 control-label">Complemento</label>
+        <div class="col-md-2">
+            {!! Form::text('complemento',null,['class'=>'form-control','id'=>'complemento']) !!}
+        </div>
+    </div>
+    </div>
+
 
 @section('js')
     <script src="{{asset('js/jquery.mask.min.js')}}"></script>
@@ -74,13 +131,38 @@
         $('#tipoPessoa').change(function(event){
             var tipo = event.target.value;
 
-            if(tipo == 'FISICA'){
+            if(tipo == 1){
                 $('#inputCnpj').hide();
                 $('#inputCpf').show();
             }else{
                 $('#inputCpf').hide();
                 $('#inputCnpj').show();
             }
+        })
+
+        $('#selTipoCadastro').change(function(event){
+            var tipoCadastro = event.target.value;
+
+            if(tipoCadastro == 4){
+
+                $.getJSON(`/admin/ajaxPessoas`,function(response){
+                    var option = '<option>Selecione o Dependente</option>';
+                    $.each(response, function(i,obj) {
+                        option += `<option value="${obj.id}">${obj.nome}</option>`;
+                    })
+
+                    $('#dependentes').html(option);
+                })
+                $('#selParent').show();
+                return
+            }
+            if(tipoCadastro == 2){
+                $('#divEndereco').show();
+                return
+            }
+            $('#divEndereco').hide();
+            $('#selParent').hide();
+            return
         })
     </script>
 

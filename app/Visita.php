@@ -37,4 +37,6 @@ class Visita extends Model
 
         return $duracao;
     }
+
+
 }

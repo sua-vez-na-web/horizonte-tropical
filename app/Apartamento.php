@@ -6,7 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apartamento extends Model
 {
-    protected $fillable = ['bloco_id', 'proprietario_id', 'inquilino_id', 'codigo', 'garagens', 'prop_residente', 'status'];
+    const APTO_STATUS_PROP_RESIDINDO = 1;
+    const APTO_STATUS_OCUPADO = 2;
+    const APTO_STATUS_DESOCUPADO = 3;
+
+    protected $fillable = [
+        'bloco_id',
+        'proprietario_id',
+        'inquilino_id',
+        'apto',
+        'status'
+    ];
 
     public function proprietario()
     {
@@ -36,11 +46,6 @@ class Apartamento extends Model
     public function ocorrencias()
     {
         return $this->hasMany(Ocorrencia::class);
-    }
-
-    public function getPropResidenteAttribute($value)
-    {
-        return $value == 1 ?  'SIM' : 'NÃO';
     }
 
     public function visitas()

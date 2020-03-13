@@ -9,6 +9,14 @@ class Pessoa extends Model
 {
     use SoftDeletes;
 
+    const PROPRIETARIO_RESIDENTE = 1;
+    const PROPRIETARIO_NAO_RESIDENTE = 2;
+    const INQUILINO = 3;
+    const DEPENDENTE = 4;
+
+    const PESSOA_FISICA = 1;
+    const PESSOA_JURIDICA = 2;
+
     protected $fillable = [
         'nome',
         'email',
@@ -23,7 +31,8 @@ class Pessoa extends Model
         'bairro',
         'cidade',
         'uf',
-        'complemento'
+        'complemento',
+        'dependente_id'
     ];
 
     public function apartamentos()
@@ -33,6 +42,16 @@ class Pessoa extends Model
 
     public function dependentes()
     {
-        return $this->hasMany(Dependente::class);
+        return $this->hasMany(Pessoa::class,'dependente_id');
     }
+
+    public static function getMoradores($apto)
+    {
+
+        $pessoas = Pessoa::whereIn('dependente_id',[$apto->inquilino_id,$apto->proprietario_id])
+                    ->get();
+
+        return $pessoas;
+    }
+
 }

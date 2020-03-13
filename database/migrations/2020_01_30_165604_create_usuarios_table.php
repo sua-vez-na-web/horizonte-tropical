@@ -17,8 +17,9 @@ class CreateUsuariosTable extends Migration
             $table->bigIncrements('id');
             $table->string("name");
             $table->string("email")->unique();
+            $table->string('cpf')->unique();
             $table->string("password");
-            $table->enum("cargo",["SINDICO","FUNCIONARIO"])->nullable();
+            $table->unsignedBigInteger("cargo")->nullable();
             $table->boolean("ativo")->default(1);
             $table->timestamps();
         });

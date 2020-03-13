@@ -47,7 +47,7 @@
                     <td>{{$d->id}}</td>
                     <td>{{date("d/m/Y",strtotime($d->data_recebimento))}}</td>
                     <td>{{$d->tipo}}</td>
-                    <td>{{$d->apartamento->codigo}}</td>
+                    <td>{{$d->apartamento->apto}}</td>
                     <td>{{$d->apartamento->proprietario->nome ?? 'NAO INFORMADO!' }}</td>
                     <td>{{$d->status }}</td>
                     <td>{{$d->data_entrega ? date("d/m/Y",strtotime($d->data_entrega)) : "Pendende de Entrega"}}</td>

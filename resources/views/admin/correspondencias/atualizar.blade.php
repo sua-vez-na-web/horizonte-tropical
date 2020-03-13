@@ -28,9 +28,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="bloco_id" class="col-sm-2 control-label">Apartamento</label>
+                    <label for="bloco_id" class="col-sm-2 control-label">Recebedor</label>
                     <div class="col-sm-8">
-                        <input type="text" value="{{$correspondencia->apartamento->inquilino->nome ?? "NAO INFORMADO"}}" class="form-control" readonly>
+                        <input type="text" value="{{$correspondencia->recebedor->nome}}" class="form-control" readonly>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
 {{--                </div>--}}
             </div>
         <div class="box-footer">
-            {!! Form::submit('Salvar',['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Baixar Correspondencia',['class'=>'btn btn-primary']) !!}
         </div>
         {!! Form::close() !!}
     </div>

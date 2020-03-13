@@ -18,25 +18,25 @@ class ApartamentosTableSeeder extends Seeder
             for ($i = 0; $i < 4; $i++) {
                 DB::table('apartamentos')->insert([
                     'bloco_id' => $value->codigo,
-                    'codigo'   => $i + 1 . '01',
+                    'apto'   => $i + 1 . '01',
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);
                 DB::table('apartamentos')->insert([
                     'bloco_id' => $value->codigo,
-                    'codigo'   => $i + 1 . '02',
+                    'apto'   => $i + 1 . '02',
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);
                 DB::table('apartamentos')->insert([
                     'bloco_id' => $value->codigo,
-                    'codigo'   => $i + 1 . '03',
+                    'apto'   => $i + 1 . '03',
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);
                 DB::table('apartamentos')->insert([
                     'bloco_id' => $value->codigo,
-                    'codigo'   => $i + 1 . '04',
+                    'apto'   => $i + 1 . '04',
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);

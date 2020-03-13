@@ -34,7 +34,7 @@
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Tipo de Cadastro</th>
-                    <th>Acoes</th>
+                    <th>Administrar</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,9 +46,6 @@
                     <td>{{ $d->tipo_cadastro }}</td>
                     <td>
                         <a href="{{ route('pessoas.edit',$d->id) }}" class="btn btn-primary btn-xs mx-1">Administrar</a>
-                        <a href="{{ route('dependentes.index',['pessoa_id'=> $d->id]) }}" class="btn btn-primary btn-xs mx-1">
-                            <i class="fa fa-group"></i>
-                            Dependentes</a>
                     </td>
                 </tr>
                 @endforeach

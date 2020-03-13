@@ -19,10 +19,8 @@ class CreateApartamentosTable extends Migration
             $table->unsignedBigInteger('bloco_id')->nullable();
             $table->unsignedBigInteger('proprietario_id')->nullable();
             $table->unsignedBigInteger('inquilino_id')->nullable();
-            $table->string('codigo');
-            $table->integer('garagens')->default(1)->nullable();
-            $table->boolean('prop_residente')->default(1);
-            $table->enum('status', ['ALUGADO', 'DESOCUPADO', 'OCUPADO'])->default('OCUPADO');
+            $table->string('apto');
+            $table->unsignedBigInteger('status')->default(1);
         });
     }
 

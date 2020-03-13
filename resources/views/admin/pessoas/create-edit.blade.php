@@ -18,10 +18,10 @@
         <h3 class="box-title">Adicionar Registro</h3>
     </div>
     @if(isset($pessoa))
-    {!! Form::model($pessoa,['route'=>['pessoas.update',$pessoa->id],'enctype'=>'multipart/form-data']) !!}
+    {!! Form::model($pessoa,['route'=>['pessoas.update',$pessoa->id],'enctype'=>'multipart/form-data','class'=>'form-horizontal']) !!}
     @method('PUT')
     @else
-    {!! Form::open(['route'=>'pessoas.store','enctype'=>'multipart/form-data']) !!}
+    {!! Form::open(['route'=>'pessoas.store','enctype'=>'multipart/form-data','class'=>'form-horizontal']) !!}
     @endif
     <div class="box-body">
         @include('admin.pessoas.form')

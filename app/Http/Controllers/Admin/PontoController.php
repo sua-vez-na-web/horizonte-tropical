@@ -7,12 +7,18 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Storage;
+use Auth;
 class PontoController extends Controller
 {
     public function index()
     {
-        $pontos = Ponto::latest()->get();
-        $funcionarios = User::where('cargo','FUNCIONARIO')->pluck('name','id');
+        if(Auth::user()->cargo == User::CARGO_SINDICO){
+            $pontos = Ponto::latest()->get();
+            $funcionarios = User::where('cargo',User::CARGO_PORTEIRO)->pluck('name','id');
+        }else{
+            $pontos = Ponto::where('usuario_id',Auth::user()->id)->get();
+            $funcionarios = User::where('cargo',User::CARGO_PORTEIRO)->pluck('name','id');
+        }
 
         return view('admin.pontos.index',[
             'pontos'=>$pontos,

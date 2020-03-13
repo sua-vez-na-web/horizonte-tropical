@@ -22,11 +22,6 @@
 
 @section('content')
 <div class="box">
-    <div class="box-header">
-        <a href="{{route('apartamentos.create')}}" class="btn btn-primary">
-            <span><i class="fa fa-plus"></i></span>
-            Adicionar Registro</a>
-    </div>
     <div class="box-body">
         <table class="table data-table table-hover table-bordered table-striped" id="table">
             <thead>
@@ -37,7 +32,7 @@
                     <th>Poprietário</th>
                     <th>Inquilino</th>
                     <th>Status</th>
-                    <th>Prop. Residente</th>
+                    <th>Garagens</th>
                     <th>Ultima Atualização</th>
                     <th>Action</th>
                 </tr>
@@ -47,11 +42,11 @@
                 <tr>
                     <td>{{$d->id}}</td>
                     <td>{{str_pad($d->bloco->codigo,'3','000',STR_PAD_LEFT)}}</td>
-                    <td>{{$d->codigo}}</td>
+                    <td>{{$d->apto}}</td>
                     <td>{{$d->proprietario->nome ?? 'Nao Informado'}}</td>
                     <td>{{$d->inquilino->nome ?? 'Nao Informado'}}</td>
                     <td>{{$d->status}}</td>
-                    <td>{{$d->prop_residente}}</td>
+                    <td>{{$d->garagens()->count() ?? '0'}}</td>
                     <td>{{date('d/m/Y H:i:s',strtotime($d->updated_at))}}</td>
                     <td>
                         <a href="{{ route('apartamentos.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">
@@ -60,7 +55,12 @@
                         </a>
                         <a href="{{ route('apartamentos.show', $d->id)}}" class="btn btn-success btn-xs mx-1">
                             <i class="fa fa-eye"></i>
-                            Detalhes</a>
+                            Detalhes
+                        </a>
+                        <a href="#" class="btn btn-info btn-xs mx-1">
+                            <i class="fa fa-car"></i>
+                            Garagens
+                        </a>
                     </td>
                 </tr>
                 @endforeach

@@ -10,10 +10,13 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const CARGO_SINDICO =1;
+    const CARGO_PORTEIRO = 2;
+
     protected $table = "usuarios";
 
     protected $fillable = [
-        'name', 'email', 'password','cargo','ativo'
+        'name', 'email', 'password','cargo','ativo','cpf'
     ];
 
     protected $hidden = [

@@ -7,20 +7,21 @@ use App\Bloco;
 use App\Visita;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use Auth;
 
 class VisitasController extends Controller
 {
     public function index()
     {
         $data = Visita::latest()->get();
-
         return view("admin.visitas.index",["data"=>$data]);
     }
 
     public function create()
     {
-        $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('codigo', 'codigo');
-        $blocos = Bloco::orderBy('id')->pluck('codigo', 'id');
+        $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
+        $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
 
 
         return view('admin.visitas.create-edit', [
@@ -32,9 +33,10 @@ class VisitasController extends Controller
 
     public function store(Request $request)
     {
+
         $data = $request->all();
 
-        $data['autorizado_por'] = $request->user()->id;
+        $data['autorizado_por'] = Auth::user()->id;
         $data['dh_entrada'] = now();
 
         Visita::create($data);

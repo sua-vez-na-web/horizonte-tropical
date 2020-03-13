@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Pessoa;
+use App\Apartamento;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -14,7 +15,7 @@ class PessoasController extends Controller
     {
 
         $data = Pessoa::latest()->get();
-        // dd($data);
+
         return view('admin.pessoas.index', ['data' => $data]);
     }
 
@@ -53,4 +54,38 @@ class PessoasController extends Controller
 
         return redirect()->route('pessoas.index');
     }
+
+    public function getPessoas(Request $request){
+        $pessoas = Pessoa::whereNotIn('tipo_cadastro',[Pessoa::DEPENDENTE])->get();
+        return response()->json($pessoas);
+    }
+
+    public function getMoradores(Request $request){
+
+        $pessoas = collect();
+        $apto = Apartamento::where('bloco_id',$request->bloco)
+                                ->where('apto',$request->apto)
+                                ->first();
+
+        $moradores = Pessoa::getMoradores($apto);
+        $inquilino = $apto->inquilino;
+        $proprietario = $apto->proprietario;
+
+        if($inquilino){
+            $pessoas->push($inquilino);
+        }
+        if($proprietario){
+            $pessoas->push($proprietario);
+        }
+        if($moradores->count() > 0){
+            $pessoas->push($moradores);
+        }
+
+        return response()->json([
+            'moradores' => $pessoas,
+        ],200);
+
+    }
+
+
 }

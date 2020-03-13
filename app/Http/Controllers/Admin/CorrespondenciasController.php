@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Correspondencia;
 use Ramsey\Uuid\Uuid;
+use Mail;
 
 
 class CorrespondenciasController extends Controller
@@ -21,8 +22,8 @@ class CorrespondenciasController extends Controller
 
     public function create()
     {
-        $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('codigo', 'codigo');
-        $blocos = Bloco::orderBy('id')->pluck('codigo', 'id');
+        $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
+        $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
 
         return view('admin.correspondencias.create-edit', ['apartamentos' => $apartamentos, 'blocos' => $blocos]);
     }
@@ -30,21 +31,22 @@ class CorrespondenciasController extends Controller
     public function store(Request $request)
     {
         $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
-            ->where('codigo', $request->apartamento_id)
+            ->where('apto', $request->apartamento_id)
             ->first();
-        
+
         if ($apartamento) {
 
             $correspondencia = $apartamento->correspondencias()->create([
                 'data_recebimento' => now(),
+                'recebedor_id'     => $request->recebedor_id,
                 'detalhes'         => $request->detalhes,
-                'status'           => 'PENDENTE DE ENTREGA',
+                'status'           => Correspondencia::STATUS_NAO_ENTREGUE,
                 'tipo'             => $request->tipo
             ]);
 
             if($apartamento->inquilino){
                 Mail::to($apartamento->inquilino->email)
-                    ->cc(null)
+                    ->cc('matthausnawan@gmail.com')
                     ->send(new EntradaCorrespondencia($correspondencia));
             }
 
@@ -68,7 +70,7 @@ class CorrespondenciasController extends Controller
 
         $correspondencia = Correspondencia::find($id);
 
-        $dados['status']        = 'ENTREGUE';
+        $dados['status']        = Correspondencia::STATUS_ENTREGE;
         $dados['data_entrega']  = now();
         $dados['uuid']          = Uuid::uuid4();
         $correspondencia->update($dados);
