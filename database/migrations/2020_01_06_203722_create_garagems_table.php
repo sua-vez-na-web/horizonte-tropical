@@ -17,8 +17,11 @@ class CreateGaragemsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->unsignedBigInteger('apartamento_id');
-            $table->string('veiculo');
+            $table->string('veiculo')->nullable();
             $table->string('placa')->nullable();
+            $table->unsignedBigInteger('origem');
+            $table->unsignedBigInteger('apto_cedente')->nullable();
+            $table->text('file')->nullable();
         });
     }
 

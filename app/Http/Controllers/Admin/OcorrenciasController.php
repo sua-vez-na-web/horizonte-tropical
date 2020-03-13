@@ -59,10 +59,10 @@ class OcorrenciasController extends Controller
                     ->cc(null)
                     ->send(new OcorrenciaRegistrada($ocorrencia));
             }
-            return redirect()->route('ocorrencias.index');
+            return redirect()->route('ocorrencias.index')->with('msg','Registro Adicionado com Sucesso!');
         }
 
-        return redirect()->back()->withInput();
+        return redirect()->back()->with('error','Ocorreu um erro ao efetudar o Procedimento, Entre em contato com Desenvovledor.');
     }
 
     public function edit($id){
@@ -77,13 +77,13 @@ class OcorrenciasController extends Controller
         $ocorrencia = Ocorrencia::find($id);
 
         $dados                  = $request->only(['status','detalhes']);
-        $dados['data_entrega']  = $request->status == "ENTREGUE" ? now() : null;
+        // $dados['data_entrega']  = $request->status == "ENTREGUE" ? now() : null;
         $dados['penalidade']    = $request->penalidade;
         $dados['tipo']          = $request->tipo;
 
         $ocorrencia->update($dados);
 
-        return redirect()->route("ocorrencias.index");
+        return redirect()->route("ocorrencias.index")->with('msg','Registro Atualizado com Sucesso!');
     }
 
     public function show($id){

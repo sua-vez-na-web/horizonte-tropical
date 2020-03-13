@@ -35,7 +35,7 @@
 </div>
 
 <div class="form-group">
-    <label for="rg_visitante" class="col-sm-2 control-label">RG Visitante</label>
+    <label for="rg_visitante" class="col-sm-2 control-label">Documento</label>
     <div class="col-sm-4">
         {!! Form::text("rg_visitante",null,["class"=>"form-control"]) !!}
     </div>

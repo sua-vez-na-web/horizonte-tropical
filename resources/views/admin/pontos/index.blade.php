@@ -36,6 +36,7 @@
                 <th>Mês/Ano</th>
                 <th>Arquivo</th>
                 @cannot('funcionario')
+                    <th>Funcionário</th>
                     <th>Administrar</th>
                 @endcannot
             </tr>
@@ -47,6 +48,7 @@
                     <td>{{$d->mes}} / {{ $d->ano }} </td>
                     <td><a href="{{ Storage::url($d->url) }}" target="_blank"> Download Arquivo</a></td>
                     @cannot('funcionario')
+                    <td>{{ $d->funcionario->name ?? ''}}</td>
                     <td>
                             <a href="{{ route('pontos.show',$d->id) }}" class="btn btn-danger btn-xs mx-1">
                                 <i class="fa fa-trash"></i>
@@ -135,6 +137,8 @@
     <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
     <script>
-        $('#table').DataTable();
+        $('#table').DataTable({
+            ordering:false
+        });
     </script>
 @stop

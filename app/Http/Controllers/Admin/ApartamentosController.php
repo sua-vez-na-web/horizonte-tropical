@@ -54,14 +54,12 @@ class ApartamentosController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
-
         $apartamento = Apartamento::create($data);
 
         if ($apartamento) {
             return redirect()->route('apartamentos.index');
         }
-        return redirect()->route('apartamentos.index');
+        return redirect()->route('apartamentos.index')->with('msg','Registro Adicionado com Sucesso');
     }
 
     public function edit($id)
@@ -92,6 +90,6 @@ class ApartamentosController extends Controller
 
         $apartamento = Apartamento::find($id)->update($data);
 
-        return redirect()->route('apartamentos.index');
+        return redirect()->route('apartamentos.index')->with('msg','Registro Atualizado com Sucesso!');
     }
 }

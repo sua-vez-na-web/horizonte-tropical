@@ -9,7 +9,11 @@
 </div>
 <div class="form-group">
     <label for="nome">CPF</label>
-    {!! Form::text('cpf',null,['class'=>'form-control','placeholder'=>'Somente números']) !!}
+    {!! Form::text('cpf',null,['class'=>'form-control','placeholder'=>'Somente números','id'=>'cpf']) !!}
+</div>
+<div class="form-group">
+    <label for="nome">Telefone</label>
+    {!! Form::text('telefone',null,['class'=>'form-control','placeholder'=>'Somente números','id'=>'telefone']) !!}
 </div>
 <div class="form-group">
     <label for="nome">Senha</label>
@@ -25,4 +29,11 @@
     !!}
 </div>
 
+@section('js')
+<script src="{{asset('js/jquery.mask.min.js')}}"></script>
+<script>
+    $('#telefone').mask('(99)9.9999-9999')
+    $('#cpf').mask('999.999.999-99')
+</script>
+@endsection
 

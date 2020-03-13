@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest as UserRequest;
 
 class UsuariosController extends Controller
 {
@@ -22,14 +23,14 @@ class UsuariosController extends Controller
         return view('admin.usuarios.create-edit');
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
 
         User::create($data);
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('msg','Registro Adicionado com Sucesso!');
     }
 
     public function edit($id)
@@ -49,9 +50,9 @@ class UsuariosController extends Controller
 
         if ($usuario) {
             $usuario->update($data);
-            return redirect()->route('usuarios.index');
+            return redirect()->route('usuarios.index')->with('msg','Registro Atualizado com Sucesso');
         }
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('error','Não Foi Possivel Atualizar o Registro entre em Contato com Desenvolvedor!');
     }
 }

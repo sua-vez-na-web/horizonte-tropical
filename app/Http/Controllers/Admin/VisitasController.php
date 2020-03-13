@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Auth;
-
+use App\Http\Requests\StoreVisitaRequest as VisitaRequest;
 class VisitasController extends Controller
 {
     public function index()
@@ -31,7 +31,7 @@ class VisitasController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(VisitaRequest $request)
     {
 
         $data = $request->all();
@@ -41,7 +41,7 @@ class VisitasController extends Controller
 
         Visita::create($data);
 
-        return redirect()->route("visitas.index");
+        return redirect()->route("visitas.index")->with('msg','Registro Adicionado com Sucesso!');
     }
 
     public function edit($id)
@@ -59,7 +59,7 @@ class VisitasController extends Controller
             'dh_saida' => now()
         ]);
 
-        return redirect()->route('visitas.index');
+        return redirect()->route('visitas.index')->with('msg','Registro Atualizado com Sucesso!');
     }
 
     public function show($id)

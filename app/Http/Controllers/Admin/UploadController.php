@@ -31,7 +31,7 @@ class UploadController extends Controller
 
         $ocorrencia->fotos()->create($data);
 
-        return redirect()->route('get.upload',$id);
+        return redirect()->route('get.upload',$id)->with('msg','Registro Adicionado com Sucesso!');
     }
 
     public function delete($id)
@@ -42,6 +42,7 @@ class UploadController extends Controller
 
         $foto->delete();
 
-        return redirect()->route('get.upload',$foto->ocorrencia->id);
+        return redirect()->route('get.upload',$foto->ocorrencia->id)
+                    ->with('msg','Registro Excluído com Sucesso!');
     }
 }

@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         'pessoas'           => 'PessoasController',
         'blocos'            => 'BlocosController',
         'apartamentos'      => 'ApartamentosController',
+        'garagens'          => 'GaragemController',
         'dependentes'       => 'DependentesController',
         'correspondencias'  => 'CorrespondenciasController',
         'ocorrencias'       => 'OcorrenciasController',

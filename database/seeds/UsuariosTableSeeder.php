@@ -11,10 +11,11 @@ class UsuariosTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("usuarios")->insert([
+        DB::table("users")->insert([
             [
                 'name'      => "Sindico",
                 'cpf'       => "11111111111",
+                'telefone'  => "(83)9.9999-9999",
                 'email'     => "sindico@sindico.com",
                 'password'  => bcrypt("senha"),
                 'cargo'     => \App\User::CARGO_SINDICO,
@@ -23,6 +24,7 @@ class UsuariosTableSeeder extends Seeder
             [
                 'name'      => "Porteiro",
                 'cpf'       => "22222222222",
+                'telefone'  => "(83)9.5555-5555",
                 'email'     => "porteiro@porteiro.com",
                 'password'  => bcrypt("123456"),
                 'cargo'     => \App\User::CARGO_PORTEIRO,

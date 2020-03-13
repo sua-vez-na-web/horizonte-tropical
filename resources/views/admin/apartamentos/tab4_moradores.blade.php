@@ -15,7 +15,7 @@
             <td>{{$d->id}}</td>
             <td>{{$d->nome}}</td>
             <td>{{$d->email ?? '' }}</td>
-            <td>{{$d->telefone</td>
+            <td>{{$d->telefone}}</td>
         </tr>
     @endforeach
     </tbody>

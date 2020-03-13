@@ -30,7 +30,7 @@ class PessoasController extends Controller
 
         $pessoa = Pessoa::create($data);
 
-        return redirect()->route('pessoas.index');
+        return redirect()->route('pessoas.index')->with('msg','Registro Adicionado com Sucesso');
     }
 
     public function edit($id)

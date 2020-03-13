@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Correspondencia;
 use Ramsey\Uuid\Uuid;
 use Mail;
-
+use App\Http\Requests\StoreCorrespondenciaRequest as CorrespondenciaRequest;
 
 class CorrespondenciasController extends Controller
 {
@@ -28,7 +28,7 @@ class CorrespondenciasController extends Controller
         return view('admin.correspondencias.create-edit', ['apartamentos' => $apartamentos, 'blocos' => $blocos]);
     }
 
-    public function store(Request $request)
+    public function store(CorrespondenciaRequest $request)
     {
         $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
             ->where('apto', $request->apartamento_id)
@@ -50,10 +50,10 @@ class CorrespondenciasController extends Controller
                     ->send(new EntradaCorrespondencia($correspondencia));
             }
 
-            return redirect()->route('correspondencias.index');
+            return redirect()->route('correspondencias.index')->with('msg','Registro Adicionado com Sucesso');
         }
 
-        return redirect()->back()->withInput();
+        return redirect()->back()->with('error','Ocorreu um erro na Operação');
     }
 
     public function edit($id)
@@ -80,7 +80,7 @@ class CorrespondenciasController extends Controller
                 ->cc(null)
                 ->send(new EntradaCorrespondencia($correspondencia));
         }
-        return redirect()->route("correspondencias.index");
+        return redirect()->route("correspondencias.index")->with('msg','Registro Atualizado com Sucesso!');
     }
 
     public function show($id){
@@ -88,6 +88,6 @@ class CorrespondenciasController extends Controller
         $correspondencia = Correspondencia::find($id);
         $correspondencia->delete();
 
-        return redirect()->route("correspondencias.index");
+        return redirect()->route("correspondencias.index")->with('error','Você Removeu esse Registro!');
     }
 }

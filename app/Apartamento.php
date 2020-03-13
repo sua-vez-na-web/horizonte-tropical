@@ -52,4 +52,5 @@ class Apartamento extends Model
     {
         return $this->hasMany(Visita::class);
     }
+
 }

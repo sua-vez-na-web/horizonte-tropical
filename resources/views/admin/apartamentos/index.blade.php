@@ -57,7 +57,7 @@
                             <i class="fa fa-eye"></i>
                             Detalhes
                         </a>
-                        <a href="#" class="btn btn-info btn-xs mx-1">
+                        <a href="{{route('garagens.index',['apto_id'=>$d->id]) }}" class="btn btn-info btn-xs mx-1">
                             <i class="fa fa-car"></i>
                             Garagens
                         </a>
