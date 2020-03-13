@@ -21,6 +21,15 @@
         </div>
     </div>
 
+    @if(isset($pessoa) && $pessoa->tipo_cadastro == \App\Pessoa::DEPENDENTE)
+            <div class="form-group">
+                <label for="dependente" class="col-sm-2 control-label">Dependente</label>
+                    <div class="col-md-5">
+                    {!! Form::select('recebedor_id',$pessoas,null,['class'=>'form-control select2']) !!}
+                    </div>
+            </div>
+    @endif
+
     <div class="form-group">
         <label for="nome" class="col-sm-2 control-label">Nome Completo</label>
         <div class="col-md-5">

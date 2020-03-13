@@ -34,8 +34,9 @@
                     <th>#ID</th>
                     <th>Data Recebimento</th>
                     <th>Tipo</th>
+                    <th>Bloco</td>
                     <th>Apto</th>
-                    <th>Poprietário</th>
+                    <th>Recebedor</th>
                     <th>Status</th>
                     <th>Data Entrega</th>
                     <th>Administrar</th>
@@ -45,12 +46,13 @@
                 @foreach($data as $d)
                 <tr>
                     <td>{{$d->id}}</td>
-                    <td>{{date("d/m/Y",strtotime($d->data_recebimento))}}</td>
+                    <td>{{date("d/m/Y H:i:s",strtotime($d->data_recebimento))}}</td>
                     <td>{{$d->tipo}}</td>
+                    <td>{{$d->apartamento->bloco->codigo }}</td>
                     <td>{{$d->apartamento->apto}}</td>
-                    <td>{{$d->apartamento->proprietario->nome ?? 'NAO INFORMADO!' }}</td>
+                    <td>{{$d->recebedor->nome}}</td>
                     <td>{{$d->status }}</td>
-                    <td>{{$d->data_entrega ? date("d/m/Y",strtotime($d->data_entrega)) : "Pendende de Entrega"}}</td>
+                    <td>{{$d->data_entrega ? date("d/m/Y H:i:s",strtotime($d->data_entrega)) : "Pendende de Entrega"}}</td>
                     <td>
                         @if(!$d->data_entrega)
                             <a href="{{ route('correspondencias.edit', $d->id) }}" class="btn btn-primary btn-xs mx-1">Baixar Recebimento</a>
@@ -73,6 +75,8 @@
 <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
-    $('#table').DataTable();
+    $('#table').DataTable({
+        ordering:false
+    });
 </script>
 @stop

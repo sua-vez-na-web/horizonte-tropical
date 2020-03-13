@@ -37,8 +37,8 @@ class PessoasController extends Controller
     {
 
         $pessoa = Pessoa::find($id);
-
-        return view('admin.pessoas.create-edit', ['pessoa' => $pessoa]);
+        $pessoas = Pessoa::whereNotIn('tipo_cadastro',[Pessoa::DEPENDENTE])->pluck('nome','id');
+        return view('admin.pessoas.create-edit', ['pessoa' => $pessoa,'pessoas'=>$pessoas]);
     }
 
     public function update(Request $request, $id)
