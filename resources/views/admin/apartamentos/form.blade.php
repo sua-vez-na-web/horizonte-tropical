@@ -42,6 +42,7 @@
 <div class="form-group">
     <label for="codigo" class="col-sm-2 control-label">Status</label>
     <div class="col-sm-6">
-        {!! Form::select('status',['1'=>'PROPRIETARIO RESIDINDO','2'=>'OCUPADO','3'=>'DESOCUPADO'],null,['class'=>'form-control select2']) !!}
+        {!! Form::select('status',
+            ['1'=>'PROPRIETARIO RESIDINDO','2'=>'ALUGADO','3'=>'DESOCUPADO'],null,['class'=>'form-control select2']) !!}
     </div>
 </div>

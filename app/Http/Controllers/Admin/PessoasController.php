@@ -78,7 +78,9 @@ class PessoasController extends Controller
             $pessoas->push($proprietario);
         }
         if($moradores->count() > 0){
-            $pessoas->push($moradores);
+            foreach($moradores as $morador){
+                $pessoas->push($morador);
+            }
         }
 
         return response()->json([
