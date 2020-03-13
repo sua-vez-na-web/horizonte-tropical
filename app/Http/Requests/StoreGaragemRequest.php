@@ -13,7 +13,7 @@ class StoreGaragemRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class StoreGaragemRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'placa' => 'required|min:7',
+            'origem' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => 'O campo :attribute é obrigatório',
+            'min' => 'O valor do campo :attribut é inválido',
+        ];
+    }
+
 }
