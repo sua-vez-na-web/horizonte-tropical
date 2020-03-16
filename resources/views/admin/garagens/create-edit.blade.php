@@ -18,6 +18,7 @@
     </div>
     @if(isset($garagem))
     {!! Form::model($garagem,['route'=>['garagens.update',$garagem->id],'enctype'=>'multipart/form-data','class'=>'form-horizontal']) !!}
+        <input type="hidden" name="apartamento_id" value="{{$garagem->apartamento_id }}">
     @method('PUT')
     @else
     {!! Form::open(['route'=>'garagens.store','enctype'=>'multipart/form-data','class'=>'form-horizontal']) !!}

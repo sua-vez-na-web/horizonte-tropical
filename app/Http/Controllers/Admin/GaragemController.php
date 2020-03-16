@@ -76,8 +76,9 @@ class GaragemController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $data = $request->all();
-        $apto = Apartamento::find($id);
+        $apto = Apartamento::find($request->apartamento_id);
 
         if($request->origem == Garagem::ORIGEM_TERCEIROS){
 
@@ -98,8 +99,20 @@ class GaragemController extends Controller
         }
 
         //dd($data);
-        $apto->garagens()->create($data);
+        Garagem::find($id)->update($data);
 
-       return redirect()->route('garagens.index',['apto_id'=>$apto])->with('msg','Registro Atualizado com Sucesso!');
+       return redirect()->route('garagens.index',['apto_id'=>$apto->id])->with('msg','Registro Atualizado com Sucesso!');
+    }
+
+    public function show($id)
+    {
+        $garagem = Garagem::find($id);
+
+        if($garagem->file){
+            Storage::delete($garagem->file);
+        }
+        $garagem->delete();
+
+        return redirect()->back()->with('error',"O Registro foi Deletado");
     }
 }

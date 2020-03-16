@@ -22,6 +22,7 @@ class CreateGaragemsTable extends Migration
             $table->unsignedBigInteger('origem');
             $table->unsignedBigInteger('apto_cedente')->nullable();
             $table->text('file')->nullable();
+            $table->softDeletes();
         });
     }
 

@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Garagem extends Model
 {
+    use SoftDeletes;
+
     const ORIGEM_PROPRIA = 1;
     const ORIGEM_TERCEIROS = 2;
 

@@ -53,6 +53,9 @@
 
                     <td>
                         <a href="{{ route('garagens.edit',$d->id) }}" class="btn btn-primary btn-xs mx-1">Administrar</a>
+                        <a href="{{ route('garagens.show',$d->id)}}" class="btn btn-danger btn-xs">
+                            <i class="fa fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach

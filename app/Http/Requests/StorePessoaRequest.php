@@ -27,6 +27,8 @@ class StorePessoaRequest extends FormRequest
             'tipo_cadastro' => 'required',
             'nome'          => 'required|min:3|string',
             'email'         => 'required|email|unique:pessoas',
+            'cpf'			=> 'unique:pessoas',
+            'cnpj'			=> 'unique:pessoas',
             'telefone'      => 'required'
         ];
     }
