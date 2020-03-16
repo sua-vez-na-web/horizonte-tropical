@@ -26,7 +26,7 @@ class StorePessoaRequest extends FormRequest
         return [
             'tipo_cadastro' => 'required',
             'nome'          => 'required|min:3|string',
-            'email'         => 'required|email|unique:pessoas',            
+            // 'email'         => 'required|email|unique:pessoas',            
             'telefone'      => 'required'
         ];
     }
