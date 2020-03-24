@@ -235,7 +235,7 @@
 
 
                     <li><a href="{{route('correspondencias.index')}}"><i class="fa fa-envelope text-blue"></i> <span>Correspondências</span></a></li>
-                    <li><a href="{{route('ocorrencias.index')}}"><i class="fa fa-book text-red"></i> <span>Ocorrências</span></a></li>
+{{--                    <li><a href="{{route('ocorrencias.index')}}"><i class="fa fa-book text-red"></i> <span>Ocorrências</span></a></li>--}}
                     <li><a href="{{route('visitas.index')}}"><i class="fa fa-exchange text-blue"></i> <span>Visitas</span></a></li>
                     <li><a href="{{route('pontos.index')}}"><i class="fa fa-clock-o text-red"></i> <span>Ponto</span></a></li>
                     @cannot('funcionario')

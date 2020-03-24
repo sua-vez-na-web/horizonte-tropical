@@ -92,9 +92,10 @@
         $.getJSON(`/admin/ajaxMoradores?bloco=${bloco}&apto=${apto}`,function(response){
 
             if(response.moradores.length > 0){
+                pessoas = response.moradores;
                 var option = '<option>Selecione o Recebedor</option>';
                     $.each(response.moradores, function(i,obj){
-                        option += `<option value="${obj.id}">${obj.nome}</option>`;
+                        option += `<option value="${obj.id}" data-index="${i}">${obj.nome}</option>`;
                     })
                 $('#selRecebedores').html(option).attr('disabled',false);
                 return

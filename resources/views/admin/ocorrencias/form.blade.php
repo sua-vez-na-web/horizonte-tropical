@@ -33,7 +33,7 @@
     </div>
 </div>
 
-@can('sindico')
+<!-- @can('sindico')
 
 <div class="form-group">
     <label for="penalidade" class="col-sm-2 control-label">Penalidade</label>
@@ -64,7 +64,7 @@
         {!! Form::text("multa",null,["class"=>"form-control"]) !!}
     </div>
 </div>
-@endcan
+@endcan -->
 
 <div class="form-group">
     <label for="detalhes" class="col-sm-2 control-label">Detalhes</label>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Apartamento;
 use App\Bloco;
 use App\Mail\EntradaCorrespondencia;
+use App\Mail\SaidaCorrespondencia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Correspondencia;
@@ -47,7 +48,13 @@ class CorrespondenciasController extends Controller
             if($apartamento->inquilino){
                 Mail::to($apartamento->inquilino->email)
                     ->cc('matthausnawan@gmail.com')
-                    ->send(new EntradaCorrespondencia($correspondencia));
+                    ->queue(new EntradaCorrespondencia($correspondencia));
+            }
+
+            if($apartamento->proprietario){
+                Mail::to($apartamento->proprietario->email)
+                    ->cc('matthausnawan@gmail.com')
+                    ->queue(new EntradaCorrespondencia($correspondencia));
             }
 
             return redirect()->route('correspondencias.index')->with('msg','Registro Adicionado com Sucesso');
@@ -67,7 +74,6 @@ class CorrespondenciasController extends Controller
 
     public function update(Request $request,$id)
     {
-
         $correspondencia = Correspondencia::find($id);
 
         $dados['status']        = Correspondencia::STATUS_ENTREGE;
@@ -77,8 +83,13 @@ class CorrespondenciasController extends Controller
 
         if($correspondencia->apartamento->inquilino){
             Mail::to($correspondencia->apartamento->inquilino->email)
-                ->cc(null)
-                ->send(new EntradaCorrespondencia($correspondencia));
+                ->cc('matthausnawan@gmail.com')
+                ->queue(new SaidaCorrespondencia($correspondencia));
+        }
+        if($correspondencia->apartamento->proprietario){
+            Mail::to($correspondencia->apartamento->proprietario->email)
+                ->cc('matthausnawan@gmail.com')
+                ->queue(new EntradaCorrespondencia($correspondencia));
         }
         return redirect()->route("correspondencias.index")->with('msg','Registro Atualizado com Sucesso!');
     }

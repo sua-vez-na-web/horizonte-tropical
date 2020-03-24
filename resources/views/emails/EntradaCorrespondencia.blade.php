@@ -5,8 +5,6 @@ Tem uma correspondência para você lá na portaria.
 
 Data Registro: {{date('d/m/Y',strtotime($correspondencia->data_recebimento))}}
 
-Tipo: {{$correspondencia->tipo}}
-
 Agradecemos,<br>
 {{ config('app.name') }}
 @endcomponent

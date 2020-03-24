@@ -45,7 +45,7 @@
                 @foreach($data as $d)
                 <tr>
                     <td>{{$d->id}}</td>
-                    <td>BLOCO: {{$d->apartamento->bloco->codigo}} |  APTO: {{$d->apartamento->codigo}}</td>
+                    <td>BLOCO: {{$d->apartamento->bloco->codigo ?? ''}} |  APTO: {{$d->apartamento->apto ?? ''}}</td>
                     <td>{{$d->apartamento->proprietario->nome ?? 'NAO LOCALIZADO!' }}</td>
                     <td>{{$d->reclamante->nome ?? 'NAO LOCALIZADO!' }}</td>
                     <td>ART: {{$d->infracao->codigo}} |{{$d->infracao->descricao }}</td>

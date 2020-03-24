@@ -22,7 +22,7 @@ class OcorrenciasController extends Controller
 
     public function create()
     {
-        $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('codigo', 'codigo');
+        $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
         $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
         $infracoes    = Infracao::pluck("descricao","id");
         $pessoas      = Pessoa::pluck('nome','id');
@@ -39,26 +39,29 @@ class OcorrenciasController extends Controller
     {
 
         $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
-            ->where('codigo', $request->apartamento_id)
+            ->where('apto', $request->apartamento_id)
             ->first();
 
 
         if ($apartamento) {
             $ocorrencia = $apartamento->ocorrencias()->create([
                 'data'          => $request->data,
-                'infracao_id'   => $request->infracao_id,
-                'penalidade'    => $request->penalidade,
-                'tipo'          => $request->tipo,
-                'status'        => $request->status,
+                'infracao_id'   => $request->infracao_id,                
                 'reclamante_id' => $request->reclamante_id,
                 'detalhes'      => $request->detalhes
             ]);
 
             if($apartamento->inquilino){
                 Mail::to($apartamento->inquilino->email)
-                    ->cc(null)
-                    ->send(new OcorrenciaRegistrada($ocorrencia));
+                    ->cc('matthausnawan@gmail.com')
+                    ->queue(new OcorrenciaRegistrada($ocorrencia));
             }
+            if($apartamento->proprietario){
+                 Mail::to($apartamento->inquilino->email)
+                    ->cc('matthausnawan@gmail.com')
+                    ->queue(new OcorrenciaRegistrada($ocorrencia));
+            }
+
             return redirect()->route('ocorrencias.index')->with('msg','Registro Adicionado com Sucesso!');
         }
 

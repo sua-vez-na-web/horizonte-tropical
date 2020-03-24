@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="penalidade" class="col-sm-2 control-label">Penalidade</label>
                     <div class="col-sm-8">
                         {!! Form::select("penalidade",[
@@ -69,7 +69,7 @@
                             "OCORRENCIA" => "Ocorrência",
                         ],null,['class'=>"form-control"]) !!}
                     </div>
-                </div>
+                </div> -->
             </div>
         <div class="box-footer">
             {!! Form::submit('Salvar',['class'=>'btn btn-primary']) !!}
