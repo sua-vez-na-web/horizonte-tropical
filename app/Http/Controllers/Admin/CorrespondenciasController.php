@@ -48,13 +48,13 @@ class CorrespondenciasController extends Controller
             if($apartamento->inquilino){
                 Mail::to($apartamento->inquilino->email)
                     ->cc('matthausnawan@gmail.com')
-                    ->queue(new EntradaCorrespondencia($correspondencia));
+                    ->send(new EntradaCorrespondencia($correspondencia));
             }
 
             if($apartamento->proprietario){
                 Mail::to($apartamento->proprietario->email)
                     ->cc('matthausnawan@gmail.com')
-                    ->queue(new EntradaCorrespondencia($correspondencia));
+                    ->send(new EntradaCorrespondencia($correspondencia));
             }
 
             return redirect()->route('correspondencias.index')->with('msg','Registro Adicionado com Sucesso');
@@ -78,18 +78,18 @@ class CorrespondenciasController extends Controller
 
         $dados['status']        = Correspondencia::STATUS_ENTREGE;
         $dados['data_entrega']  = now();
-        $dados['uuid']          = Uuid::uuid4();
+        $dados['uuid']          = time().'-'.$correspondencia->tipo.'/'.$correspondencia->id;
         $correspondencia->update($dados);
 
         if($correspondencia->apartamento->inquilino){
             Mail::to($correspondencia->apartamento->inquilino->email)
                 ->cc('matthausnawan@gmail.com')
-                ->queue(new SaidaCorrespondencia($correspondencia));
+                ->send(new SaidaCorrespondencia($correspondencia));
         }
         if($correspondencia->apartamento->proprietario){
             Mail::to($correspondencia->apartamento->proprietario->email)
                 ->cc('matthausnawan@gmail.com')
-                ->queue(new EntradaCorrespondencia($correspondencia));
+                ->send(new SaidaCorrespondencia($correspondencia));
         }
         return redirect()->route("correspondencias.index")->with('msg','Registro Atualizado com Sucesso!');
     }

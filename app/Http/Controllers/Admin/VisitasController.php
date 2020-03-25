@@ -36,12 +36,29 @@ class VisitasController extends Controller
 
         $data = $request->all();
 
+        if($request->has(['bloco_id','apartamento_id'])){
+            $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
+                ->where('apto', $request->apartamento_id)
+                ->first();
+
+            $data['autorizado_por'] = Auth::user()->id;
+            $data['dh_entrada'] = now();
+            $data['tecnica'] = 0;
+
+            $apartamento->visitas()->create($data);
+
+            return redirect()->route("visitas.index")->with('msg','Registro Adicionado com Sucesso!');
+        }
+
         $data['autorizado_por'] = Auth::user()->id;
         $data['dh_entrada'] = now();
+        $data['apartamento_id'] = 0;
+        $data['empresa'] = $request->empresa;
+        $data['tecnica'] = 1;
 
         Visita::create($data);
-
         return redirect()->route("visitas.index")->with('msg','Registro Adicionado com Sucesso!');
+
     }
 
     public function edit($id)

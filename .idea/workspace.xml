@@ -4,15 +4,16 @@
     <list default="true" id="5f718572-c719-42a9-bc62-d7af8293804e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/OcorrenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/OcorrenciasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queue.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/queue.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/correspondencias/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/correspondencias/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ocorrencias/atualizar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ocorrencias/atualizar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ocorrencias/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ocorrencias/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ocorrencias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ocorrencias/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/VisitasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/VisitasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreVisitaRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreVisitaRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Visita.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Visita.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/correspondencias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/correspondencias/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/visitas/atualizar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/visitas/atualizar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/visitas/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/visitas/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/visitas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/visitas/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/emails/EntradaCorrespondencia.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/EntradaCorrespondencia.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/ocorrenciaRegistrada.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/ocorrenciaRegistrada.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/emails/SaidaCorrespondencia.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/SaidaCorrespondencia.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +165,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../colepom" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -210,7 +211,9 @@
       <workItem from="1584716047099" duration="918000" />
       <workItem from="1584749496496" duration="2000" />
       <workItem from="1584749525692" duration="6000" />
-      <workItem from="1585012105911" duration="5033000" />
+      <workItem from="1585012105911" duration="5605000" />
+      <workItem from="1585061053678" duration="13000" />
+      <workItem from="1585162473781" duration="6885000" />
     </task>
     <servers />
   </component>
@@ -232,6 +235,10 @@
     <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1580395772003" />
     <state x="434" y="202" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1366.741@0.27.1366.741" timestamp="1580871847547" />
     <state x="204" y="473" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.339.3286.741@0.339.3286.741" timestamp="1581141432771" />
+    <state x="492" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1585162695165">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="492" y="155" width="424" height="491" key="FileChooserDialogImpl/52.27.1314.741@52.27.1314.741" timestamp="1585162695165" />
     <state width="263" height="500" key="HiddenNamespacesPopup" timestamp="1581080718520">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -245,11 +252,16 @@
     </state>
     <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1580600684077" />
     <state x="392" y="259" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1581163003531" />
-    <state x="365" y="188" width="672" height="557" key="search.everywhere.popup" timestamp="1582164289644">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="403" y="188" width="672" height="557" key="search.everywhere.popup" timestamp="1585167847004">
+      <screen x="52" y="27" width="1314" height="741" />
     </state>
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580391104754" />
     <state x="365" y="188" width="672" height="557" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1582164289644" />
     <state x="1943" y="482" width="1617" height="557" key="search.everywhere.popup/0.339.3286.741@0.339.3286.741" timestamp="1581142214460" />
+    <state x="403" y="188" width="672" height="557" key="search.everywhere.popup/52.27.1314.741@52.27.1314.741" timestamp="1585167847004" />
+    <state x="434" y="234" width="540" height="333" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1585166440775">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="434" y="234" width="540" height="333" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/52.27.1314.741@52.27.1314.741" timestamp="1585166440775" />
   </component>
 </project>

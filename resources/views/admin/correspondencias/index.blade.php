@@ -31,7 +31,7 @@
         <table class="table data-table table-hover table-bordered table-striped" id="table">
             <thead>
                 <tr>
-                    <th>#ID</th>
+                    <th>CodigoUnico</th>
                     <th>Data Recebimento</th>
                     <th>Tipo</th>
                     <th>Bloco</td>
@@ -45,7 +45,7 @@
             <tbody>
                 @foreach($data as $d)
                 <tr>
-                    <td>{{$d->id}}</td>
+                    <td>{{$d->uuid ?? '########' }}</td>
                     <td>{{date("d/m/Y H:i:s",strtotime($d->data_recebimento))}}</td>
                     <td>{{$d->tipo}}</td>
                     <td>{{$d->apartamento->bloco->codigo }}</td>

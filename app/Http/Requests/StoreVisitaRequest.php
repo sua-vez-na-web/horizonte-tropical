@@ -24,8 +24,10 @@ class StoreVisitaRequest extends FormRequest
     public function rules()
     {
         return [
-            'bloco_id'       => 'required',
-            'apartamento_id' => 'required',
+            'tecnica'        => 'required',
+            'bloco_id'       => 'required_if:tecnica,==,0',
+            'apartamento_id' => 'required_if:tecnica,==,0',
+            'empresa'        => 'required_if:tecnica,==,1',
             'nome_visitante' => 'required|string|min:3'
         ];
     }
@@ -33,6 +35,7 @@ class StoreVisitaRequest extends FormRequest
     public function messages(){
         return [
             'required' => 'O campo :attribute é obrigatório',
+            'required_if' => 'O campo :attribute é obrigatório para o tipo de registro',
             'string' => 'O campo :attribute nao é um texto',
             'min'   => 'O campo :attribute é muito curto'
         ];
@@ -43,7 +46,7 @@ class StoreVisitaRequest extends FormRequest
         return [
             'bloco_id' => 'Bloco',
             'apartamento_id' => 'Apartamento',
-            'nome_visitante' => 'Visitante'
+            'nome_visitante' => 'Visitante ou Responsável'
         ];
     }
 }

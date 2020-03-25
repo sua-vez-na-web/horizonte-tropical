@@ -22,12 +22,23 @@
             @csrf
             @method("PUT")
             <div class="box-body">
-                <div class="form-group">
-                    <label for="bloco_id" class="col-sm-2 control-label">BLOCO | APTO</label>
-                    <div class="col-sm-5">
-                        <input type="text" value="BLOCO: {{$visita->apartamento->bloco->codigo}} |  APTO: {{$visita->apartamento->codigo}}" class="form-control" readonly>
+
+
+                @if($visita->tecnica == 1)
+                    <div class="form-group">
+                        <label for="proprietario_id" class="col-sm-2 control-label">Empresa</label>
+                        <div class="col-sm-5">
+                            {!! Form::text('empresa',null,['class'=>'form-control','readonly'=>'true']) !!}
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="form-group">
+                        <label for="bloco_id" class="col-sm-2 control-label">BLOCO | APTO</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="BLOCO: {{$visita->apartamento->bloco->codigo}} |  APTO: {{$visita->apartamento->codigo}}" class="form-control" readonly>
+                        </div>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="bloco_id" class="col-sm-2 control-label">Data da Entrada</label>
                     <div class="col-sm-5">
@@ -47,7 +58,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="bloco_id" class="col-sm-2 control-label">Visitante</label>
+                    <label for="bloco_id" class="col-sm-2 control-label">Visitante/Resp.</label>
                     <div class="col-sm-5">
                         <input type="text" value="{{$visita->nome_visitante}}" class="form-control" readonly>
                     </div>

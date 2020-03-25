@@ -19,7 +19,9 @@ class Visita extends Model
         'detalhes',
         'autorizado_por',
         'nome_visitante',
-        'rg_visitante'
+        'rg_visitante',
+        'tecnica',
+        'empresa'
     ];
 
     protected $dates = ['dh_entrada','dh_saida'];
