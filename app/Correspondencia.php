@@ -41,4 +41,41 @@ class Correspondencia extends Model
         return $this->belongsTo(Pessoa::class,'recebedor_id');
     }
 
+    public function getType($type)
+    {
+        switch ($type) {
+            case self::TIPO_CORRES_AGUA:
+                return "AGUA";
+                break;
+            case self::TIPO_CORRES_ENERGIA:
+                return "ENERGIA";
+                break;
+            case self::TIPO_CORRES_INTERNET:
+                return "INTERNET";
+                break;
+            case self::TIPO_CORRES_TAXA:
+                return "TAXA CONDOMINIAL";
+                break;
+            case self::TIPO_CORRES_OUTROS:
+                return "OUTRAS CORRESPONDENCIAS";
+                break;            
+            
+        }
+    }
+
+    public function getStatus($status)
+    {
+        switch ($status) {
+            case self::STATUS_ENTREGE:
+                return 'ENTREGUE';
+                break;
+            case self::STATUS_NAO_ENTREGUE:
+                return 'NÃO ENTREGUE';
+                break;            
+            default:
+                # code...
+                break;
+        }
+    }
+
 }

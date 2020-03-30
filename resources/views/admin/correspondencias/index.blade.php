@@ -47,19 +47,20 @@
                 <tr>
                     <td>{{$d->uuid ?? '########' }}</td>
                     <td>{{date("d/m/Y H:i:s",strtotime($d->data_recebimento))}}</td>
-                    <td>{{$d->tipo}}</td>
+                    <td>{{$d->getType($d->tipo)}}</td>
                     <td>{{$d->apartamento->bloco->codigo }}</td>
                     <td>{{$d->apartamento->apto}}</td>
                     <td>{{$d->recebedor->nome}}</td>
-                    <td>{{$d->status }}</td>
+                    <td>{{$d->getStatus($d->status) }}</td>
                     <td>{{$d->data_entrega ? date("d/m/Y H:i:s",strtotime($d->data_entrega)) : "Pendende de Entrega"}}</td>
                     <td>
                         @if(!$d->data_entrega)
-                            <a href="{{ route('correspondencias.edit', $d->id) }}" class="btn btn-primary btn-xs mx-1">Baixar Recebimento</a>
-                            <a href="{{ route('correspondencias.show',$d->id) }}" class="btn btn-danger btn-xs mx-1">
+                            <a href="{{ route('correspondencias.edit', $d->id) }}" class="btn btn-primary btn-xs">Baixar Recebimento</a>
+                            <a href="{{ route('correspondencias.show',$d->id) }}" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i>
                             </a>
                         @endif
+                            <a href="{{ route('correspondencias.edit',$d->id)}}" class="btn btn-default btn-xs">Ver</a>
                     </td>
                 </tr>
                 @endforeach

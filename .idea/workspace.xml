@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5f718572-c719-42a9-bc62-d7af8293804e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CorrespondenciasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/VisitasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/VisitasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreVisitaRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreVisitaRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Visita.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Visita.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/correspondencias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/correspondencias/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/visitas/atualizar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/visitas/atualizar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/visitas/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/visitas/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/visitas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/visitas/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/EntradaCorrespondencia.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/EntradaCorrespondencia.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/SaidaCorrespondencia.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/SaidaCorrespondencia.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +202,9 @@
       <workItem from="1584749525692" duration="6000" />
       <workItem from="1585012105911" duration="5605000" />
       <workItem from="1585061053678" duration="13000" />
-      <workItem from="1585162473781" duration="6885000" />
+      <workItem from="1585162473781" duration="8147000" />
+      <workItem from="1585244090186" duration="630000" />
+      <workItem from="1585247316579" duration="16000" />
     </task>
     <servers />
   </component>

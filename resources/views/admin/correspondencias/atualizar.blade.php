@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label for="codigo" class="col-sm-2 control-label">Detalhes</label>
                     <div class="col-sm-8">
-                        {!! Form::textarea('detalhes',null,['class'=>'form-control']) !!}
+                        {!! Form::textarea('detalhes',null,['class'=>'form-control','readonly'=>'true']) !!}
                     </div>
                 </div>
 
@@ -51,9 +51,11 @@
 {{--                    </div>--}}
 {{--                </div>--}}
             </div>
-        <div class="box-footer">
-            {!! Form::submit('Baixar Correspondencia',['class'=>'btn btn-primary']) !!}
-        </div>
+            @if($correspondencia->status == 0)
+                <div class="box-footer">
+                    {!! Form::submit('Baixar Correspondencia',['class'=>'btn btn-primary']) !!}
+                </div>
+            @endif    
         {!! Form::close() !!}
     </div>
 @stop

@@ -45,9 +45,11 @@
     </div>
 </div>
 
-<div class="form-group">
-    <label for="morador_presente" class="col-sm-2 control-label">Morador Presente</label>
-    <div class="col-sm-8">
-        {!! Form::checkbox("morador_presente",1,false) !!}
+@if(!Request::has('type'))
+    <div class="form-group">
+        <label for="morador_presente" class="col-sm-2 control-label">Morador Presente</label>
+        <div class="col-sm-8">
+            {!! Form::checkbox("morador_presente",1,false) !!}
+        </div>
     </div>
-</div>
+@endif

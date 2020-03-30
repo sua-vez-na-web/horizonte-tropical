@@ -6,7 +6,9 @@ Data Registro: {{date('d/m/Y',strtotime($correspondencia->data_recebimento))}}
 
 Data Entrega: {{ date('d/m/Y',strtotime($correspondencia->data_entrega)) }}
 
-{{--Tipo: {{$correspondencia->tipo}}--}}
+Tipo: {{$correspondencia->getType($correspondencia->tipo)}}
+
+Detalhes: {{$correspondencia->detalhes}}
 
 **Codigo Unico: {{$correspondencia->uuid}}**
 

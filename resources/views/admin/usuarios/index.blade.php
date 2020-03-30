@@ -45,6 +45,9 @@
                     <td>{{ $d->cargo }}</td>
                     <td>
                         <a href="{{ route('usuarios.edit',$d->id) }}" class="btn btn-primary btn-xs mx-1">Administrar</a>
+                        <a href="{{route('usuarios.show',$d->id) }}" class="btn btn-danger btn-xs">
+                            <i class="fa fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach

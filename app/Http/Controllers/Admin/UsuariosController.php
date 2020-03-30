@@ -55,4 +55,16 @@ class UsuariosController extends Controller
 
         return redirect()->route('usuarios.index')->with('error','Não Foi Possivel Atualizar o Registro entre em Contato com Desenvolvedor!');
     }
+
+    public function show($id)
+    {
+        $usuario = User::find($id);
+
+        if($usuario){
+            $usuario->delete();
+            return redirect()->route('usuarios.index')->with('error','Usuário foi Removido');
+        }
+
+        return redirect()->route('usuario.index')->with('error','Ocorreu um erro no procedimento');
+    }
 }
