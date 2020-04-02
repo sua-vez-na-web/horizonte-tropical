@@ -47,13 +47,11 @@ class CorrespondenciasController extends Controller
 
             if($apartamento->inquilino){
                 Mail::to($apartamento->inquilino->email)
-                    ->cc('matthausnawan@gmail.com')
                     ->send(new EntradaCorrespondencia($correspondencia));
             }
 
             if($apartamento->proprietario){
                 Mail::to($apartamento->proprietario->email)
-                    ->cc('matthausnawan@gmail.com')
                     ->send(new EntradaCorrespondencia($correspondencia));
             }
 
@@ -83,12 +81,10 @@ class CorrespondenciasController extends Controller
 
         if($correspondencia->apartamento->inquilino){
             Mail::to($correspondencia->apartamento->inquilino->email)
-                ->cc('matthausnawan@gmail.com')
                 ->send(new SaidaCorrespondencia($correspondencia));
         }
         if($correspondencia->apartamento->proprietario){
             Mail::to($correspondencia->apartamento->proprietario->email)
-                ->cc('matthausnawan@gmail.com')
                 ->send(new SaidaCorrespondencia($correspondencia));
         }
         return redirect()->route("correspondencias.index")->with('msg','Registro Atualizado com Sucesso!');
