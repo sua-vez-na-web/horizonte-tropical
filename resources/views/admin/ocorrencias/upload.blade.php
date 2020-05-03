@@ -29,7 +29,7 @@
                 @foreach($chunk as $item)
                     <div class="col-sm-12 col-md-4 col-lg-4">
                         <div class="img">
-                            <img src="{{Storage::url($item->url)}}" alt="{{$item->url}}" class="img-responsive img-thumbnail" style="max-width: 300px">
+                            <img src="{{ Storage::url($item->url) }}" alt="{{$item->url}}" class="img-responsive img-thumbnail" style="max-width: 300px">
                             <a href="{{route('delete.upload',$item->id)}}" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i>
                             </a>

@@ -24,6 +24,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         'usuarios'          => 'UsuariosController',
     ]);
 
+    Route::get('/ocorrencia/setStatus','OcorrenciasController@updateStatus')->name('ocorrencia.setStatus');
+
     Route::post('/upload/{id}','UploadController@store')->name('post.upload');
     Route::get('/upload/{id}','UploadController@index')->name('get.upload');
     Route::get('/upload/{id}/delete','UploadController@delete')->name('delete.upload');

@@ -11,7 +11,7 @@ use App\Apartamento;
 use App\Bloco;
 use App\Http\Controllers\Controller;
 use Mail;
-
+use Auth;
 class OcorrenciasController extends Controller
 {
     public function index()
@@ -38,6 +38,7 @@ class OcorrenciasController extends Controller
     public function store(Request $request)
     {
 
+        //dd($request->all());
         $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
             ->where('apto', $request->apartamento_id)
             ->first();
@@ -45,22 +46,13 @@ class OcorrenciasController extends Controller
 
         if ($apartamento) {
             $ocorrencia = $apartamento->ocorrencias()->create([
-                'data'          => $request->data,
-                'infracao_id'   => $request->infracao_id,                
-                'reclamante_id' => $request->reclamante_id,
-                'detalhes'      => $request->detalhes
+                'data'          => now(),
+                'tipo'          => Ocorrencia::STATUS_REGISTRADA,
+                'infracao_id'   => $request->infracao_id,
+                'reclamante_id' => $request->reclamante_id ?: Auth::user()->id,
+                'detalhes'      => $request->detalhes,
+                'autor_id'      => Auth::user()->id
             ]);
-
-            if($apartamento->inquilino){
-                Mail::to($apartamento->inquilino->email)
-                    ->cc('matthausnawan@gmail.com')
-                    ->queue(new OcorrenciaRegistrada($ocorrencia));
-            }
-            if($apartamento->proprietario){
-                 Mail::to($apartamento->inquilino->email)
-                    ->cc('matthausnawan@gmail.com')
-                    ->queue(new OcorrenciaRegistrada($ocorrencia));
-            }
 
             return redirect()->route('ocorrencias.index')->with('msg','Registro Adicionado com Sucesso!');
         }
@@ -70,8 +62,16 @@ class OcorrenciasController extends Controller
 
     public function edit($id){
 
-        $ocorrencia = Ocorrencia::find($id);
-        return view('admin.ocorrencias.atualizar', ['ocorrencia'=>$ocorrencia]);
+        $ocorrencia     = Ocorrencia::find($id);
+        $reincidencias  = Ocorrencia::where('apartamento_id',$ocorrencia->apartamento_id)
+                                    ->where('infracao_id',$ocorrencia->infracao_id)
+                                    ->whereNotIn('id',[$ocorrencia->id])
+                                    ->get();
+
+        return view('admin.ocorrencias.atualizar', [
+            'ocorrencia'=>$ocorrencia,
+            'reicidencias' => $reincidencias
+        ]);
 
     }
 
@@ -79,14 +79,24 @@ class OcorrenciasController extends Controller
 
         $ocorrencia = Ocorrencia::find($id);
 
-        $dados                  = $request->only(['status','detalhes']);
-        // $dados['data_entrega']  = $request->status == "ENTREGUE" ? now() : null;
-        $dados['penalidade']    = $request->penalidade;
-        $dados['tipo']          = $request->tipo;
+        if($request->reicidencia){
+            $multa = Ocorrencia::calculaValorMulta($request->tipo,$request->reicidencias_qty);
 
-        $ocorrencia->update($dados);
+            $ocorrencia->penalidade = $request->tipo;
+            $ocorrencia->tipo = Ocorrencia::STATUS_CONCLUIDA;
+            $ocorrencia->multa = $multa;
+            $ocorrencia->save();
 
-        return redirect()->route("ocorrencias.index")->with('msg','Registro Atualizado com Sucesso!');
+            return redirect()->route('ocorrencias.index')->with('msg','Ocorrência Atualizada');
+        }
+
+        $multa = Ocorrencia::calculaValorMulta($request->tipo,0);
+        $ocorrencia->penalidade = $request->tipo;
+        $ocorrencia->tipo =  Ocorrencia::STATUS_CONCLUIDA;
+        $ocorrencia->multa = $multa;
+        $ocorrencia->save();
+        return redirect()->route('ocorrencias.index')->with('msg','Ocorrência Atualizada');
+
     }
 
     public function show($id){
@@ -95,5 +105,24 @@ class OcorrenciasController extends Controller
         $ocorrencia->delete();
 
         return redirect()->route('ocorrencias.index');
+    }
+
+    public function updateStatus(Request $request)
+    {
+
+        $ocorrencia = Ocorrencia::find($request->ocorrencia);
+
+        if($ocorrencia){
+            $ocorrencia->tipo = $request->status == Ocorrencia::STATUS_EM_ANALISE ?
+                                Ocorrencia::STATUS_EM_ANALISE
+                                : Ocorrencia::STATUS_CONCLUIDA;
+            $ocorrencia->penalidade = $request->status == Ocorrencia::STATUS_EM_ANALISE ?
+                                null
+                                : Ocorrencia::STATUS_CONCLUIDA;
+            $ocorrencia->save();
+
+            return redirect()->back()->with('msg','Ocorrência Atualizada');
+        }
+        return redirect()->back()->with('error','Não foi possível atualizar');
     }
 }

@@ -1,9 +1,3 @@
-<div class="form-group">
-    <label for="bloco_id" class="col-sm-2 control-label">Data da Ocorrência</label>
-    <div class="col-sm-8">
-        {!! Form::date('data',null,['class'=>'form-control','placeholder'=>'']) !!}
-    </div>
-</div>
 
 <div class="form-group">
     <label for="proprietario_id" class="col-sm-2 control-label">Bloco</label>

@@ -33,26 +33,26 @@
                 <tr>
                     <th>#ID</th>
                     <th>BLOCO - APTO</th>
-                    <th>Poprietário</th>
                     <th>Reclamante</th>
                     <th>Infração</th>
-                    <th>Tipo</th>
                     <th>Penalidade</th>
+                    <th>Status</th>
                     <th>Administrar</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($data as $d)
-                <tr>
+                <tr class="{{$d->getStatus($d->tipo)['class'] }}">
                     <td>{{$d->id}}</td>
                     <td>BLOCO: {{$d->apartamento->bloco->codigo ?? ''}} |  APTO: {{$d->apartamento->apto ?? ''}}</td>
-                    <td>{{$d->apartamento->proprietario->nome ?? 'NAO LOCALIZADO!' }}</td>
-                    <td>{{$d->reclamante->nome ?? 'NAO LOCALIZADO!' }}</td>
+                    <td>{{$d->reclamante->nome ?? $d->author->name }}</td>
                     <td>ART: {{$d->infracao->codigo}} |{{$d->infracao->descricao }}</td>
-                    <td>{{$d->tipo}}</td>
-                    <td>{{$d->penalidade}}</td>
+                    <td> <label for="" class="label label-{{$d->getPenalidade($d->penalidade)['class'] }}">{{ $d->getPenalidade($d->penalidade)['status'] ?? '' }}</label></td>
+                    <td> <label for="" class="label label-{{$d->getStatus($d->tipo)['class'] }}">{{ $d->getStatus($d->tipo)['status'] ?? '' }}</label></td>
                     <td>
-                        <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
+                        @cannot('funcionario')
+                            <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
+                        @endcannot
                         <a href="{{route('get.upload',$d->id)}}" class="btn btn-success btn-xs mx-1">
                             <i class="fa fa-photo"></i>
                         </a>
@@ -74,6 +74,8 @@
 <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
-    $('#table').DataTable();
+    $('#table').DataTable({
+        ordering:false
+    });
 </script>
 @stop

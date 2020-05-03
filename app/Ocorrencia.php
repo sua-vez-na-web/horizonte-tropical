@@ -9,6 +9,21 @@ class Ocorrencia extends Model
 {
     use SoftDeletes;
 
+    CONST STATUS_REGISTRADA = 1;
+    CONST STATUS_NOTIFICADA = 2;
+    CONST STATUS_EM_ANALISE = 3;
+    CONST STATUS_CONCLUIDA  = 4;
+
+    CONST TIPO_NOTIFICACAO = 1;
+    CONST TIPO_LEVE        = 2;
+    CONST TIPO_MEDIA       = 3;
+    CONST TIPO_GRAVE       = 4;
+
+    CONST VALOR_NOTIFICACAO = 0;
+    CONST VALOR_LEVE = 66;
+    CONST VALOR_MEDIA = 132;
+    CONST VALOR_GRAVE = 165;
+
     protected $fillable = [
         'apartamento_id',
         'infracao_id',
@@ -17,7 +32,69 @@ class Ocorrencia extends Model
         'multa',
         'detalhes',
         'data',
-        'reclamante_id'];
+        'autor_id',
+        'reclamante_id'
+    ];
+
+
+    public static function calculaValorMulta($tipo,$reicidencias_qty)
+    {
+        switch($tipo) {
+            case self::TIPO_LEVE;
+                return self::VALOR_LEVE * $reicidencias_qty;
+            break;
+
+            case self::TIPO_MEDIA;
+                return self::VALOR_MEDIA * $reicidencias_qty;
+            break;
+
+            case self::TIPO_GRAVE;
+                return self::VALOR_GRAVE * $reicidencias_qty;
+            break;
+        }
+    }
+
+    public function getStatus($tipo)
+    {
+        switch($tipo) {
+            case self::STATUS_EM_ANALISE;
+                return ['status'=>'Em Análise','class'=>'warning'];
+            break;
+
+            case self::STATUS_REGISTRADA;
+                return ['status'=> 'Registrada','class' => 'primary'];
+            break;
+
+            case self::STATUS_NOTIFICADA;
+                return ['status'=>'Notificada','class' => 'success'];
+            break;
+
+            case self::STATUS_CONCLUIDA;
+                return ['status'=>'Concluída','class' => 'success'];
+            break;
+        }
+
+    }
+
+    public function getPenalidade($penalidade)
+    {
+        switch($penalidade) {
+            case self::TIPO_NOTIFICACAO;
+                return ['status'=>'Notificação','class'=>'success'];
+            break;
+            case self::TIPO_LEVE;
+                return ['status'=>'Leve','class'=>'primary'];
+            break;
+
+            case self::TIPO_MEDIA;
+                return ['status'=> 'Média','class' => 'warning'];
+            break;
+
+            case self::TIPO_GRAVE;
+                return ['status'=>'Grave','class' => 'danger'];
+            break;
+        }
+    }
 
     protected $dates = [ 'data'];
 
@@ -39,5 +116,10 @@ class Ocorrencia extends Model
     public function reclamante()
     {
         return $this->belongsTo(Pessoa::class,'reclamante_id');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class,'autor_id');
     }
 }

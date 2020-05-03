@@ -16,10 +16,10 @@ class Penalidade extends Model
     const MULTA_MEDIA = 132.00;
     const MULTA_GRAVE = 165.00;
 
-    protected fillable = [
+    protected $fillable = [
     	'ocorrencia_id',
     	'apartamento_id',
-    	'level_id';    	
+    	'level_id',    	
     	'nro_incidencia',
     	'multa',
     	'baixada',
