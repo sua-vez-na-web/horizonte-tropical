@@ -28,7 +28,6 @@ class StoreVisitaRequest extends FormRequest
             'bloco_id'       => 'required_if:tecnica,==,0',
             'apartamento_id' => 'required_if:tecnica,==,0',
             'empresa'        => 'required_if:tecnica,==,1',
-            'nome_visitante' => 'required|string|min:3'
         ];
     }
 
@@ -46,7 +45,6 @@ class StoreVisitaRequest extends FormRequest
         return [
             'bloco_id' => 'Bloco',
             'apartamento_id' => 'Apartamento',
-            'nome_visitante' => 'Visitante ou Responsável'
         ];
     }
 }

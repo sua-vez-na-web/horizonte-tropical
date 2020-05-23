@@ -2,32 +2,18 @@
     <thead>
     <tr>
         <th>#ID</th>
-        <th>BLOCO - APTO</th>
-        <th>Poprietário</th>
         <th>Infração</th>
-        <th>Tipo</th>
         <th>Penalidade</th>
-        <!-- <th>Administrar</th> -->
+        <th>Status</th>
     </tr>
     </thead>
     <tbody>
     @foreach($ocorrencias as $d)
         <tr>
             <td>{{$d->id}}</td>
-            <td>BLOCO: {{$d->apartamento->bloco->codigo}} |  APTO: {{$d->apartamento->codigo}}</td>
-            <td>{{$d->apartamento->proprietario->nome ?? 'NAO LOCALIZADO!' }}</td>
             <td>ART: {{$d->infracao->codigo}} |{{$d->infracao->descricao }}</td>
-            <td>{{$d->tipo}}</td>
-            <td>{{$d->penalidade}}</td>
-            <!-- <td>
-                <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
-                <a href="{{route('get.upload',$d->id)}}" class="btn btn-success btn-xs mx-1">
-                    <i class="fa fa-photo"></i>
-                </a>
-                <a href="{{ route('ocorrencias.show', $d->id)}}" class="btn btn-danger btn-xs mx-1">
-                    <fa class="fa fa-trash"></fa>
-                </a>
-            </td> -->
+            <td> <label for="" class="label label-{{$d->getPenalidade($d->penalidade)['class'] }}">{{ $d->getPenalidade($d->penalidade)['status'] ?? '' }}</label></td>
+            <td> <label for="" class="label label-{{$d->getStatus($d->status)['class'] }}">{{ $d->getStatus($d->status)['status'] ?? '' }}</label></td>
         </tr>
     @endforeach
     </tbody>

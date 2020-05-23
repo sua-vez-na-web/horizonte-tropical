@@ -55,7 +55,7 @@
                         <td>BLOCO: {{$d->apartamento->bloco->codigo ?? ''}} |  APTO: {{$d->apartamento->apto ?? ''}}</td>
                         <td>{{$d->apartamento->inquilino->nome ?? 'NAO INFORMADO'}}</td>
                     @endif
-                    <td>{{$d->nome_visitante ?? 'nome visitante' }} | RG: {{$d->rg_visitante ?? '' }}</td>
+                    <td>{{$d->nome_visitante ?? 'nome visitante' }} | {{$d->rg_visitante ?? '' }}</td>
                     <td>{{ date('d/m/Y H:i:s',strtotime($d->dh_entrada))}}</td>
                     <td>{{ $d->dh_saida ? date('d/m/Y H:i:s', strtotime($d->dh_saida)) : 'Em Andamento...' }}</td>
                     <td>{{$d->duracao()}}</td>

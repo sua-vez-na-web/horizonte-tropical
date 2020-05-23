@@ -43,7 +43,7 @@
                     <td>{{ str_pad($d->id,5,'00000',STR_PAD_LEFT) }}</td>
                     <td>{{ $d->nome }}</td>
                     <td>{{ $d->email }}</td>
-                    <td>{{ $d->tipo_cadastro }}</td>
+                    <td>{{ $d->getTypePerson($d->tipo_cadastro) }}</td>
                     <td>
                         <a href="{{ route('pessoas.edit',$d->id) }}" class="btn btn-primary btn-xs mx-1">Administrar</a>
                     </td>

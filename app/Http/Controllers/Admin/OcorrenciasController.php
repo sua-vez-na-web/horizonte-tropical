@@ -47,7 +47,7 @@ class OcorrenciasController extends Controller
         if ($apartamento) {
             $ocorrencia = $apartamento->ocorrencias()->create([
                 'data'          => now(),
-                'tipo'          => Ocorrencia::STATUS_REGISTRADA,
+                'status'          => Ocorrencia::STATUS_REGISTRADA,
                 'infracao_id'   => $request->infracao_id,
                 'reclamante_id' => $request->reclamante_id ?: Auth::user()->id,
                 'detalhes'      => $request->detalhes,
@@ -77,22 +77,25 @@ class OcorrenciasController extends Controller
 
     public function update(Request $request,$id){
 
+
+        //dd($request->all());
         $ocorrencia = Ocorrencia::find($id);
 
         if($request->reicidencia){
-            $multa = Ocorrencia::calculaValorMulta($request->tipo,$request->reicidencias_qty);
-
-            $ocorrencia->penalidade = $request->tipo;
-            $ocorrencia->tipo = Ocorrencia::STATUS_CONCLUIDA;
+            $multa = Ocorrencia::calculaValorMulta($request->penalidade,$request->reicidencias_qty);
+            //dd($multa);
+            $ocorrencia->penalidade = $request->penalidade;
+            $ocorrencia->status = Ocorrencia::STATUS_CONCLUIDA;
             $ocorrencia->multa = $multa;
             $ocorrencia->save();
 
             return redirect()->route('ocorrencias.index')->with('msg','Ocorrência Atualizada');
         }
 
-        $multa = Ocorrencia::calculaValorMulta($request->tipo,0);
-        $ocorrencia->penalidade = $request->tipo;
-        $ocorrencia->tipo =  Ocorrencia::STATUS_CONCLUIDA;
+        $multa = Ocorrencia::calculaValorMulta($request->penalidade,0);
+        //dd($multa);
+        $ocorrencia->penalidade = $request->penalidade;
+        $ocorrencia->status =  Ocorrencia::STATUS_CONCLUIDA;
         $ocorrencia->multa = $multa;
         $ocorrencia->save();
         return redirect()->route('ocorrencias.index')->with('msg','Ocorrência Atualizada');
@@ -113,12 +116,9 @@ class OcorrenciasController extends Controller
         $ocorrencia = Ocorrencia::find($request->ocorrencia);
 
         if($ocorrencia){
-            $ocorrencia->tipo = $request->status == Ocorrencia::STATUS_EM_ANALISE ?
-                                Ocorrencia::STATUS_EM_ANALISE
-                                : Ocorrencia::STATUS_CONCLUIDA;
-            $ocorrencia->penalidade = $request->status == Ocorrencia::STATUS_EM_ANALISE ?
-                                null
-                                : Ocorrencia::STATUS_CONCLUIDA;
+            $ocorrencia->status = $request->status == Ocorrencia::STATUS_EM_ANALISE
+                                  ? Ocorrencia::STATUS_EM_ANALISE
+                                  : $request->status;
             $ocorrencia->save();
 
             return redirect()->back()->with('msg','Ocorrência Atualizada');

@@ -33,7 +33,7 @@
                     <th>Inquilino</th>
                     <th>Status</th>
                     <th>Garagens</th>
-                    <th>Ultima Atualização</th>
+                    <th>Atualizado em</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -45,7 +45,7 @@
                     <td>{{$d->apto}}</td>
                     <td>{{$d->proprietario->nome ?? 'Nao Informado'}}</td>
                     <td>{{$d->inquilino->nome ?? 'Nao Informado'}}</td>
-                    <td>{{$d->status}}</td>
+                    <td><label for="" class="label label-{{ $d->getApartamentStatus($d->status)['class'] }}">{{ $d->getApartamentStatus($d->status)['status'] }}</label></td>
                     <td>{{$d->garagens()->count() ?? '0'}}</td>
                     <td>{{date('d/m/Y H:i:s',strtotime($d->updated_at))}}</td>
                     <td>

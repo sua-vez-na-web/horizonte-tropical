@@ -10,14 +10,31 @@
         <li><a href="{{route('apartamentos.index')}}">Apartamentos</a></li>
         <li class="active">Lista</li>
     </ol>
-
 @stop
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <h3><span class="label label-primary">MORADOR: {{ $apartamento->inquilino->nome ?? ''}}</span></h3>
+            <dl class="dl-horizontal">
+                <dt>Telefone:</dt>
+                <dd>{{ $apartamento->inquilino->telefone ?? 'nao-informado' }}</dd>
+                <dt>Email:</dt>
+                <dd>{{ $apartamento->inquilino->email ?? 'nao-informado' }}</dd>
+                <dt>CPF:</dt>
+                <dd>{{ $apartamento->inquilino->cpf ?? 'nao-informado' }}</dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
             <h3><span class="label label-primary">PROPRIETÁRIO: {{ $apartamento->proprietario->nome ?? '' }}</span></h3>
+            <dl class="dl-horizontal">
+                <dt>Telefone:</dt>
+                <dd>{{ $apartamento->proprietario->telefone ?? 'nao-informado' }}</dd>
+                <dt>Email:</dt>
+                <dd>{{ $apartamento->proprietario->email ?? 'nao-informado' }}</dd>
+                <dt>CPF:</dt>
+                <dd>{{ $apartamento->proprietario->cpf ?? 'nao-informado' }}</dd>
+            </dl>
         </div>
     </div>
     <div class="row">
@@ -70,15 +87,13 @@
 
         </div>
         <div class="box-body">
-
-
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab_1" data-toggle="tab">Correspondências</a></li>
                             <li><a href="#tab_2" data-toggle="tab">Ocorrências</a></li>
                             <li><a href="#tab_3" data-toggle="tab">Visitas</a></li>
-                            <li><a href="#tab_4" data-toggle="tab">Moradores/Dependentes</a></li>
+                            <li><a href="#tab_4" data-toggle="tab">Pessoas Vinculadas</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">

@@ -54,4 +54,21 @@ class Pessoa extends Model
         return $pessoas;
     }
 
+
+    public function getTypePerson($tipo_cadastro)
+    {
+        switch($tipo_cadastro) {
+            case self::PROPRIETARIO_RESIDENTE :
+                return 'Proprietario Residente';
+            break;
+
+            case self::INQUILINO :
+                return 'Inquilino';
+            break;
+
+            case self::PROPRIETARIO_NAO_RESIDENTE;
+                return 'Proprietario Nao Residente';
+            break;
+        }
+    }
 }

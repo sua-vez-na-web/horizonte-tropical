@@ -28,7 +28,7 @@ class PessoasController extends Controller
     {
         $data = $request->all();
 
-        $pessoa = Pessoa::create($data);
+        Pessoa::create($data);
 
         return redirect()->route('pessoas.index')->with('msg','Registro Adicionado com Sucesso');
     }
@@ -36,7 +36,7 @@ class PessoasController extends Controller
     public function edit($id)
     {
 
-        $pessoa = Pessoa::find($id);
+        $pessoa  = Pessoa::with('dependentes')->find($id);
         $pessoas = Pessoa::whereNotIn('tipo_cadastro',[Pessoa::DEPENDENTE])->pluck('nome','id');
         return view('admin.pessoas.create-edit', ['pessoa' => $pessoa,'pessoas'=>$pessoas]);
     }
@@ -87,6 +87,16 @@ class PessoasController extends Controller
             'moradores' => $pessoas,
         ],200);
 
+    }
+
+    public function desvincular($id)
+    {
+        $pessoa = Pessoa::find($id);
+
+        $pessoa->dependente_id = null;
+        $pessoa->save();
+
+        return redirect()->back();
     }
 
 

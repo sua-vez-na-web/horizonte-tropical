@@ -13,6 +13,7 @@ class Ocorrencia extends Model
     CONST STATUS_NOTIFICADA = 2;
     CONST STATUS_EM_ANALISE = 3;
     CONST STATUS_CONCLUIDA  = 4;
+    CONST STATUS_NEGADA = 5;
 
     CONST TIPO_NOTIFICACAO = 1;
     CONST TIPO_LEVE        = 2;
@@ -29,6 +30,8 @@ class Ocorrencia extends Model
         'infracao_id',
         'penalidade',
         'tipo',
+        'status',
+        'baixada',
         'multa',
         'detalhes',
         'data',
@@ -39,24 +42,26 @@ class Ocorrencia extends Model
 
     public static function calculaValorMulta($tipo,$reicidencias_qty)
     {
-        switch($tipo) {
-            case self::TIPO_LEVE;
-                return self::VALOR_LEVE * $reicidencias_qty;
-            break;
+        if($reicidencias_qty > 0){
+            switch($tipo) {
+                case self::TIPO_LEVE;
+                    return self::VALOR_LEVE * $reicidencias_qty;
+                break;
 
-            case self::TIPO_MEDIA;
-                return self::VALOR_MEDIA * $reicidencias_qty;
-            break;
+                case self::TIPO_MEDIA;
+                    return self::VALOR_MEDIA * $reicidencias_qty;
+                break;
 
-            case self::TIPO_GRAVE;
-                return self::VALOR_GRAVE * $reicidencias_qty;
-            break;
+                case self::TIPO_GRAVE;
+                    return self::VALOR_GRAVE * $reicidencias_qty;
+                break;
+            }
         }
     }
 
-    public function getStatus($tipo)
+    public function getStatus($status)
     {
-        switch($tipo) {
+        switch($status) {
             case self::STATUS_EM_ANALISE;
                 return ['status'=>'Em Análise','class'=>'warning'];
             break;
@@ -71,6 +76,10 @@ class Ocorrencia extends Model
 
             case self::STATUS_CONCLUIDA;
                 return ['status'=>'Concluída','class' => 'success'];
+            break;
+
+            case self::STATUS_NEGADA;
+                return ['status'=>'Negada','class' => 'success'];
             break;
         }
 
@@ -93,6 +102,9 @@ class Ocorrencia extends Model
             case self::TIPO_GRAVE;
                 return ['status'=>'Grave','class' => 'danger'];
             break;
+
+            default:
+                return ['status' => 'Nenhuma','class' => 'secondary'];
         }
     }
 

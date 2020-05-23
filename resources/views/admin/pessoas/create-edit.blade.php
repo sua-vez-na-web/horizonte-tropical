@@ -31,6 +31,26 @@
     </div>
     {!! Form::close() !!}
 </div>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Pessoas Vinculadas</h3>
+    </div>
+    <div class="box-body">
+        <div class="col-md-6 col-sm-12">
+            <ul class="list-group">
+                @forelse($pessoa->dependentes as $dependente)
+                <li class="list-group-item">
+                        {{$dependente->nome}}
+                    <a href="{{ route('pessoas.desvincular',$dependente->id) }}" class="btn btn-xs btn-danger pull-right">Remover vinculo</a>
+                </li>
+                @empty
+                <li class="list-group-item active">Nao Existem Vinculos</li>
+                @endforelse
+            </ul>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('css')

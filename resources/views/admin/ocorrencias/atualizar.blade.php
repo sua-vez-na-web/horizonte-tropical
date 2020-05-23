@@ -25,9 +25,9 @@
                 <div class="box-boby">
                     <dl class="dl-horizontal">
                         <dt>Status</dt>
-                        <dd><label for="" class="label label-{{$ocorrencia->getStatus($ocorrencia->tipo)['class'] }}">{{ $ocorrencia->getStatus($ocorrencia->tipo)['status'] ?? '' }}</label></dd>
+                        <dd><label for="" class="label label-{{$ocorrencia->getStatus($ocorrencia->status)['class'] }}">{{ $ocorrencia->getStatus($ocorrencia->status)['status'] ?? '' }}</label></dd>
                         <dt>Penalidade</dt>
-                        <dd><label for="" class="label label-{{$ocorrencia->getPenalidade($ocorrencia->tipo)['class'] }}">{{ $ocorrencia->getPenalidade($ocorrencia->tipo)['status'] ?? '' }}</label></dd>
+                        <dd><label for="" class="label label-{{$ocorrencia->getPenalidade($ocorrencia->penalidade)['class'] }}">{{ $ocorrencia->getPenalidade($ocorrencia->penalidade)['status'] ?? 'nenhuma' }}</label></dd>
                         <dt>Multa</dt>
                         <dd>R$ {{  number_format($ocorrencia->multa,2,',','.') ?? 'N/a'}}</dd>
                         <dt>Bloco - Apartamento</dt>
@@ -47,10 +47,11 @@
                 <div class="box-footer">
                     <a href="{{ route('ocorrencias.index') }}" class="btn btn-default"> Voltar</a>
                     <div class="pull-right">
-                        @if($ocorrencia->tipo == \App\Ocorrencia::STATUS_REGISTRADA)
-                            <a href="{{ route('ocorrencia.setStatus',['ocorrencia'=>$ocorrencia->id,'status'=>\App\Ocorrencia::STATUS_EM_ANALISE ]) }}" class="btn btn-warning"><i class="fa fa-bell"></i> Ir para Análise</a>
-                            <a href="{{ route('ocorrencia.setStatus',['ocorrencia'=>$ocorrencia->id,'status'=>\App\Ocorrencia::STATUS_NOTIFICADA ]) }}" class="btn btn-primary"><i class="fa fa-bell"></i> Notificar</a>
-                        @elseif($ocorrencia->tipo == \App\Ocorrencia::STATUS_EM_ANALISE)
+                        @if($ocorrencia->status == \App\Ocorrencia::STATUS_REGISTRADA)
+                            <a href="{{ route('ocorrencia.setStatus',['ocorrencia'=>$ocorrencia->id,'status'=>\App\Ocorrencia::STATUS_EM_ANALISE ]) }}" class="btn btn-warning">Ir para Análise</a>
+                            <a href="{{ route('ocorrencia.setStatus',['ocorrencia'=>$ocorrencia->id,'status'=>\App\Ocorrencia::STATUS_NOTIFICADA ]) }}" class="btn btn-primary">Notificar</a>
+                            <a href="{{ route('ocorrencia.setStatus',['ocorrencia'=>$ocorrencia->id,'status'=>\App\Ocorrencia::STATUS_NEGADA ]) }}" class="btn btn-danger">Negar</a>
+                        @elseif($ocorrencia->status == \App\Ocorrencia::STATUS_EM_ANALISE)
                             <a href="#" data-toggle="modal" data-target="#modalAtualizar" class="btn btn-primary"><i class="fa fa-bullhorn"></i> Aplicar Penalidade</a>
                         @endif
                     </div>
@@ -108,7 +109,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="">Penalidade</label>
-                            <select name="tipo" id="" class="form-control">
+                            <select name="penalidade" id="" class="form-control">
                                 <option value="{{ \App\Ocorrencia::TIPO_LEVE }}">LEVE</option>
                                 <option value="{{ \App\Ocorrencia::TIPO_MEDIA }}">MEDIA</option>
                                 <option value="{{ \App\Ocorrencia::TIPO_GRAVE }}">GRAVE</option>

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get("/",function(){
     return redirect()->route("login");
@@ -30,6 +32,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/upload/{id}','UploadController@index')->name('get.upload');
     Route::get('/upload/{id}/delete','UploadController@delete')->name('delete.upload');
 
+    Route::get('pessoas/{id}/desvincular','PessoasController@desvincular')->name('pessoas.desvincular');
     Route::get('ajaxPessoas','PessoasController@getPessoas');
     Route::get('ajaxMoradores','PessoasController@getMoradores');
 

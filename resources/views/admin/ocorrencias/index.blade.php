@@ -48,7 +48,7 @@
                     <td>{{$d->reclamante->nome ?? $d->author->name }}</td>
                     <td>ART: {{$d->infracao->codigo}} |{{$d->infracao->descricao }}</td>
                     <td> <label for="" class="label label-{{$d->getPenalidade($d->penalidade)['class'] }}">{{ $d->getPenalidade($d->penalidade)['status'] ?? '' }}</label></td>
-                    <td> <label for="" class="label label-{{$d->getStatus($d->tipo)['class'] }}">{{ $d->getStatus($d->tipo)['status'] ?? '' }}</label></td>
+                    <td> <label for="" class="label label-{{$d->getStatus($d->status)['class'] }}">{{ $d->getStatus($d->status)['status'] ?? '' }}</label></td>
                     <td>
                         @cannot('funcionario')
                             <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
