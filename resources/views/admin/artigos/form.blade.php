@@ -1,14 +1,14 @@
 <div class="form-group">
-    <label for="proprietario_id" class="col-sm-2 control-label">Descricao</label>
-    <div class="col-sm-5">
-        {!! Form::text('descricao',null,['class'=>'form-control']) !!}
+    <label for="proprietario_id" class="col-sm-2 control-label">Codigo</label>
+    <div class="col-sm-2">
+        {!! Form::text('codigo',null,['class'=>'form-control']) !!}
     </div>
 </div>
 
 <div class="form-group">
-    <label for="proprietario_id" class="col-sm-2 control-label">Codigo</label>
-    <div class="col-sm-2">
-        {!! Form::text('codigo',null,['class'=>'form-control']) !!}
+    <label for="proprietario_id" class="col-sm-2 control-label">Descricao</label>
+    <div class="col-sm-8">
+        {!! Form::textarea('descricao',null,['class'=>'form-control','rows'=>'3','cols'=>'10']) !!}
     </div>
 </div>
 

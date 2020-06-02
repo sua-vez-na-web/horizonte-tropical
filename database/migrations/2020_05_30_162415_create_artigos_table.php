@@ -15,7 +15,7 @@ class CreateArtigosTable extends Migration
     {
         Schema::create('artigos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('descricao');
+            $table->text('descricao');
             $table->string('codigo');
             $table->unsignedBigInteger('infracao_id');
             $table->unsignedBigInteger('penalidade_id');
