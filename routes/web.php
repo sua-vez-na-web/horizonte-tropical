@@ -24,6 +24,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         'visitas'           => 'VisitasController',
         'pontos'            => 'PontoController',
         'usuarios'          => 'UsuariosController',
+        'artigos'           => 'ArtigosController',
+        'penalidades'       => 'PenalidadesController',
+        'infracoes'         => 'InfracoesController',
     ]);
 
     Route::get('/ocorrencia/setStatus','OcorrenciasController@updateStatus')->name('ocorrencia.setStatus');
@@ -35,5 +38,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('pessoas/{id}/desvincular','PessoasController@desvincular')->name('pessoas.desvincular');
     Route::get('ajaxPessoas','PessoasController@getPessoas');
     Route::get('ajaxMoradores','PessoasController@getMoradores');
+
+    Route::get('ajaxArtigos','ArtigosController@getArtigos');
 
 });

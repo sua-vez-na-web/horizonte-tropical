@@ -42,8 +42,39 @@
 @section('js')
 <!-- Select2 -->
 <script src="{{asset('admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script>
+<script>      
+    
+    var artigos = [];   
+    
     $('.select2').select2();
+
+    $('#selInfracoes').change(function(event){
+        infracao_id = event.target.value;
+        getArtigos(infracao_id);
+    })  
+
+    function getArtigos(infracao_id){
+        if(infracao_id == null || ""){
+            alert('selecione uma Infracao');
+            return;
+        }       
+
+        $.getJSON(`/admin/ajaxArtigos?infracao_id=${infracao_id}`,function(response){
+
+            if(response.artigos.length > 0){
+                artigos = response.artigos;
+                var option = '<option>Selecione o Artigo</option>';
+                    $.each(response.artigos, function(i,obj){
+                        option += `<option value="${obj.id}" data-index="${i}">${obj.descricao}</option>`;
+                    })
+                $('#selArtigos').html(option).attr('disabled',false);
+                return
+            }
+                 alert('Nenhum Artigo Cadastrado para essa Infração')
+            return
+        })
+    }
+
 </script>
 
 @stop

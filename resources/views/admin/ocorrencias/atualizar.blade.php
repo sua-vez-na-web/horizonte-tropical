@@ -17,9 +17,9 @@
         <div class="col-md-6">
             <div class="box box-danger">
                 <div class="box-header">
-                    <div class="callout callout-danger">
-                        <h4>Infração Registrada: Art. {{  $ocorrencia->infracao->codigo  }}</h4>
-                        <p>{{ $ocorrencia->infracao->descricao }}</p>
+                    <div class="callout callout-info">
+                        <h4>Infração Registrada: {{  $ocorrencia->infracao->descricao  }}</h4>
+                        <p>Art. {{ $ocorrencia->artigo->codigo }} | {{ $ocorrencia->artigo->descricao }}</p>
                     </div>
                 </div>
                 <div class="box-boby">
@@ -27,7 +27,7 @@
                         <dt>Status</dt>
                         <dd><label for="" class="label label-{{$ocorrencia->getStatus($ocorrencia->status)['class'] }}">{{ $ocorrencia->getStatus($ocorrencia->status)['status'] ?? '' }}</label></dd>
                         <dt>Penalidade</dt>
-                        <dd><label for="" class="label label-{{$ocorrencia->getPenalidade($ocorrencia->penalidade)['class'] }}">{{ $ocorrencia->getPenalidade($ocorrencia->penalidade)['status'] ?? 'nenhuma' }}</label></dd>
+                        <dd><label for="" class="label label-primary">{{ $ocorrencia->penalidade->descricao ?? 'Nenhuma' }}</label></dd>
                         <dt>Multa</dt>
                         <dd>R$ {{  number_format($ocorrencia->multa,2,',','.') ?? 'N/a'}}</dd>
                         <dt>Bloco - Apartamento</dt>
@@ -102,19 +102,24 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
                     <h4 class="modal-title">Atualizar Registro de Ocorrência</h4>
+                    <p class="label label-success">Penalidade Recomendada: {{ $ocorrencia->artigo->penalidade->descricao }}</p>
                 </div>
                 <form action="{{ route('ocorrencias.update',$ocorrencia->id) }}" method="post">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="">Penalidade</label>
-                            <select name="penalidade" id="" class="form-control">
-                                <option value="{{ \App\Ocorrencia::TIPO_LEVE }}">LEVE</option>
-                                <option value="{{ \App\Ocorrencia::TIPO_MEDIA }}">MEDIA</option>
-                                <option value="{{ \App\Ocorrencia::TIPO_GRAVE }}">GRAVE</option>
-                            </select>
+                            <label for="">Selecione a Penalidade para ser Aplicada:</label>
+                            {!! Form::select('penalidade_id',$penalidades,null,['class'=>'form-control select2','placeholder'=>'Selecione...','id'=>'selInfracoes']) !!}                          
                         </div>
+                        <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="multa" value="1">
+                                           Aplicar Multa?
+                                    </label>
+                                </div>
+                            </div>
                         @if($reicidencias->count() > 0)
                             <div class="form-group">
                                 <div class="checkbox">

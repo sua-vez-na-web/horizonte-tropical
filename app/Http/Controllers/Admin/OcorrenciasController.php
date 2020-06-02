@@ -10,6 +10,7 @@ use App\Ocorrencia;
 use App\Apartamento;
 use App\Bloco;
 use App\Http\Controllers\Controller;
+use App\Penalidade;
 use Mail;
 use Auth;
 class OcorrenciasController extends Controller
@@ -38,7 +39,7 @@ class OcorrenciasController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->all());
+        // dd($request->all());
         $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
             ->where('apto', $request->apartamento_id)
             ->first();
@@ -47,8 +48,9 @@ class OcorrenciasController extends Controller
         if ($apartamento) {
             $ocorrencia = $apartamento->ocorrencias()->create([
                 'data'          => now(),
-                'status'          => Ocorrencia::STATUS_REGISTRADA,
+                'status'        => Ocorrencia::STATUS_REGISTRADA,
                 'infracao_id'   => $request->infracao_id,
+                'artigo_id'     => $request->artigo_id,
                 'reclamante_id' => $request->reclamante_id ?: Auth::user()->id,
                 'detalhes'      => $request->detalhes,
                 'autor_id'      => Auth::user()->id
@@ -64,13 +66,15 @@ class OcorrenciasController extends Controller
 
         $ocorrencia     = Ocorrencia::find($id);
         $reincidencias  = Ocorrencia::where('apartamento_id',$ocorrencia->apartamento_id)
-                                    ->where('infracao_id',$ocorrencia->infracao_id)
+                                    ->where('artigo_id',$ocorrencia->artigo_id)
                                     ->whereNotIn('id',[$ocorrencia->id])
                                     ->get();
+        $penalidades   = Penalidade::pluck('descricao','id');
 
         return view('admin.ocorrencias.atualizar', [
             'ocorrencia'=>$ocorrencia,
-            'reicidencias' => $reincidencias
+            'reicidencias' => $reincidencias,
+            'penalidades' => $penalidades
         ]);
 
     }
@@ -78,26 +82,28 @@ class OcorrenciasController extends Controller
     public function update(Request $request,$id){
 
 
-        //dd($request->all());
+        // dd($request->all());
         $ocorrencia = Ocorrencia::find($id);
-
+        $penalidade = Penalidade::find($request->penalidade_id);
+        
         if($request->reicidencia){
-            $multa = Ocorrencia::calculaValorMulta($request->penalidade,$request->reicidencias_qty);
+            $reincidencias = Ocorrencia::contaReicidencias($ocorrencia);
             //dd($multa);
-            $ocorrencia->penalidade = $request->penalidade;
-            $ocorrencia->status = Ocorrencia::STATUS_CONCLUIDA;
-            $ocorrencia->multa = $multa;
+            $ocorrencia->penalidade_id  = $request->penalidade_id;
+            $ocorrencia->status         = Ocorrencia::STATUS_CONCLUIDA;
+            $ocorrencia->multa          = $penalidade->multa * $reincidencias;
             $ocorrencia->save();
 
             return redirect()->route('ocorrencias.index')->with('msg','Ocorrência Atualizada');
         }
 
-        $multa = Ocorrencia::calculaValorMulta($request->penalidade,0);
-        //dd($multa);
-        $ocorrencia->penalidade = $request->penalidade;
-        $ocorrencia->status =  Ocorrencia::STATUS_CONCLUIDA;
-        $ocorrencia->multa = $multa;
+        if($request->multa)
+            $ocorrencia->multa = $penalidade->multa;    
+        
+        $ocorrencia->penalidade_id = $request->penalidade_id;
+        $ocorrencia->status        =  Ocorrencia::STATUS_CONCLUIDA;        
         $ocorrencia->save();
+
         return redirect()->route('ocorrencias.index')->with('msg','Ocorrência Atualizada');
 
     }

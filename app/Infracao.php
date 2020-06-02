@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Infracao extends Model
 {
-    protected $fillable = ['codigo','descricao'];
+    protected $fillable = ['descricao'];
+
+    public function artigos(){
+        return $this->hasMany(Artigo::class);
+    }
 }

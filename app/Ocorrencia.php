@@ -13,22 +13,13 @@ class Ocorrencia extends Model
     CONST STATUS_NOTIFICADA = 2;
     CONST STATUS_EM_ANALISE = 3;
     CONST STATUS_CONCLUIDA  = 4;
-    CONST STATUS_NEGADA = 5;
-
-    CONST TIPO_NOTIFICACAO = 1;
-    CONST TIPO_LEVE        = 2;
-    CONST TIPO_MEDIA       = 3;
-    CONST TIPO_GRAVE       = 4;
-
-    CONST VALOR_NOTIFICACAO = 0;
-    CONST VALOR_LEVE = 66;
-    CONST VALOR_MEDIA = 132;
-    CONST VALOR_GRAVE = 165;
+    CONST STATUS_NEGADA = 5;   
 
     protected $fillable = [
         'apartamento_id',
         'infracao_id',
-        'penalidade',
+        'artigo_id',
+        'penalidade_id',
         'tipo',
         'status',
         'baixada',
@@ -36,27 +27,17 @@ class Ocorrencia extends Model
         'detalhes',
         'data',
         'autor_id',
-        'reclamante_id'
+        'reclamante_id',
     ];
 
+    protected $dates = [ 'data'];
 
-    public static function calculaValorMulta($tipo,$reicidencias_qty)
+    public static function contaReicidencias($ocorrencia)
     {
-        if($reicidencias_qty > 0){
-            switch($tipo) {
-                case self::TIPO_LEVE;
-                    return self::VALOR_LEVE * $reicidencias_qty;
-                break;
-
-                case self::TIPO_MEDIA;
-                    return self::VALOR_MEDIA * $reicidencias_qty;
-                break;
-
-                case self::TIPO_GRAVE;
-                    return self::VALOR_GRAVE * $reicidencias_qty;
-                break;
-            }
-        }
+        return Ocorrencia::where('apartamento_id',$ocorrencia->apartamento_id)
+                                    ->where('artigo_id',$ocorrencia->artigo_id)
+                                    ->whereNotIn('id',[$ocorrencia->id])
+                                    ->count();
     }
 
     public function getStatus($status)
@@ -83,32 +64,7 @@ class Ocorrencia extends Model
             break;
         }
 
-    }
-
-    public function getPenalidade($penalidade)
-    {
-        switch($penalidade) {
-            case self::TIPO_NOTIFICACAO;
-                return ['status'=>'Notificação','class'=>'success'];
-            break;
-            case self::TIPO_LEVE;
-                return ['status'=>'Leve','class'=>'primary'];
-            break;
-
-            case self::TIPO_MEDIA;
-                return ['status'=> 'Média','class' => 'warning'];
-            break;
-
-            case self::TIPO_GRAVE;
-                return ['status'=>'Grave','class' => 'danger'];
-            break;
-
-            default:
-                return ['status' => 'Nenhuma','class' => 'secondary'];
-        }
-    }
-
-    protected $dates = [ 'data'];
+    }    
 
     public function apartamento()
     {
@@ -118,6 +74,16 @@ class Ocorrencia extends Model
     public function infracao()
     {
         return $this->belongsTo(Infracao::class);
+    }
+
+    public function artigo()
+    {
+        return $this->belongsTo(Artigo::class);
+    }
+
+    public function penalidade()
+    {
+        return $this->belongsTo(Penalidade::class);
     }
 
     public function fotos()
