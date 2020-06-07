@@ -9,11 +9,9 @@ class Ocorrencia extends Model
 {
     use SoftDeletes;
 
-    CONST STATUS_REGISTRADA = 1;
-    CONST STATUS_NOTIFICADA = 2;
+    CONST STATUS_REGISTRADA = 1;    
     CONST STATUS_EM_ANALISE = 3;
-    CONST STATUS_CONCLUIDA  = 4;
-    CONST STATUS_NEGADA = 5;   
+    CONST STATUS_CONCLUIDA  = 4;   
 
     protected $fillable = [
         'apartamento_id',
@@ -28,6 +26,8 @@ class Ocorrencia extends Model
         'data',
         'autor_id',
         'reclamante_id',
+        'is_denied',
+        'uuid'
     ];
 
     protected $dates = [ 'data'];
@@ -49,19 +49,12 @@ class Ocorrencia extends Model
 
             case self::STATUS_REGISTRADA;
                 return ['status'=> 'Registrada','class' => 'primary'];
-            break;
-
-            case self::STATUS_NOTIFICADA;
-                return ['status'=>'Notificada','class' => 'success'];
-            break;
+            break;           
 
             case self::STATUS_CONCLUIDA;
                 return ['status'=>'Concluída','class' => 'success'];
             break;
-
-            case self::STATUS_NEGADA;
-                return ['status'=>'Negada','class' => 'success'];
-            break;
+           
         }
 
     }    
@@ -99,5 +92,10 @@ class Ocorrencia extends Model
     public function author()
     {
         return $this->belongsTo(User::class,'autor_id');
+    }
+
+    public function getArtigoInfracaoAttribute()
+    {
+        return $this->infracao->id. ".".$this->artigo->codigo;
     }
 }

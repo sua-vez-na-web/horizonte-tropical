@@ -11,8 +11,11 @@ use App\Apartamento;
 use App\Bloco;
 use App\Http\Controllers\Controller;
 use App\Penalidade;
-use Mail;
-use Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use PDF;
+use Ramsey\Uuid\Uuid;
+
 class OcorrenciasController extends Controller
 {
     public function index()
@@ -53,8 +56,9 @@ class OcorrenciasController extends Controller
                 'artigo_id'     => $request->artigo_id,
                 'reclamante_id' => $request->reclamante_id ?: Auth::user()->id,
                 'detalhes'      => $request->detalhes,
+                'uuid'          => Uuid::uuid4(),
                 'autor_id'      => Auth::user()->id
-            ]);
+            ]);          
 
             return redirect()->route('ocorrencias.index')->with('msg','Registro Adicionado com Sucesso!');
         }
@@ -72,14 +76,14 @@ class OcorrenciasController extends Controller
         $penalidades   = Penalidade::pluck('descricao','id');
 
         return view('admin.ocorrencias.atualizar', [
-            'ocorrencia'=>$ocorrencia,
+            'ocorrencia'   =>$ocorrencia,
             'reicidencias' => $reincidencias,
-            'penalidades' => $penalidades
+            'penalidades'  => $penalidades
         ]);
 
     }
 
-    public function update(Request $request,$id){
+    public function toPunish(Request $request,$id){
 
 
         // dd($request->all());
@@ -94,6 +98,15 @@ class OcorrenciasController extends Controller
             $ocorrencia->multa          = $penalidade->multa * $reincidencias;
             $ocorrencia->save();
 
+            if($ocorrencia->apartamento->inquilino){
+                Mail::to($ocorrencia->apartamento->inquilino->email)
+                    ->send(new OcorrenciaRegistrada($ocorrencia));
+            }
+            if($ocorrencia->apartamento->proprietario){
+                Mail::to($ocorrencia->apartamento->proprietario->email)
+                    ->send(new OcorrenciaRegistrada($ocorrencia));
+            }
+
             return redirect()->route('ocorrencias.index')->with('msg','Ocorrência Atualizada');
         }
 
@@ -103,6 +116,15 @@ class OcorrenciasController extends Controller
         $ocorrencia->penalidade_id = $request->penalidade_id;
         $ocorrencia->status        =  Ocorrencia::STATUS_CONCLUIDA;        
         $ocorrencia->save();
+
+        if($ocorrencia->apartamento->inquilino){
+            Mail::to($ocorrencia->apartamento->inquilino->email)
+                ->send(new OcorrenciaRegistrada($ocorrencia));
+        }
+        if($ocorrencia->apartamento->proprietario){
+            Mail::to($ocorrencia->apartamento->proprietario->email)
+                ->send(new OcorrenciaRegistrada($ocorrencia));
+        }
 
         return redirect()->route('ocorrencias.index')->with('msg','Ocorrência Atualizada');
 
@@ -116,19 +138,35 @@ class OcorrenciasController extends Controller
         return redirect()->route('ocorrencias.index');
     }
 
-    public function updateStatus(Request $request)
+    public function markAsInReview($id)
     {
 
-        $ocorrencia = Ocorrencia::find($request->ocorrencia);
+        $ocorrencia = Ocorrencia::find($id);
+        $ocorrencia->status = Ocorrencia::STATUS_EM_ANALISE;
+        $ocorrencia->save();
 
-        if($ocorrencia){
-            $ocorrencia->status = $request->status == Ocorrencia::STATUS_EM_ANALISE
-                                  ? Ocorrencia::STATUS_EM_ANALISE
-                                  : $request->status;
-            $ocorrencia->save();
+        return redirect()->back()->with('msg','Ocorrencia Atualizada');        
+    }
 
-            return redirect()->back()->with('msg','Ocorrência Atualizada');
-        }
-        return redirect()->back()->with('error','Não foi possível atualizar');
+    public function print($uuid)
+    {   
+        $ocorrencia = Ocorrencia::where('uuid',$uuid)->firstOrFail();
+        // dd($ocorrencia->apartamento->proprietario);
+        $pdf = PDF::loadView('printables.ocorrencia',compact('ocorrencia') );
+        $pdf->setPaper('a4');
+
+        return $pdf->stream();
+
+    }
+
+    public function markAsDenied($id)
+    {
+        $ocorrencia = Ocorrencia::find($id);
+
+        $ocorrencia->is_denied = 1;
+        $ocorrencia->status = Ocorrencia::STATUS_CONCLUIDA;
+        $ocorrencia->save();
+
+        return redirect()->route('ocorrencias.index');
     }
 }

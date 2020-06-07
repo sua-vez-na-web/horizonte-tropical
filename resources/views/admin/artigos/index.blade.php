@@ -32,8 +32,7 @@
             <thead>
                 <tr>
                     <th>#ID</th>
-                    <th>Codigo</th>
-                    <th>Descricao</th>
+                    <th>Codigo</th>                   
                     <th>Penalidade</td>                    
                     <th>Infracao</th>
                     <th>Administrar</th>
@@ -43,8 +42,7 @@
                 @foreach($data as $d)
                 <tr>
                     <td>{{$d->id }}</td>
-                    <td>{{$d->descricao}}</td>
-                    <td>{{$d->codigo}}</td>
+                    <td>{{$d->codigo}}</td>                    
                     <td>{{$d->penalidade->descricao}}</td>
                     <td>{{$d->infracao->descricao }}</td>                    
                     <td>

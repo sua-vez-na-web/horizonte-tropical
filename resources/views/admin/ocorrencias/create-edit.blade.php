@@ -63,11 +63,18 @@
 
             if(response.artigos.length > 0){
                 artigos = response.artigos;
-                var option = '<option>Selecione o Artigo</option>';
+                var radios = '';
                     $.each(response.artigos, function(i,obj){
-                        option += `<option value="${obj.id}" data-index="${i}">${obj.descricao}</option>`;
+                        radios += `<div class="radio">
+                                    <label>
+                                        <input type="radio" name="artigo_id" id="radio_artigo" value="${obj.id}">
+                                        <strong>${obj.codigo} -</strong> ${obj.descricao}
+                                    </label>
+                                </div>`;
                     })
-                $('#selArtigos').html(option).attr('disabled',false);
+                console.log(radios)
+                $('#divRadios').append(radios);
+                $('#divArtigos').show();
                 return
             }
                  alert('Nenhum Artigo Cadastrado para essa Infração')

@@ -56,9 +56,11 @@
                         <a href="{{route('get.upload',$d->id)}}" class="btn btn-success btn-xs mx-1">
                             <i class="fa fa-photo"></i>
                         </a>
+                        @if($d->status != \App\Ocorrencia::STATUS_CONCLUIDA)
                         <a href="{{ route('ocorrencias.show', $d->id)}}" class="btn btn-danger btn-xs mx-1">
                             <fa class="fa fa-trash"></fa>
                         </a>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

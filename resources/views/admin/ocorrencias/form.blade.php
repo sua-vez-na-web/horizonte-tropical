@@ -20,13 +20,11 @@
     </div>
 </div>
 
-<div class="form-group">
-    <label for="proprietario_id" class="col-sm-2 control-label">Artigo</label>
+<div class="form-group" id="divArtigos" style="display: none;">
+    <label for="artigo_id" class="col-sm-2 control-label">Artigo</label>
 
-    <div class="col-md-5">
-        <select name="artigo_id" id="selArtigos" class="form-control select2" disabled>
-
-        </select>
+    <div class="col-md-10" id="divRadios">        
+        
     </div>
 </div>
 

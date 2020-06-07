@@ -31,7 +31,7 @@
         <table class="table data-table table-hover table-bordered table-striped" id="table">
             <thead>
                 <tr>
-                    <th>#ID</th>                    
+                    <th>Código</th>                    
                     <th>Descricao</th>                   
                     <th>Administrar</th>
                 </tr>
@@ -39,7 +39,7 @@
             <tbody>
                 @foreach($data as $d)
                 <tr>
-                    <td>{{$d->id }}</td>
+                    <td>{{$d->codigo }}</td>
                     <td>{{$d->descricao}}</td>                              
                     <td>
                        <a href="{{ route('infracoes.edit',$d->id)}}" class="btn btn-default btn-xs">Ver</a>

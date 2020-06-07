@@ -7,6 +7,8 @@ Route::get("/",function(){
     return redirect()->route("login");
 });
 
+Route::get('/ato-de-infracao/{uuid}','Admin\OcorrenciasController@print')->name('ocorrencia.print');
+
 Auth::routes(['login','logout']);
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
@@ -29,7 +31,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         'infracoes'         => 'InfracoesController',
     ]);
 
-    Route::get('/ocorrencia/setStatus','OcorrenciasController@updateStatus')->name('ocorrencia.setStatus');
+    Route::post('/ocorrencia/{id}/punir','OcorrenciasController@toPunish')->name('ocorrencia.punir');
+    Route::get('/ocorrencia/{id}/denegar','OcorrenciasController@markAsDenied')->name('ocorrencia.denied');
+    Route::get('/ocorrencia/{id}/revisar','OcorrenciasController@markAsInReview')->name('ocorrencia.inReview');
 
     Route::post('/upload/{id}','UploadController@store')->name('post.upload');
     Route::get('/upload/{id}','UploadController@index')->name('get.upload');
