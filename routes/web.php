@@ -45,4 +45,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::get('ajaxArtigos','ArtigosController@getArtigos');
 
+    /**
+     * Reports Routes
+     */
+     Route::get('relatorios/ocorrencias/individual','Reports\OcorrenciasReportController@getIndividual')->name('rpt.ocorrencia.individual');
+     Route::post('relatorios/ocorrencias/individual','Reports\OcorrenciasReportController@postIndividual')->name('rpt.ocorrencia.individual');
+
 });

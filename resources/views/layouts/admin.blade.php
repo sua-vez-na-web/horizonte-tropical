@@ -247,7 +247,31 @@
                             <li><a href="{{ route('artigos.index') }}"><i class="fa fa-circle-o"></i>Artigos</a></li>
                             <li><a href="{{ route('penalidades.index') }}"><i class="fa fa-circle-o"></i>Penalidades</a></li>                           
                         </ul>
+                    </li>
+                    <li class="treeview" style="height: auto;">
+                    <a href="#">
+                        <i class="fa fa-share"></i> <span>Relatórios</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu" style="display: none;">
+                        <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li> -->
+                        <li class="treeview" style="height: auto;">
+                        <a href="#"><i class="fa fa-circle-o"></i> Ocorrências
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li><a href="{{ route('rpt.ocorrencia.individual') }}"><i class="fa fa-circle-o"></i> Individual</a></li>
+                            <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Por Apartamento (em desenvolv)</a></li> -->
+                            <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>                             -->
+                        </ul>
                         </li>
+                        <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Visitas</a></li> -->
+                    </ul>
+                    </li>
                     @cannot('funcionario')
                         <li><a href="{{route('usuarios.index')}}"><i class="fa fa-users text-blue"></i> <span>Usuários</span></a></li>
                     @endcannot
