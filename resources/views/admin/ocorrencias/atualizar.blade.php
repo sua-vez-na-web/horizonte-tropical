@@ -48,10 +48,12 @@
                     <a href="{{ route('ocorrencias.index') }}" class="btn btn-default"> Voltar</a>
                     <div class="pull-right">
                         @if($ocorrencia->status == \App\Ocorrencia::STATUS_REGISTRADA)
-                            <a href="{{ route('ocorrencia.inReview',$ocorrencia->id) }}" class="btn btn-warning">Ir para Análise</a>                            
+                            <a href="{{ route('ocorrencia.inReview',$ocorrencia->id) }}" class="btn btn-warning">Ir para Análise</a>
                             <a href="{{ route('ocorrencia.denied',$ocorrencia->id) }}" class="btn btn-danger">Negar</a>
                         @elseif($ocorrencia->status == \App\Ocorrencia::STATUS_EM_ANALISE)
                             <a href="#" data-toggle="modal" data-target="#modalAtualizar" class="btn btn-primary"><i class="fa fa-bullhorn"></i> Aplicar Penalidade</a>
+                        @elseif($ocorrencia->status == \App\Ocorrencia::STATUS_CONCLUIDA)
+                            <a href="{{ route('ocorrencia.print',$ocorrencia->uuid) }}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i> Ato de Infração</a>
                         @endif
                     </div>
                 </div>
@@ -103,12 +105,12 @@
                     <h4 class="modal-title">Atualizar Registro de Ocorrência</h4>
                     <p class="label label-success">Penalidade Recomendada: {{ $ocorrencia->artigo->penalidade->descricao }}</p>
                 </div>
-                <form action="{{ route('ocorrencia.punir',$ocorrencia->id) }}" method="post">                    
+                <form action="{{ route('ocorrencia.punir',$ocorrencia->id) }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="">Selecione a Penalidade para ser Aplicada:</label>
-                            {!! Form::select('penalidade_id',$penalidades,null,['class'=>'form-control select2','placeholder'=>'Selecione...','id'=>'selInfracoes']) !!}                          
+                            {!! Form::select('penalidade_id',$penalidades,null,['class'=>'form-control select2','placeholder'=>'Selecione...','id'=>'selInfracoes']) !!}
                         </div>
                         <div class="form-group">
                                 <div class="checkbox">
