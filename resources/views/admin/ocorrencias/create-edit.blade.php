@@ -27,7 +27,7 @@
         @include('admin.ocorrencias.form')
     </div>
     <div class="box-footer">
-        {!! Form::submit('Salvar',['class'=>'btn btn-primary']) !!}
+        {!! Form::submit('Salvar',['class'=>'btn btn-primary','disabled'=>'true','id'=>'save']) !!}
     </div>
     {!! Form::close() !!}
 </div>
@@ -42,22 +42,22 @@
 @section('js')
 <!-- Select2 -->
 <script src="{{asset('admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script>      
-    
-    var artigos = [];   
-    
+<script>
+
+    var artigos = [];
+
     $('.select2').select2();
 
     $('#selInfracoes').change(function(event){
         infracao_id = event.target.value;
         getArtigos(infracao_id);
-    })  
+    })
 
     function getArtigos(infracao_id){
         if(infracao_id == null || ""){
             alert('selecione uma Infracao');
             return;
-        }       
+        }
 
         $.getJSON(`/admin/ajaxArtigos?infracao_id=${infracao_id}`,function(response){
 
@@ -75,8 +75,12 @@
                 console.log(radios)
                 $('#divRadios').append(radios);
                 $('#divArtigos').show();
+                $('#save').attr('disabled',false)
                 return
             }
+                 $('#save').attr('disabled',true)
+                 $('#divRadios').html('');
+                 $('#divArtigos').hide();
                  alert('Nenhum Artigo Cadastrado para essa Infração')
             return
         })
