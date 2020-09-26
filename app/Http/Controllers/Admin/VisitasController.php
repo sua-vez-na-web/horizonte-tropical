@@ -15,8 +15,12 @@ class VisitasController extends Controller
 {
     public function index()
     {
-        $data = Visita::latest()->get();
+        $from = now()->startOfMonth();
+        $to = now()->endOfMonth();
+        $data =  Visita::whereBetween('created_at',[$from,$to])->latest()->get();
+
         return view("admin.visitas.index",["data"=>$data]);
+
     }
 
     public function create()

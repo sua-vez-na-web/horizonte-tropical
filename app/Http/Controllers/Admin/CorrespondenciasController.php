@@ -17,7 +17,9 @@ class CorrespondenciasController extends Controller
 {
     public function index()
     {
-        $data = Correspondencia::latest()->get();
+        $from = now()->startOfMonth();
+        $to = now()->endOfMonth();
+        $data =  Correspondencia::whereBetween('created_at',[$from,$to])->latest()->get();
         return view('admin.correspondencias.index', ['data' => $data]);
     }
 
