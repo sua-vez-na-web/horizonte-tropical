@@ -19,14 +19,14 @@ class CorrespondenciasController extends Controller
     {
         $from = now()->startOfMonth();
         $to = now()->endOfMonth();
-        $data =  Correspondencia::whereBetween('created_at',[$from,$to])->latest()->get();
+        $data = Correspondencia::whereBetween('created_at', [$from, $to])->latest()->get();
         return view('admin.correspondencias.index', ['data' => $data]);
     }
 
     public function create()
     {
         $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
-        $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
+        $blocos = Bloco::orderBy('id')->pluck('codigo', 'id');
 
         return view('admin.correspondencias.create-edit', ['apartamentos' => $apartamentos, 'blocos' => $blocos]);
     }
@@ -38,65 +38,63 @@ class CorrespondenciasController extends Controller
             ->first();
 
         if ($apartamento) {
-
             $correspondencia = $apartamento->correspondencias()->create([
                 'data_recebimento' => now(),
-                'recebedor_id'     => $request->recebedor_id,
-                'detalhes'         => $request->detalhes,
-                'status'           => Correspondencia::STATUS_NAO_ENTREGUE,
-                'tipo'             => $request->tipo
+                'recebedor_id' => $request->recebedor_id,
+                'detalhes' => $request->detalhes,
+                'status' => Correspondencia::STATUS_NAO_ENTREGUE,
+                'tipo' => $request->tipo
             ]);
 
-            if($apartamento->inquilino){
+            if ($apartamento->inquilino) {
                 Mail::to($apartamento->inquilino->email)
                     ->send(new EntradaCorrespondencia($correspondencia));
             }
 
-            if($apartamento->proprietario){
+            if ($apartamento->proprietario) {
                 Mail::to($apartamento->proprietario->email)
                     ->send(new EntradaCorrespondencia($correspondencia));
             }
 
-            return redirect()->route('correspondencias.index')->with('msg','Registro Adicionado com Sucesso');
+            return redirect()->route('correspondencias.index')->with('msg', 'Registro Adicionado com Sucesso');
         }
 
-        return redirect()->back()->with('error','Ocorreu um erro na Operação');
+        return redirect()->back()->with('error', 'Ocorreu um erro na Operação');
     }
 
     public function edit($id)
     {
         $correspondencia = Correspondencia::find($id);
         return view('admin.correspondencias.atualizar',
-            ['correspondencia'=>$correspondencia]
+            ['correspondencia' => $correspondencia]
         );
-
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $correspondencia = Correspondencia::find($id);
 
-        $dados['status']        = Correspondencia::STATUS_ENTREGE;
-        $dados['data_entrega']  = now();
-        $dados['uuid']          = time().'-'.$correspondencia->tipo.'/'.$correspondencia->id;
+        $dados['status'] = Correspondencia::STATUS_ENTREGE;
+        $dados['data_entrega'] = now();
+        $dados['uuid'] = time() . '-' . $correspondencia->tipo . '/' . $correspondencia->id;
         $correspondencia->update($dados);
 
-        if($correspondencia->apartamento->inquilino){
+        if ($correspondencia->apartamento->inquilino) {
             Mail::to($correspondencia->apartamento->inquilino->email)
                 ->send(new SaidaCorrespondencia($correspondencia));
         }
-        if($correspondencia->apartamento->proprietario){
+        if ($correspondencia->apartamento->proprietario) {
             Mail::to($correspondencia->apartamento->proprietario->email)
                 ->send(new SaidaCorrespondencia($correspondencia));
         }
-        return redirect()->route("correspondencias.index")->with('msg','Registro Atualizado com Sucesso!');
+        return redirect()->route("correspondencias.index")->with('msg', 'Registro Atualizado com Sucesso!');
     }
 
-    public function show($id){
-
+    public function show($id)
+    {
         $correspondencia = Correspondencia::find($id);
         $correspondencia->delete();
 
-        return redirect()->route("correspondencias.index")->with('error','Você Removeu esse Registro!');
+        return redirect()->route("correspondencias.index")->with('error', 'Você Removeu esse Registro!');
     }
 }
