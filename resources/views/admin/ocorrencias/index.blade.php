@@ -42,7 +42,7 @@
             </thead>
             <tbody>
                 @foreach($data as $d)
-                <tr class="{{$d->getStatus($d->tipo)['class'] }}">
+                <tr class="{{$d->getStatus($d->tipo)['class'] ?? '' }}">
                     <td>{{$d->id}}</td>
                     <td>BLOCO: {{$d->apartamento->bloco->codigo ?? ''}} |  APTO: {{$d->apartamento->apto ?? ''}}</td>
                     <td>{{$d->reclamante->nome ?? $d->author->name }}</td>

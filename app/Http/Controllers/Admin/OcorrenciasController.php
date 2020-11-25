@@ -58,7 +58,7 @@ class OcorrenciasController extends Controller
                 'detalhes'      => $request->detalhes,
                 'uuid'          => Uuid::uuid4(),
                 'autor_id'      => Auth::user()->id
-            ]);          
+            ]);
 
             return redirect()->route('ocorrencias.index')->with('msg','Registro Adicionado com Sucesso!');
         }
@@ -71,6 +71,8 @@ class OcorrenciasController extends Controller
         $ocorrencia     = Ocorrencia::find($id);
         $reincidencias  = Ocorrencia::where('apartamento_id',$ocorrencia->apartamento_id)
                                     ->where('artigo_id',$ocorrencia->artigo_id)
+                                    ->where('is_denied',0)
+                                    ->where('penalidade_id','<>',4)
                                     ->whereNotIn('id',[$ocorrencia->id])
                                     ->get();
         $penalidades   = Penalidade::pluck('descricao','id');
@@ -89,7 +91,7 @@ class OcorrenciasController extends Controller
         // dd($request->all());
         $ocorrencia = Ocorrencia::find($id);
         $penalidade = Penalidade::find($request->penalidade_id);
-        
+
         if($request->reicidencia){
             $reincidencias = Ocorrencia::contaReicidencias($ocorrencia);
             //dd($multa);
@@ -111,10 +113,10 @@ class OcorrenciasController extends Controller
         }
 
         if($request->multa)
-            $ocorrencia->multa = $penalidade->multa;    
-        
+            $ocorrencia->multa = $penalidade->multa;
+
         $ocorrencia->penalidade_id = $request->penalidade_id;
-        $ocorrencia->status        =  Ocorrencia::STATUS_CONCLUIDA;        
+        $ocorrencia->status        =  Ocorrencia::STATUS_CONCLUIDA;
         $ocorrencia->save();
 
         if($ocorrencia->apartamento->inquilino){
@@ -145,11 +147,11 @@ class OcorrenciasController extends Controller
         $ocorrencia->status = Ocorrencia::STATUS_EM_ANALISE;
         $ocorrencia->save();
 
-        return redirect()->back()->with('msg','Ocorrencia Atualizada');        
+        return redirect()->back()->with('msg','Ocorrencia Atualizada');
     }
 
     public function print($uuid)
-    {   
+    {
         $ocorrencia = Ocorrencia::where('uuid',$uuid)->firstOrFail();
         // dd($ocorrencia->apartamento->proprietario);
         $pdf = PDF::loadView('printables.ocorrencia',compact('ocorrencia') );

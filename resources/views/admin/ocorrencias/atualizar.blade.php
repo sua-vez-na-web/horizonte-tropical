@@ -52,7 +52,7 @@
                             <a href="{{ route('ocorrencia.denied',$ocorrencia->id) }}" class="btn btn-danger">Negar</a>
                         @elseif($ocorrencia->status == \App\Ocorrencia::STATUS_EM_ANALISE)
                             <a href="#" data-toggle="modal" data-target="#modalAtualizar" class="btn btn-primary"><i class="fa fa-bullhorn"></i> Aplicar Penalidade</a>
-                        @elseif($ocorrencia->status == \App\Ocorrencia::STATUS_CONCLUIDA)
+                        @elseif($ocorrencia->status == \App\Ocorrencia::STATUS_CONCLUIDA && $ocorrencia->is_denied == 0)
                             <a href="{{ route('ocorrencia.print',$ocorrencia->uuid) }}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i> Ato de Infração</a>
                         @endif
                     </div>
