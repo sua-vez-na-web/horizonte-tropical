@@ -21,6 +21,7 @@
                             <th>Apto</th>
                             <th>Prop/Técnico</th>
                             <th>Visitante</th>
+                            <th>Documento</th>
                             <th>Entrada</th>
                             <th>Saída</th>
                             <th>Duração</th>
@@ -73,6 +74,10 @@
                     name: 'nome_visitante'
                 },
                 {
+                    data: 'rg_visitante',
+                    name: 'rg_visitante'
+                },
+                {
                     data: 'dh_entrada',
                     name: 'dh_entrada'
                 },
@@ -82,7 +87,8 @@
                 },
                 {
                     data: 'duration',
-                    name: 'duration'
+                    name: 'duration',
+                    searchable: false
                 },
                 {
                     data: 'actions',
