@@ -31,8 +31,8 @@
         <table class="table data-table table-hover table-bordered table-striped" id="table">
             <thead>
                 <tr>
-                    <th>Código</th>                    
-                    <th>Descricao</th>                   
+                    <th>Código</th>
+                    <th>Descricao</th>
                     <th>Administrar</th>
                 </tr>
             </thead>
@@ -40,9 +40,9 @@
                 @foreach($data as $d)
                 <tr>
                     <td>{{$d->codigo }}</td>
-                    <td>{{$d->descricao}}</td>                              
+                    <td>{{$d->descricao}}</td>
                     <td>
-                       <a href="{{ route('infracoes.edit',$d->id)}}" class="btn btn-default btn-xs">Ver</a>
+                        <a href="{{ route('infracoes.edit',$d->id)}}" class="btn btn-default btn-xs">Ver</a>
                     </td>
                 </tr>
                 @endforeach
@@ -53,13 +53,13 @@
 
 @stop
 
-@section('js')
+@section('scripts')
 <!-- Page level plugins -->
 <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
     $('#table').DataTable({
-        ordering:false
+        ordering: false
     });
 </script>
 @stop

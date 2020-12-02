@@ -32,8 +32,8 @@
             <thead>
                 <tr>
                     <th>#ID</th>
-                    <th>Codigo</th>                   
-                    <th>Penalidade</td>                    
+                    <th>Codigo</th>
+                    <th>Penalidade</td>
                     <th>Infracao</th>
                     <th>Administrar</th>
                 </tr>
@@ -42,11 +42,11 @@
                 @foreach($data as $d)
                 <tr>
                     <td>{{$d->id }}</td>
-                    <td>{{$d->codigo}}</td>                    
+                    <td>{{$d->codigo}}</td>
                     <td>{{$d->penalidade->descricao}}</td>
-                    <td>{{$d->infracao->descricao }}</td>                    
+                    <td>{{$d->infracao->descricao }}</td>
                     <td>
-                       <a href="{{ route('artigos.edit',$d->id)}}" class="btn btn-default btn-xs">Ver</a>
+                        <a href="{{ route('artigos.edit',$d->id)}}" class="btn btn-default btn-xs">Ver</a>
                     </td>
                 </tr>
                 @endforeach
@@ -57,13 +57,13 @@
 
 @stop
 
-@section('js')
+@section('scripts')
 <!-- Page level plugins -->
 <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
     $('#table').DataTable({
-        ordering:false
+        ordering: false
     });
 </script>
 @stop

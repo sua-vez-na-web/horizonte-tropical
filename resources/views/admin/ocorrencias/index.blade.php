@@ -44,14 +44,14 @@
                 @foreach($data as $d)
                 <tr class="{{$d->getStatus($d->tipo)['class'] ?? '' }}">
                     <td>{{$d->id}}</td>
-                    <td>BLOCO: {{$d->apartamento->bloco->codigo ?? ''}} |  APTO: {{$d->apartamento->apto ?? ''}}</td>
+                    <td>BLOCO: {{$d->apartamento->bloco->codigo ?? ''}} | APTO: {{$d->apartamento->apto ?? ''}}</td>
                     <td>{{$d->reclamante->nome ?? $d->author->name }}</td>
                     <td>{{$d->infracao->descricao }}</td>
                     <td> <label for="" class="label label-primary }}">{{ $d->penalidade->descricao ?? 'Nenhuma' }}</label></td>
                     <td> <label for="" class="label label-success }}">{{ $d->getStatus($d->status)['status'] ?? '' }}</label></td>
                     <td>
                         @cannot('funcionario')
-                            <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
+                        <a href="{{ route('ocorrencias.edit', $d->id)}}" class="btn btn-primary btn-xs mx-1">Administrar</a>
                         @endcannot
                         <a href="{{route('get.upload',$d->id)}}" class="btn btn-success btn-xs mx-1">
                             <i class="fa fa-photo"></i>
@@ -71,13 +71,13 @@
 
 @stop
 
-@section('js')
+@section('scripts')
 <!-- Page level plugins -->
 <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
     $('#table').DataTable({
-        ordering:false
+        ordering: false
     });
 </script>
 @stop
