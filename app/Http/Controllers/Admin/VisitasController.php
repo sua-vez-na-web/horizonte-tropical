@@ -10,16 +10,45 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreVisitaRequest as VisitaRequest;
 use App\Http\Requests\StoreVisitaRequest;
+use Yajra\DataTables\Facades\DataTables;
 
 class VisitasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $from = now()->startOfMonth();
-        $to = now()->endOfMonth();
-        $data = Visita::whereBetween('created_at', [$from, $to])->latest()->get();
+        if ($request->ajax()) {
+            $query = Visita::with('apartamento')->select(sprintf('%s.*', (new Visita)->table));
+            $table = Datatables::of($query);
 
-        return view("admin.visitas.index", ["data" => $data]);
+            $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+
+            $table->editColumn('actions', function ($row) {
+                $register = $row;
+                return view('admin.visitas.partials.dataTableActions', compact('register'));
+            });
+
+            $table->editColumn('id', function ($row) {
+                return $row->id ? $row->id : "";
+            });
+
+            $table->addColumn('apto-bloco', function ($row) {
+                return $row->apartamento ? $row->apartamento->apto : 'VISITA TECNICA';
+            });
+
+            $table->editColumn('duration', function ($row) {
+                return $row->duracao();
+            });
+
+            $table->addColumn('proprietario-tecnico', function ($row) {
+                return $row->tecnica ? $row->empresa : $row->apartamento->proprietario->nome;
+            });
+            $table->rawColumns(['placeholder', 'apt-bloco', 'duration']);
+
+            return $table->make(true);
+        }
+
+        return view("admin.visitas.index");
     }
 
     public function create()
@@ -106,4 +135,3 @@ class VisitasController extends Controller
         return redirect()->route('visitas.index');
     }
 }
-

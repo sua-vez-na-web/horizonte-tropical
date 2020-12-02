@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Visita extends Model
 {
     use SoftDeletes;
+
+    public $table = 'visitas';
+
     protected $fillable = [
         'apartamento_id',
         'agendado',
@@ -24,7 +27,7 @@ class Visita extends Model
         'empresa'
     ];
 
-    protected $dates = ['dh_entrada','dh_saida'];
+    protected $dates = ['dh_entrada', 'dh_saida'];
 
 
     public function apartamento()
@@ -40,5 +43,13 @@ class Visita extends Model
         return $duracao;
     }
 
+    // public function getDhEntradaAttribute($value)
+    // {
+    //     return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
+    // }
 
+    // public function getDhSaidaAttribute($value)
+    // {
+    //     return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
+    // }
 }

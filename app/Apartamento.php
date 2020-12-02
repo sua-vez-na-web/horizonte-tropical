@@ -55,19 +55,18 @@ class Apartamento extends Model
 
     public function getApartamentStatus($status)
     {
-        switch($status){
+        switch ($status) {
             case self::APTO_STATUS_DESOCUPADO;
-                return ['status'=>'Desocupado','class'=>'success'];
-            break;
+                return ['status' => 'Desocupado', 'class' => 'success'];
+                break;
 
             case self::APTO_STATUS_OCUPADO;
-                return ['status'=>'Ocupado','class'=>'danger'];
-            break;
+                return ['status' => 'Ocupado', 'class' => 'danger'];
+                break;
 
             case self::APTO_STATUS_PROP_RESIDINDO;
-                return ['status' => 'Prop. Residindo','class'=> 'warning'];
-            break;
-
+                return ['status' => 'Prop. Residindo', 'class' => 'warning'];
+                break;
         }
     }
 }
