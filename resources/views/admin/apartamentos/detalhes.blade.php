@@ -1,92 +1,83 @@
 @extends('layouts.admin')
 
-@section('content_header')
-    <h1>
-        Detalhes Do Apartamento: {{"Bloco: ".$apartamento->bloco->codigo." | ".$apartamento->apto}}
-
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{route('apartamentos.index')}}">Apartamentos</a></li>
-        <li class="active">Lista</li>
-    </ol>
-@stop
-
 @section('content')
+<div class="content">
     <div class="row">
-        <div class="col-md-6">
-            <h3><span class="label label-primary">MORADOR: {{ $apartamento->inquilino->nome ?? ''}}</span></h3>
-            <dl class="dl-horizontal">
-                <dt>Telefone:</dt>
-                <dd>{{ $apartamento->inquilino->telefone ?? 'nao-informado' }}</dd>
-                <dt>Email:</dt>
-                <dd>{{ $apartamento->inquilino->email ?? 'nao-informado' }}</dd>
-                <dt>CPF:</dt>
-                <dd>{{ $apartamento->inquilino->cpf ?? 'nao-informado' }}</dd>
-            </dl>
-        </div>
-        <div class="col-md-6">
-            <h3><span class="label label-primary">PROPRIETÁRIO: {{ $apartamento->proprietario->nome ?? '' }}</span></h3>
-            <dl class="dl-horizontal">
-                <dt>Telefone:</dt>
-                <dd>{{ $apartamento->proprietario->telefone ?? 'nao-informado' }}</dd>
-                <dt>Email:</dt>
-                <dd>{{ $apartamento->proprietario->email ?? 'nao-informado' }}</dd>
-                <dt>CPF:</dt>
-                <dd>{{ $apartamento->proprietario->cpf ?? 'nao-informado' }}</dd>
-            </dl>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-group"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Total de Visitas</span>
-                    <span class="info-box-number">{{$visitas->count()}}</span>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3><span class="label label-primary">MORADOR: {{ $apartamento->inquilino->nome ?? ''}}</span></h3>
+                    <dl class="dl-horizontal">
+                        <dt>Telefone:</dt>
+                        <dd>{{ $apartamento->inquilino->telefone ?? 'nao-informado' }}</dd>
+                        <dt>Email:</dt>
+                        <dd>{{ $apartamento->inquilino->email ?? 'nao-informado' }}</dd>
+                        <dt>CPF:</dt>
+                        <dd>{{ $apartamento->inquilino->cpf ?? 'nao-informado' }}</dd>
+                    </dl>
                 </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Total de Ocorrencias</span>
-                    <span class="info-box-number">{{$ocorrencias->count()}}</span>
+                <div class="col-md-6">
+                    <h3><span class="label label-primary">PROPRIETÁRIO: {{ $apartamento->proprietario->nome ?? '' }}</span></h3>
+                    <dl class="dl-horizontal">
+                        <dt>Telefone:</dt>
+                        <dd>{{ $apartamento->proprietario->telefone ?? 'nao-informado' }}</dd>
+                        <dt>Email:</dt>
+                        <dd>{{ $apartamento->proprietario->email ?? 'nao-informado' }}</dd>
+                        <dt>CPF:</dt>
+                        <dd>{{ $apartamento->proprietario->cpf ?? 'nao-informado' }}</dd>
+                    </dl>
                 </div>
-                <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="fa fa-envelope-o"></i></span>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-group"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Total de Correspondências</span>
-                    <span class="info-box-number">{{$correspondencias->count()}}</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total de Visitas</span>
+                            <span class="info-box-number">{{$visitas->count()}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box-content -->
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total de Ocorrencias</span>
+                            <span class="info-box-number">{{$ocorrencias->count()}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="fa fa-envelope-o"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total de Correspondências</span>
+                            <span class="info-box-number">{{$correspondencias->count()}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
             </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        Detalhes do Apartamento
+                    </h3>
 
-    </div>
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                Detalhes do Apartamento
-            </h3>
-
-        </div>
-        <div class="box-body">
+                </div>
+                <div class="box-body">
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
@@ -117,22 +108,18 @@
                     <!-- nav-tabs-custom -->
 
 
+                </div>
+            </div>
         </div>
     </div>
+</div>
 @endsection
 
-@section('css')
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-@stop
 
-@section('js')
-    <!-- Page level plugins -->
-    <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-    <script>
-        $('#table_correspondencias').DataTable();
-        $('#table_ocorrencias').DataTable();
-        $('#table_visitas').DataTable();
-    </script>
+@section('scripts')
+<script>
+    $('#table_correspondencias').DataTable();
+    $('#table_ocorrencias').DataTable();
+    $('#table_visitas').DataTable();
+</script>
 @stop
