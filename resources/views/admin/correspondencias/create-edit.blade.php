@@ -13,24 +13,28 @@
 @stop
 
 @section('content')
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">Adicionar Registro</h3>
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Adicionar Registro
+                </div>
+                @if(isset($correspondencia))
+                {!! Form::model($correspondencia,['route'=>['correspondencias.update',$correspondencia->id],'enctype'=>'multipart/form-data', 'class'=>'form-horizontal']) !!}
+                @method('PUT')
+                @else
+                {!! Form::open(['route'=>'correspondencias.store','enctype'=>'multipart/form-data','class'=>'form-horizontal']) !!}
+                @endif
+                <div class="panel-body">
+                    @include('admin.correspondencias.form')
+                </div>
+                <div class="panel-footer">
+                    {!! Form::submit('Salvar',['class'=>'btn btn-primary']) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
     </div>
-    @if(isset($correspondencia))
-    {!! Form::model($correspondencia,['route'=>['correspondencias.update',$correspondencia->id],'enctype'=>'multipart/form-data', 'class'=>'form-horizontal']) !!}
-    @method('PUT')
-    @else
-    {!! Form::open(['route'=>'correspondencias.store','enctype'=>'multipart/form-data','class'=>'form-horizontal']) !!}
-    @endif
-    <div class="box-body">
-        @include('admin.correspondencias.form')
-    </div>
-    <div class="box-footer">
-        {!! Form::submit('Salvar',['class'=>'btn btn-primary']) !!}
-    </div>
-    {!! Form::close() !!}
 </div>
 @stop
-
-
