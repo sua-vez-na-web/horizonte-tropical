@@ -68,21 +68,23 @@
                 },
 
                 {
-                    data: 'bloco',
-                    name: 'bloco'
+                    data: 'bloco_name',
+                    name: 'bloco.bloco',
+                    searchable: false
                 },
                 {
-                    data: 'apto',
-                    name: 'apto'
+                    data: 'apto_name',
+                    name: 'apto.apto',
+                    searchable: false
                 },
                 {
-                    data: 'recebedor',
-                    name: 'recebedor'
+                    data: 'recebedor_name',
+                    name: 'recebedor.nome'
 
                 },
                 {
-                    data: 'status',
-                    name: 'status'
+                    data: 'status_name',
+                    name: 'status',
                 },
                 {
                     data: 'data_entrega',

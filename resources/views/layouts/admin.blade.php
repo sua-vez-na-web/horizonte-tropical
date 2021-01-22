@@ -42,7 +42,9 @@
                 @if(count(config('panel.available_languages', [])) > 1)
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+
                         <li class="dropdown notifications-menu">
+
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 {{ strtoupper(app()->getLocale()) }}
                             </a>

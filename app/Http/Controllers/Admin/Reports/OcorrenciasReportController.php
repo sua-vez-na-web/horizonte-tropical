@@ -16,9 +16,9 @@ class OcorrenciasReportController extends Controller
     {
         $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
         $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
-        $penalidades  = Penalidade::orderBy('id')->pluck('descricao','id');
+        $penalidades  = Penalidade::orderBy('id')->pluck('descricao', 'id');
 
-        return view('reports.ocorrencias.individual',[
+        return view('reports.ocorrencias.individual', [
             'apartamentos' => $apartamentos,
             'blocos' => $blocos,
             'penalidades' => $penalidades,
@@ -26,34 +26,33 @@ class OcorrenciasReportController extends Controller
         ]);
     }
 
-    public function postIndividual(OcorrenciaReportRequest $request)
-    {   
+    public function postIndividual(Request $request)
+    {
         $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
             ->where('apto', $request->apto_id)
             ->first();
 
-        if($apartamento){
+        if ($apartamento) {
 
             //query do database
-            $result = Ocorrencia::where('apartamento_id',$apartamento->id)
-                        ->whereBetween('data',[$request->dt_inicio,$request->dt_final])
-                        ->orderBy('data','asc')
-                        ->get();
+            $result = Ocorrencia::where('apartamento_id', $apartamento->id)
+                ->whereBetween('data', [$request->dt_inicio, $request->dt_final])
+                ->orderBy('data', 'asc')
+                ->get();
 
             $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
             $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
-            $penalidades  = Penalidade::orderBy('id')->pluck('descricao','id');
-    
-            return view('reports.ocorrencias.individual',[
+            $penalidades  = Penalidade::orderBy('id')->pluck('descricao', 'id');
+
+            return view('reports.ocorrencias.individual', [
                 'apartamentos' => $apartamentos,
                 'blocos' => $blocos,
                 'penalidades' => $penalidades,
                 'result'    => true,
                 'data'      => $result
             ]);
-        }       
+        }
 
-        return redirect()->back()->with('error','As informações recebidas não foram satisfatórias');
-       
+        return redirect()->back()->with('error', 'As informações recebidas não foram satisfatórias');
     }
 }

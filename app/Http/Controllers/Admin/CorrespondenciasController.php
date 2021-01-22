@@ -18,7 +18,7 @@ class CorrespondenciasController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = Correspondencia::with(['apartamento','recebedor'])->select(sprintf('%s.*', (new Correspondencia)->table));
+            $query = Correspondencia::with(['apartamento', 'recebedor'])->select(sprintf('%s.*', (new Correspondencia)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -29,33 +29,32 @@ class CorrespondenciasController extends Controller
                 return view('admin.correspondencias.partials.dataTableActions', compact('register'));
             });
 
-            $table->addColumn('apto', function ($row) {
-                return $row->apartamento ? $row->apartamento->apto : '--';
+            $table->addColumn('apto_name', function ($row) {
+                return $row->apartamento ? $row->apartamento->apto : '';
             });
 
-            $table->addColumn('bloco', function ($row) {
-                return $row->apartamento ? $row->apartamento->bloco_id : '--';
+            $table->addColumn('bloco_name', function ($row) {
+                return $row->apartamento ? $row->apartamento->bloco_id : '';
             });
 
-            $table->addColumn('recebedor', function ($row) {
-                return $row->recebedor ? $row->recebedor->nome : "--";
+            $table->addColumn('recebedor_name', function ($row) {
+                return $row->recebedor ? $row->recebedor->nome : "";
             });
 
             $table->addColumn('tipo', function ($row) {
                 return $row->tipo ?  $row->getType() : "--";
             });
 
-            $table->addColumn('status', function ($row) {
+            $table->addColumn('status_name', function ($row) {
                 return $row->status ?  $row->getStatus() : "--";
             });
 
-            $table->rawColumns(['placeholder','recebedor','status','tipo']);
+            $table->rawColumns(['placeholder', 'recebedor', 'status', 'tipo']);
 
             return $table->make(true);
         }
 
         return view("admin.correspondencias.index");
-
     }
 
     public function create()
@@ -100,7 +99,8 @@ class CorrespondenciasController extends Controller
     public function edit($id)
     {
         $correspondencia = Correspondencia::find($id);
-        return view('admin.correspondencias.atualizar',
+        return view(
+            'admin.correspondencias.atualizar',
             ['correspondencia' => $correspondencia]
         );
     }

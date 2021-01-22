@@ -12,7 +12,7 @@
                 </div>
                 <div class="panel-body">
 
-                    <form action="{{ route('rpt.visitas.seach') }}" method="post" class="form">
+                    <form action="{{ route('rpt.correspondencias.search') }}" method="post" class="form">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-2">
@@ -59,19 +59,19 @@
                 <tr>
                     <th>#ID</th>
                     <th>BLOCO - APTO</th>
-                    <th>Visitante</th>
-                    <th>Data Entrada</th>
-                    <th>Data Saída</th>
+                    <th>tipo</th>
+                    <th>Data Recebimento</th>
+                    <th>Data Entrega</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($data as $d)
                 <tr>
-                    <td>{{$d->id}}</td>
+                    <td>{{$d->uuid}}</td>
                     <td>BLOCO: {{$d->apartamento->bloco->codigo ?? ''}} | APTO: {{$d->apartamento->apto ?? ''}}</td>
-                    <td>{{$d->nome_visitante}}</td>
-                    <td> {{ date('d/m/Y H:m',strtotime($d->dh_entrada)) }}</td>
-                    <td> {{ date('d/m/Y H:m',strtotime($d->dh_saida)) }}</td>
+                    <td>{{ $d->getType() }}</td>
+                    <td> {{ date('d/m/Y H:m',strtotime($d->data_recebimento)) }}</td>
+                    <td> {{ date('d/m/Y H:m',strtotime($d->data_entrega)) }}</td>
                 </tr>
                 @empty
                 <p class="label label-danger">Nenhum Resultado</p>
