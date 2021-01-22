@@ -6,27 +6,25 @@ use App\Apartamento;
 use App\Bloco;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ReportOcorrenciaIndividualRequest as OcorrenciaReportRequest;
-use App\Ocorrencia;
-use App\Penalidade;
+use App\Http\Requests\ReportVisitasRequest;
+use App\Visita;
+use Illuminate\Support\Facades\DB;
 
-class OcorrenciasReportController extends Controller
+class VisitasReportController extends Controller
 {
-    public function getIndividual(Request $request)
+    public function getSearch(Request $request)
     {
         $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
         $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
-        $penalidades  = Penalidade::orderBy('id')->pluck('descricao', 'id');
 
-        return view('reports.ocorrencias.individual', [
+        return view('reports.visitas.index', [
             'apartamentos' => $apartamentos,
             'blocos' => $blocos,
-            'penalidades' => $penalidades,
             'result'    => false
         ]);
     }
 
-    public function postIndividual(Request $request)
+    public function postSearch(Request $request)
     {
         $apartamento = Apartamento::where('bloco_id', $request->bloco_id)
             ->where('apto', $request->apto_id)
@@ -35,19 +33,31 @@ class OcorrenciasReportController extends Controller
         if ($apartamento) {
 
             //query do database
-            $result = Ocorrencia::where('apartamento_id', $apartamento->id)
-                ->whereBetween('data', [$request->dt_inicio, $request->dt_final])
-                ->orderBy('data', 'asc')
+            $result = Visita::where('apartamento_id', $apartamento->id)
+                ->whereBetween('created_at', [$request->dt_inicio, $request->dt_final])
+                // ->orderBy('data', 'asc')
                 ->get();
 
             $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
             $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
-            $penalidades  = Penalidade::orderBy('id')->pluck('descricao', 'id');
 
-            return view('reports.ocorrencias.individual', [
+            return view('reports.visitas.index', [
                 'apartamentos' => $apartamentos,
                 'blocos' => $blocos,
-                'penalidades' => $penalidades,
+                'result'    => true,
+                'data'      => $result
+            ]);
+        } else {
+            $result = Visita::whereBetween('created_at', [$request->dt_inicio, $request->dt_final])
+                // ->orderBy('data', 'asc')
+                ->get();
+
+            $apartamentos = Apartamento::orderBy('id')->take(16)->pluck('apto', 'apto');
+            $blocos       = Bloco::orderBy('id')->pluck('codigo', 'id');
+
+            return view('reports.visitas.index', [
+                'apartamentos' => $apartamentos,
+                'blocos' => $blocos,
                 'result'    => true,
                 'data'      => $result
             ]);
