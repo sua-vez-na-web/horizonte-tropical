@@ -11,9 +11,10 @@
                         Adicionar Registro</a>
                 </div>
                 <div class="panel-body">
-                    <table class="table data-table table-hover table-bordered table-striped" id="table">
+                    <table class="table table-bordered table-striped table-hover ajaxTable datatable datatable-Appoitment" id="table">
                         <thead>
                             <tr>
+                                <th>#ID</th>
                                 <th>CodigoUnico</th>
                                 <th>Data Recebimento</th>
                                 <th>Tipo</th>
@@ -25,30 +26,6 @@
                                 <th>Administrar</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($data as $d)
-                            <tr>
-                                <td>{{$d->uuid ?? '########' }}</td>
-                                <td>{{date("d/m/Y H:i:s",strtotime($d->data_recebimento))}}</td>
-                                <td>{{$d->getType($d->tipo)}}</td>
-                                <td>{{$d->apartamento->bloco->codigo }}</td>
-                                <td>{{$d->apartamento->apto}}</td>
-                                <td>{{$d->recebedor->nome}}</td>
-                                <td>{{$d->getStatus($d->status) }}</td>
-                                <td>{{$d->data_entrega ? date("d/m/Y H:i:s",strtotime($d->data_entrega)) : "Pendende de Entrega"}}</td>
-                                <td>
-                                    @if(!$d->data_entrega)
-                                    <a href="{{ route('correspondencias.edit', $d->id) }}" class="btn btn-primary btn-xs">Baixar
-                                        Recebimento</a>
-                                    <a href="{{ route('correspondencias.show',$d->id) }}" class="btn btn-danger btn-xs">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                    @endif
-                                    <a href="{{ route('correspondencias.edit',$d->id)}}" class="btn btn-default btn-xs">Ver</a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -63,8 +40,72 @@
 <!-- <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> -->
 <script>
-    $('#table').DataTable({
-        ordering: false
+    $(function() {
+        let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+
+        let dtOverrideGlobals = {
+            buttons: dtButtons,
+            processing: true,
+            serverSide: true,
+            retrieve: true,
+            aaSorting: [],
+            ajax: "{{ route('correspondencias.index') }}",
+            columns: [{
+                    data: 'placeholder',
+                    name: 'placeholder'
+                },
+                {
+                    data: 'uuid',
+                    name: 'uuid'
+                },
+                {
+                    data: 'data_recebimento',
+                    name: 'data_recebimento'
+                },
+                {
+                    data: 'tipo',
+                    name: 'tipo'
+                },
+
+                {
+                    data: 'bloco',
+                    name: 'bloco'
+                },
+                {
+                    data: 'apto',
+                    name: 'apto'
+                },
+                {
+                    data: 'recebedor',
+                    name: 'recebedor'
+
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'data_entrega',
+                    name: 'data_entrega',
+                    searchable: false
+                },
+                {
+                    data: 'actions',
+                    name: "{{ trans('global.actions ') }}"
+                }
+            ],
+            orderCellsTop: true,
+            order: [
+                [1, 'desc']
+            ],
+            pageLength: 10,
+        };
+        let table = $('.datatable-Appoitment').DataTable(dtOverrideGlobals);
+        // $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e) {
+        //     $($.fn.dataTable.tables(true)).DataTable()
+        //         .columns.adjust();
+        // });
+
     });
 </script>
 @stop

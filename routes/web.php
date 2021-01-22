@@ -51,4 +51,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
      Route::get('relatorios/ocorrencias/individual','Reports\OcorrenciasReportController@getIndividual')->name('rpt.ocorrencia.individual');
      Route::post('relatorios/ocorrencias/individual','Reports\OcorrenciasReportController@postIndividual')->name('rpt.ocorrencia.individual');
 
+     Route::get('relatorios/visitas/individual','Reports\VisitasReportController@getSearch')->name('rpt.visitas.index');
+     Route::post('relatorios/visitas/individual','Reports\VisitasReportController@postSearch')->name('rpt.visitas.seach');
+
+     Route::get('relatorios/correspondencias/individual','Reports\CorrespondenciasReportController@getSearch')->name('rpt.correspondencias.index');
+     Route::post('relatorios/correspondencias/individual','Reports\CorrespondenciasReportController@postSearch')->name('rpt.correspondencias.search');
+
 });
