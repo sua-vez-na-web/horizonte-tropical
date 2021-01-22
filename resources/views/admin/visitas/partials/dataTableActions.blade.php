@@ -6,3 +6,6 @@
 @else
 <p class="label label-danger">Visita Encerrada</p>
 @endif
+
+
+

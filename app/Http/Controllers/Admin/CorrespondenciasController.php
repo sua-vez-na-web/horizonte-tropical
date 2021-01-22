@@ -9,18 +9,52 @@ use App\Mail\SaidaCorrespondencia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Correspondencia;
-use Ramsey\Uuid\Uuid;
 use Mail;
 use App\Http\Requests\StoreCorrespondenciaRequest as CorrespondenciaRequest;
+use Yajra\DataTables\Facades\DataTables;
 
 class CorrespondenciasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $from = now()->startOfMonth();
-        $to = now()->endOfMonth();
-        $data = Correspondencia::whereBetween('created_at', [$from, $to])->latest()->get();
-        return view('admin.correspondencias.index', ['data' => $data]);
+        if ($request->ajax()) {
+            $query = Correspondencia::with(['apartamento', 'recebedor'])->select(sprintf('%s.*', (new Correspondencia)->table));
+            $table = Datatables::of($query);
+
+            $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+
+            $table->editColumn('actions', function ($row) {
+                $register = $row;
+                return view('admin.correspondencias.partials.dataTableActions', compact('register'));
+            });
+
+            $table->addColumn('apto_name', function ($row) {
+                return $row->apartamento ? $row->apartamento->apto : '';
+            });
+
+            $table->addColumn('bloco_name', function ($row) {
+                return $row->apartamento ? $row->apartamento->bloco_id : '';
+            });
+
+            $table->addColumn('recebedor_name', function ($row) {
+                return $row->recebedor ? $row->recebedor->nome : "";
+            });
+
+            $table->addColumn('tipo', function ($row) {
+                return $row->tipo ?  $row->getType() : "--";
+            });
+
+            $table->addColumn('status_name', function ($row) {
+                return $row->status ?  $row->getStatus() : "--";
+            });
+
+            $table->rawColumns(['placeholder', 'recebedor', 'status', 'tipo']);
+
+            return $table->make(true);
+        }
+
+        return view("admin.correspondencias.index");
     }
 
     public function create()
@@ -65,7 +99,8 @@ class CorrespondenciasController extends Controller
     public function edit($id)
     {
         $correspondencia = Correspondencia::find($id);
-        return view('admin.correspondencias.atualizar',
+        return view(
+            'admin.correspondencias.atualizar',
             ['correspondencia' => $correspondencia]
         );
     }

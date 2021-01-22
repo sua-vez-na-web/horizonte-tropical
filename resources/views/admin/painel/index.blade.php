@@ -1,21 +1,17 @@
 @extends('layouts.admin')
 
 
-{{--@section('content_header')--}}
-{{--    <h1>--}}
-{{--        Apartamentos--}}
-
-{{--    </h1>--}}
-{{--    <ol class="breadcrumb">--}}
-{{--        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--}}
-{{--        <li><a href="{{route('apartamentos.index')}}">Apartamentos</a></li>--}}
-{{--        <li class="active">Lista</li>--}}
-{{--    </ol>--}}
-
-{{--@stop--}}
-
 
 @section('content')
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{{asset('docs/REGIMENTO-INTERNO-NOVO.pdf')}}" target="_blank" class="btn btn-primary pull-right">
+                Download do Regimento Interno <i class="fa fa-download"></i>
+            </a>
+        </div>
+    </div>
+    <hr>
     <div class="row">
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
@@ -86,5 +82,6 @@
         </div>
         <!-- ./col -->
     </div>
+</div>
 
 @endsection

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Correspondencia extends Model
 {
     use SoftDeletes;
-
+    public $table = 'correspondencias';
     const STATUS_ENTREGE = 1;
     const STATUS_NAO_ENTREGUE = 0;
 
@@ -41,9 +41,9 @@ class Correspondencia extends Model
         return $this->belongsTo(Pessoa::class,'recebedor_id');
     }
 
-    public function getType($type)
+    public function getType()
     {
-        switch ($type) {
+        switch ($this->tipo) {
             case self::TIPO_CORRES_AGUA:
                 return "AGUA";
                 break;
@@ -58,22 +58,20 @@ class Correspondencia extends Model
                 break;
             case self::TIPO_CORRES_OUTROS:
                 return "OUTRAS CORRESPONDENCIAS";
-                break;            
-            
+                break;
+
         }
     }
 
-    public function getStatus($status)
+    public function getStatus()
     {
-        switch ($status) {
+
+        switch ($this->status) {
             case self::STATUS_ENTREGE:
                 return 'ENTREGUE';
                 break;
             case self::STATUS_NAO_ENTREGUE:
-                return 'NÃO ENTREGUE';
-                break;            
-            default:
-                # code...
+                return 'NAO ENTREGUE';
                 break;
         }
     }
