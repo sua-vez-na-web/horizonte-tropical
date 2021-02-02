@@ -56,35 +56,37 @@
                 },
                 {
                     data: 'uuid',
-                    name: 'uuid'
+                    name: 'uuid',
+                    searchable: false
                 },
                 {
                     data: 'data_recebimento',
-                    name: 'data_recebimento'
+                    name: 'data_recebimento',
+                    searchable: false
                 },
                 {
                     data: 'tipo',
-                    name: 'tipo'
+                    name: 'tipo',
+                    searchable: false
                 },
 
                 {
-                    data: 'bloco_name',
-                    name: 'bloco.bloco',
-                    searchable: false
+                    data: 'bloco',
+                    name: 'bloco',
                 },
                 {
-                    data: 'apto_name',
-                    name: 'apto.apto',
-                    searchable: false
+                    data: 'apto',
+                    name: 'apto',
+
                 },
                 {
                     data: 'recebedor_name',
-                    name: 'recebedor.nome'
-
+                    name: 'recebedor.nome',
                 },
                 {
                     data: 'status_name',
                     name: 'status',
+                    searchable: false
                 },
                 {
                     data: 'data_entrega',

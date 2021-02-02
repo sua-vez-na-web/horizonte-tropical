@@ -15,7 +15,9 @@ class Apartamento extends Model
         'proprietario_id',
         'inquilino_id',
         'apto',
-        'status'
+        'status',
+        'apto',
+        'bloco'
     ];
 
     public function proprietario()
