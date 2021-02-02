@@ -18,7 +18,8 @@ class CorrespondenciasController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = Correspondencia::with(['apartamento', 'recebedor'])->select(sprintf('%s.*', (new Correspondencia)->table));
+            $query = Correspondencia::with('recebedor')->select(sprintf('%s.*', (new Correspondencia)->table));
+            $query->orderBy('data_recebimento', 'desc');
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -27,14 +28,6 @@ class CorrespondenciasController extends Controller
             $table->editColumn('actions', function ($row) {
                 $register = $row;
                 return view('admin.correspondencias.partials.dataTableActions', compact('register'));
-            });
-
-            $table->addColumn('apto_name', function ($row) {
-                return $row->apartamento ? $row->apartamento->apto : '';
-            });
-
-            $table->addColumn('bloco_name', function ($row) {
-                return $row->apartamento ? $row->apartamento->bloco_id : '';
             });
 
             $table->addColumn('recebedor_name', function ($row) {
@@ -73,6 +66,8 @@ class CorrespondenciasController extends Controller
 
         if ($apartamento) {
             $correspondencia = $apartamento->correspondencias()->create([
+                'apto' => $apartamento->apto,
+                'bloco' => $apartamento->bloco_id,
                 'data_recebimento' => now(),
                 'recebedor_id' => $request->recebedor_id,
                 'detalhes' => $request->detalhes,
